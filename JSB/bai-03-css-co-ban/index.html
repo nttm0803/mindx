@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3 - CSS cơ bản</title>
+
+    <!-- CÁCH 3 – EXTERNAL CSS: nối file CSS bên ngoài (cách nên dùng nhất) -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- CÁCH 2 – INTERNAL CSS: viết CSS trong thẻ <style> ngay trong head -->
+    <style>
+        .vi-du-internal {
+            color: purple;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="trang">
+
+        <p><a href="../index.html">⬅ Về trang chủ khóa học</a></p>
+        <h1>🎨 Bài 3: CSS cơ bản</h1>
+        <p class="mo-ta">
+            Mở file <b>style.css</b> song song với trang này. Mỗi phần trong trang đều có
+            đoạn CSS tương ứng được chú thích rõ ràng.
+        </p>
+
+        <p class="muc-luc">
+            <a href="#css-la-gi">CSS là gì</a> |
+            <a href="#thuoc-tinh">Thuộc tính cơ bản</a> |
+            <a href="#selector">Selectors</a> |
+            <a href="#inspect">Inspect</a> |
+            <a href="#box-model">Box Model</a> |
+            <a href="du-an-mindx-page/index.html">🛠 Dự án MindX Page</a>
+        </p>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 1: CSS LÀ GÌ                                  -->
+        <!-- ================================================= -->
+        <div class="phan" id="css-la-gi">
+            <h2>1. CSS là gì?</h2>
+            <p>
+                <b>CSS</b> (Cascading Style Sheets) là ngôn ngữ dùng để <b>trang trí</b> trang web:
+                màu sắc, cỡ chữ, khoảng cách, bố cục...
+            </p>
+            <ul>
+                <li>🦴 <b>HTML</b> = bộ khung của ngôi nhà (tường, cửa, phòng).</li>
+                <li>🎨 <b>CSS</b> = sơn tường, rèm cửa, đồ trang trí.</li>
+            </ul>
+
+            <h3>Cú pháp CSS</h3>
+<pre>
+selector {
+    thuộc-tính: giá-trị;
+    thuộc-tính: giá-trị;
+}
+
+/* Ví dụ: tô chữ của mọi thẻ h1 thành màu đỏ, cỡ 40px */
+h1 {
+    color: red;
+    font-size: 40px;
+}
+</pre>
+            <ul>
+                <li><b>Selector</b>: chọn phần tử nào để trang trí.</li>
+                <li><b>Thuộc tính</b> (property): muốn đổi cái gì (màu chữ, cỡ chữ...).</li>
+                <li><b>Giá trị</b> (value): đổi thành gì.</li>
+                <li>⚠ Nhớ dấu <b>:</b> giữa thuộc tính và giá trị, dấu <b>;</b> ở cuối mỗi dòng.</li>
+                <li>Chú thích trong CSS viết trong <b>/* ... */</b></li>
+            </ul>
+
+            <h3>3 cách viết CSS</h3>
+            <!-- CÁCH 1 – INLINE CSS: viết thẳng vào thuộc tính style của thẻ -->
+            <p style="color: green;">① Inline: viết trong thuộc tính <b>style</b> của thẻ. (Dòng này màu xanh lá)</p>
+            <p class="vi-du-internal">② Internal: viết trong thẻ <b>&lt;style&gt;</b> ở phần head. (Dòng này màu tím)</p>
+            <p class="vi-du-external">③ External: viết trong file <b>.css</b> riêng, nối bằng thẻ <b>&lt;link&gt;</b>. (Dòng này màu cam)</p>
+<pre>
+&lt;!-- ① Inline --&gt;
+&lt;p style="color: green;"&gt;...&lt;/p&gt;
+
+&lt;!-- ② Internal (trong head) --&gt;
+&lt;style&gt;
+    .vi-du-internal { color: purple; }
+&lt;/style&gt;
+
+&lt;!-- ③ External (trong head) --&gt;
+&lt;link rel="stylesheet" href="style.css"&gt;
+</pre>
+            <p class="ghi-chu">💡 Nên dùng <b>External</b>: code gọn, 1 file CSS dùng chung cho nhiều trang HTML.</p>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 2: THUỘC TÍNH CƠ BẢN                          -->
+        <!-- ================================================= -->
+        <div class="phan" id="thuoc-tinh">
+            <h2>2. Các thuộc tính CSS cơ bản</h2>
+
+            <h3>Về chữ</h3>
+            <p class="tt-color">color: crimson; → đổi màu chữ</p>
+            <p class="tt-size">font-size: 24px; → đổi cỡ chữ</p>
+            <p class="tt-family">font-family: 'Courier New', monospace; → đổi phông chữ</p>
+            <p class="tt-weight">font-weight: bold; → chữ đậm</p>
+            <p class="tt-style">font-style: italic; → chữ nghiêng</p>
+            <p class="tt-align">text-align: center; → căn giữa chữ</p>
+            <p class="tt-decoration">text-decoration: underline; → gạch chân</p>
+            <p class="tt-transform">text-transform: uppercase; → viết hoa toàn bộ</p>
+
+            <h3>Về hộp (khối)</h3>
+            <div class="tt-hop">
+                background-color: lightyellow; width: 300px; height: 80px; border: 3px solid orange;
+            </div>
+
+            <h3>Cách viết màu</h3>
+            <ul>
+                <li><span class="mau-ten">Tên màu</span>: red, blue, tomato, gold...</li>
+                <li><span class="mau-hex">Mã HEX</span>: #FF5733 (dấu # + 6 ký tự)</li>
+                <li><span class="mau-rgb">RGB</span>: rgb(30, 144, 255) – trộn Đỏ, Xanh lá, Xanh dương (0 → 255)</li>
+            </ul>
+
+            <h3>Đơn vị đo</h3>
+            <ul>
+                <li><b>px</b> (pixel): cố định. Ví dụ width: 300px;</li>
+                <li><b>%</b>: theo phần trăm của thẻ cha. Ví dụ width: 50%; = rộng bằng nửa thẻ cha.</li>
+            </ul>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 3: SELECTORS                                   -->
+        <!-- ================================================= -->
+        <div class="phan" id="selector">
+            <h2>3. CSS Selectors – chọn đúng phần tử</h2>
+            <p>Selector giống như "gọi tên" để CSS biết cần trang trí ai.</p>
+
+            <ul>
+                <li><b>*</b> → chọn <b>tất cả</b> phần tử.</li>
+                <li><b>p</b> → chọn theo <b>tên thẻ</b> (mọi thẻ p).</li>
+                <li><b>.ten-class</b> → chọn theo <b>class</b> (dấu chấm). Nhiều thẻ dùng chung 1 class được.</li>
+                <li><b>#ten-id</b> → chọn theo <b>id</b> (dấu thăng). Mỗi id chỉ dùng cho <b>1 thẻ</b> duy nhất.</li>
+                <li><b>h1, h2</b> → chọn <b>nhóm</b> (dấu phẩy): áp dụng cho cả h1 và h2.</li>
+                <li><b>div p</b> → chọn <b>con cháu</b> (dấu cách): chỉ các p nằm bên trong div.</li>
+            </ul>
+
+            <p>🧠 <b>Dễ nhớ:</b> class giống <b>tên lớp</b> (cả lớp 9A dùng chung), id giống <b>số căn cước</b> (mỗi người 1 số riêng).</p>
+
+            <h3>Thử nghiệm</h3>
+            <div class="khu-selector">
+                <p>Đoạn 1: chỉ là thẻ p bình thường (bị chọn bởi selector <b>.khu-selector p</b>)</p>
+                <p class="noi-bat">Đoạn 2: có class="noi-bat"</p>
+                <p class="noi-bat">Đoạn 3: cũng có class="noi-bat" (class dùng lại được)</p>
+                <p id="dac-biet">Đoạn 4: có id="dac-biet" (duy nhất)</p>
+                <p class="noi-bat chu-to">Đoạn 5: có 2 class cùng lúc: class="noi-bat chu-to"</p>
+            </div>
+<pre>
+.khu-selector p   { color: gray; }          /* con cháu   */
+.noi-bat          { background-color: #FFF3B0; } /* class */
+#dac-biet         { color: white; background-color: #6A4C93; } /* id */
+.chu-to           { font-size: 22px; }
+</pre>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 4: INSPECT                                     -->
+        <!-- ================================================= -->
+        <div class="phan" id="inspect">
+            <h2>4. Inspect – "Soi" CSS ngay trên trình duyệt</h2>
+            <p>Công cụ <b>Inspect</b> (DevTools) cho phép xem và sửa CSS <b>trực tiếp</b> trên trình duyệt để thử nghiệm nhanh.</p>
+
+            <h3>Cách mở</h3>
+            <ul>
+                <li>Nhấn <b>F12</b>, hoặc</li>
+                <li>Chuột phải vào phần tử → chọn <b>Inspect / Kiểm tra</b>, hoặc</li>
+                <li>Nhấn <b>Ctrl + Shift + C</b> rồi bấm vào phần tử muốn soi.</li>
+            </ul>
+
+            <h3>Các khu vực quan trọng</h3>
+            <ul>
+                <li><b>Elements</b> (bên trái): cây HTML của trang.</li>
+                <li><b>Styles</b> (bên phải): CSS đang áp dụng cho phần tử được chọn.
+                    <ul>
+                        <li>Bỏ tick ☐ để tắt thử 1 thuộc tính.</li>
+                        <li>Bấm vào giá trị để sửa (dùng phím ↑ ↓ để tăng giảm số).</li>
+                        <li>Bấm vào ô vuông màu để chọn màu bằng bảng màu.</li>
+                        <li>Thuộc tính bị <s>gạch ngang</s> là đang bị CSS khác ghi đè.</li>
+                    </ul>
+                </li>
+                <li><b>Computed</b>: xem hình Box Model của phần tử (margin, border, padding, content).</li>
+            </ul>
+            <p class="ghi-chu">⚠ Sửa trong Inspect chỉ là <b>tạm thời</b>. Nhấn F5 là mất! Thấy đẹp thì copy vào file CSS.</p>
+
+            <h3>🎯 Thử thách</h3>
+            <div class="hop-bi-mat">
+                Hộp bí mật 🕵️ – Dùng Inspect đổi màu nền hộp này thành <b>màu vàng</b>,
+                chữ thành <b>cỡ 30px</b>, và tìm xem nó đang có padding bao nhiêu!
+            </div>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 5: BOX MODEL                                   -->
+        <!-- ================================================= -->
+        <div class="phan" id="box-model">
+            <h2>5. CSS Box Model – Mọi thứ đều là cái hộp 📦</h2>
+            <p>Trình duyệt coi <b>mỗi phần tử là một chiếc hộp</b>, gồm 4 lớp từ trong ra ngoài:</p>
+            <ol>
+                <li><b>Content</b> – nội dung (chữ, ảnh). Kích thước = width × height.</li>
+                <li><b>Padding</b> – đệm <b>bên trong</b>, giữa nội dung và viền.</li>
+                <li><b>Border</b> – <b>viền</b> của hộp.</li>
+                <li><b>Margin</b> – khoảng cách <b>bên ngoài</b>, đẩy các hộp khác ra xa.</li>
+            </ol>
+            <p>🧠 <b>Dễ nhớ:</b> Tưởng tượng một bức tranh đóng khung treo tường:
+                bức tranh = content, lớp giấy lót = padding, khung gỗ = border, khoảng tường trống xung quanh = margin.</p>
+
+            <!-- Minh họa: vùng cam nhạt là margin, viền đen là border, vùng xanh là padding, vùng trắng là content -->
+            <div class="vung-margin">
+                <div class="hop-mau">
+                    <div class="noi-dung">CONTENT<br>200px × 60px</div>
+                </div>
+            </div>
+            <p class="chu-thich-hinh">
+                🟧 Margin 30px &nbsp; ⬛ Border 6px &nbsp; 🟦 Padding 20px &nbsp; ⬜ Content
+            </p>
+
+            <h3>Tính kích thước thật của hộp</h3>
+<pre>
+.hop-mau {
+    width: 200px;
+    padding: 20px;
+    border: 6px solid black;
+    margin: 30px;
+}
+
+Chiều rộng hộp nhìn thấy = width + padding trái + padding phải + border trái + border phải
+                         = 200   +   20        +    20        +    6        +    6
+                         = 252px
+</pre>
+
+            <h3>Cách viết tắt padding / margin (theo chiều kim đồng hồ 🕛→🕒→🕕→🕘)</h3>
+<pre>
+padding: 10px;                /* cả 4 phía 10px                     */
+padding: 10px 20px;           /* trên-dưới 10px | trái-phải 20px    */
+padding: 10px 20px 30px 40px; /* trên | phải | dưới | trái          */
+
+padding-top: 10px;            /* hoặc viết riêng từng phía          */
+margin-left: 20px;
+
+margin: 0 auto;               /* mẹo: căn giữa hộp theo chiều ngang (cần có width) */
+</pre>
+
+            <h3>Phân biệt Padding và Margin</h3>
+            <div class="so-sanh padding-lon">Padding lớn → nền màu <b>lan rộng ra</b> (vì padding nằm trong hộp)</div>
+            <div class="so-sanh margin-lon">Margin lớn → hộp <b>bị đẩy ra xa</b>, nền màu không lan ra</div>
+        </div>
+
+        <p class="cuoi-trang">
+            <a href="du-an-mindx-page/index.html">🛠 Sang dự án thực hành: MindX Page ➡</a>
+        </p>
+    </div>
+</body>
+</html>

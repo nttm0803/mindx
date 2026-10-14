@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn tập kiểm tra định kỳ (Bài 2 – Bài 4)</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS riêng cho trang ôn tập */
+        .tom-tat li { margin-bottom: 6px; }
+
+        /* ⭐ NGOÀI BÀI HỌC: thẻ <details> + <summary> tạo hộp "bấm để mở đáp án" */
+        details {
+            background-color: #E7F5FF;
+            border: 2px solid #74C0FC;
+            padding: 10px 14px;
+            margin-bottom: 10px;
+        }
+        summary {
+            font-weight: bold;
+            cursor: pointer;   /* ⭐ NGOÀI BÀI HỌC: đổi con trỏ chuột thành bàn tay */
+        }
+        .dap-an {
+            color: #2B8A3E;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="trang">
+        <p><a href="index.html">⬅ Về Bài 4</a></p>
+        <h1>📝 Ôn tập kiểm tra định kỳ</h1>
+        <p>Tổng hợp kiến thức Bài 2, 3, 4. Đọc phần tóm tắt, sau đó tự làm câu hỏi rồi mới bấm xem đáp án nhé!</p>
+
+        <!-- ================= TÓM TẮT ================= -->
+        <div class="phan">
+            <h2>📘 Tóm tắt HTML (Bài 2)</h2>
+            <ul class="tom-tat">
+                <li>Khung HTML: <code>&lt;!DOCTYPE html&gt;</code> → <code>&lt;html&gt;</code> → <code>&lt;head&gt;</code> + <code>&lt;body&gt;</code>.</li>
+                <li><b>head</b> chứa thông tin ẩn (meta, title, link CSS). <b>body</b> chứa nội dung hiển thị.</li>
+                <li><b>title</b>: chữ trên tab trình duyệt.</li>
+                <li>Danh sách: <b>ul</b> (không thứ tự), <b>ol</b> (có thứ tự), mỗi mục là <b>li</b>.</li>
+                <li>Đường dẫn: <code>&lt;a href="..." target="_blank"&gt;</code>. Ảnh: <code>&lt;img src="..." alt="..."&gt;</code>.</li>
+                <li>Thẻ lồng nhau: mở sau – đóng trước. Format code: Shift + Alt + F.</li>
+                <li>Website = nhiều webpage liên kết với nhau. Trang chủ đặt tên <b>index.html</b>.</li>
+            </ul>
+
+            <h2>🎨 Tóm tắt CSS (Bài 3)</h2>
+            <ul class="tom-tat">
+                <li>Cú pháp: <code>selector { thuộc-tính: giá-trị; }</code></li>
+                <li>3 cách viết: inline, internal (&lt;style&gt;), external (&lt;link&gt;).</li>
+                <li>Selector: <code>*</code>, <code>p</code>, <code>.class</code>, <code>#id</code>, <code>h1, h2</code>, <code>div p</code>.</li>
+                <li>Box Model: content → padding → border → margin (từ trong ra ngoài).</li>
+                <li>Inspect: F12 hoặc chuột phải → Kiểm tra. Sửa tạm thời, F5 là mất.</li>
+            </ul>
+
+            <h2>⚔️ Tóm tắt CSS nâng cao (Bài 4)</h2>
+            <ul class="tom-tat">
+                <li>Độ ưu tiên: !important &gt; inline (1000) &gt; #id (100) &gt; .class (10) &gt; thẻ (1). Bằng điểm → cái sau thắng.</li>
+                <li>Kế thừa: thuộc tính về chữ (color, font...) được kế thừa; thuộc tính về hộp (border, padding, margin...) không.</li>
+                <li>Position: static, relative, absolute (theo cha có position), fixed (theo màn hình), sticky (dính khi cuộn).</li>
+                <li>Công thức: cha <b>relative</b> – con <b>absolute</b>. Chồng nhau thì dùng <b>z-index</b>.</li>
+            </ul>
+        </div>
+
+        <!-- ================= CÂU HỎI ================= -->
+        <div class="phan">
+            <h2>❓ Câu hỏi trắc nghiệm</h2>
+
+            <details>
+                <summary>Câu 1. Nội dung của thẻ &lt;title&gt; hiển thị ở đâu?</summary>
+                <p>A. Giữa trang &nbsp; B. Trên tab trình duyệt &nbsp; C. Cuối trang &nbsp; D. Không hiển thị</p>
+                <p class="dap-an">Đáp án: B</p>
+            </details>
+
+            <details>
+                <summary>Câu 2. Thẻ nào tạo danh sách có đánh số thứ tự?</summary>
+                <p>A. ul &nbsp; B. li &nbsp; C. ol &nbsp; D. dl</p>
+                <p class="dap-an">Đáp án: C</p>
+            </details>
+
+            <details>
+                <summary>Câu 3. Thuộc tính nào giúp link mở ở tab mới?</summary>
+                <p>A. href="_new" &nbsp; B. target="_blank" &nbsp; C. open="tab" &nbsp; D. src="_blank"</p>
+                <p class="dap-an">Đáp án: B</p>
+            </details>
+
+            <details>
+                <summary>Câu 4. Đường dẫn "../images/a.png" nghĩa là gì?</summary>
+                <p>A. Ảnh cùng thư mục &nbsp; B. Đi ra thư mục cha rồi vào images &nbsp; C. Ảnh trên mạng &nbsp; D. Lỗi</p>
+                <p class="dap-an">Đáp án: B</p>
+            </details>
+
+            <details>
+                <summary>Câu 5. Selector nào chọn phần tử có class="box"?</summary>
+                <p>A. box &nbsp; B. #box &nbsp; C. .box &nbsp; D. *box</p>
+                <p class="dap-an">Đáp án: C</p>
+            </details>
+
+            <details>
+                <summary>Câu 6. Lớp nào nằm giữa content và border trong Box Model?</summary>
+                <p>A. margin &nbsp; B. padding &nbsp; C. outline &nbsp; D. width</p>
+                <p class="dap-an">Đáp án: B</p>
+            </details>
+
+            <details>
+                <summary>Câu 7. Hộp có width: 100px; padding: 10px; border: 5px solid. Chiều rộng nhìn thấy là?</summary>
+                <p>A. 100px &nbsp; B. 115px &nbsp; C. 120px &nbsp; D. 130px</p>
+                <p class="dap-an">Đáp án: D (100 + 10×2 + 5×2 = 130px)</p>
+            </details>
+
+            <details>
+                <summary>Câu 8. <code>padding: 5px 10px 15px 20px;</code> thì padding bên trái bằng bao nhiêu?</summary>
+                <p>A. 5px &nbsp; B. 10px &nbsp; C. 15px &nbsp; D. 20px</p>
+                <p class="dap-an">Đáp án: D (thứ tự: trên – phải – dưới – trái)</p>
+            </details>
+
+            <details>
+                <summary>Câu 9. Thẻ &lt;p class="a" id="b"&gt; với CSS: p{color:red} .a{color:blue} #b{color:green}. Chữ màu gì?</summary>
+                <p>A. Đỏ &nbsp; B. Xanh dương &nbsp; C. Xanh lá &nbsp; D. Đen</p>
+                <p class="dap-an">Đáp án: C (#id có độ ưu tiên cao nhất)</p>
+            </details>
+
+            <details>
+                <summary>Câu 10. Thuộc tính nào KHÔNG được kế thừa từ cha?</summary>
+                <p>A. color &nbsp; B. font-size &nbsp; C. border &nbsp; D. font-family</p>
+                <p class="dap-an">Đáp án: C</p>
+            </details>
+
+            <details>
+                <summary>Câu 11. Muốn thanh menu luôn dính trên màn hình dù cuộn trang, dùng?</summary>
+                <p>A. static &nbsp; B. relative &nbsp; C. absolute &nbsp; D. fixed</p>
+                <p class="dap-an">Đáp án: D</p>
+            </details>
+
+            <details>
+                <summary>Câu 12. Phần tử absolute sẽ định vị theo ai?</summary>
+                <p>A. Luôn theo body &nbsp; B. Thẻ cha gần nhất có position khác static &nbsp; C. Thẻ anh em &nbsp; D. Màn hình</p>
+                <p class="dap-an">Đáp án: B</p>
+            </details>
+        </div>
+
+        <!-- ================= TỰ LUẬN ================= -->
+        <div class="phan">
+            <h2>✍️ Bài tập thực hành</h2>
+            <ol>
+                <li>Tạo trang <b>so-thich.html</b> có tiêu đề, 1 ảnh, 1 danh sách ul gồm 3 sở thích, và 1 link quay về trang chủ.</li>
+                <li>Tạo 1 hộp có class <b>"the"</b>: rộng 300px, padding 20px, viền 2px màu xanh, căn giữa trang.</li>
+                <li>Gắn nhãn "MỚI" vào góc trên bên trái của hộp ở câu 2 bằng position absolute.</li>
+                <li>Tạo thanh menu cố định ở đầu trang bằng position fixed.</li>
+            </ol>
+            <details>
+                <summary>Gợi ý câu 2 và 3</summary>
+<pre>
+.the {
+    width: 300px;
+    padding: 20px;
+    border: 2px solid blue;
+    margin: 0 auto;
+    position: relative;   /* làm mốc cho nhãn */
+}
+.nhan-moi {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: red;
+    color: white;
+}
+</pre>
+            </details>
+        </div>
+    </div>
+</body>
+</html>

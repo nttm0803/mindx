@@ -1,0 +1,726 @@
+/* =====================================================================
+   WEBSITE GIỚI THIỆU CÁ NHÂN – STYLE
+   Phong cách "sổ dán sticker": viền mực đậm, bóng đổ cứng, nhãn dán nghiêng.
+
+   Chú thích:
+     (Bài 3), (Bài 4), (Bài 5) → kiến thức đã học ở buổi đó
+     ⭐ NGOÀI BÀI HỌC          → kiến thức mở rộng, có giải thích ngắn
+   ===================================================================== */
+
+
+/* ---------------------------------------------------------------------
+   0. BẢNG MÀU
+   ⭐ NGOÀI BÀI HỌC: Biến CSS (CSS variables)
+   Đặt tên cho màu 1 lần ở :root, rồi dùng lại bằng var(--ten-bien).
+   Muốn đổi màu cả trang? Chỉ cần sửa ở đây!
+   --------------------------------------------------------------------- */
+:root {
+    --muc: #1D2550;        /* xanh mực – màu chữ, viền */
+    --nen: #F1EDFF;        /* tím oải hương nhạt – màu nền trang */
+    --vang: #FFD23F;
+    --hong: #FF5D8F;
+    --xanh: #3A86FF;
+    --bac-ha: #2EC4B6;
+    --trang: #FFFFFF;
+}
+
+
+/* ---------------------------------------------------------------------
+   1. NỀN TẢNG CHUNG
+   --------------------------------------------------------------------- */
+
+/* ⭐ NGOÀI BÀI HỌC: box-sizing: border-box
+   Bình thường (Bài 3): độ rộng thật = width + padding + border → phải tự cộng.
+   Với border-box: width ĐÃ BAO GỒM padding và border → dễ tính hơn nhiều! */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;     /* ⭐ NGOÀI BÀI HỌC: bấm link #id thì trang cuộn mượt thay vì nhảy "bụp" */
+    scroll-padding-top: 90px;    /* ⭐ NGOÀI BÀI HỌC: chừa chỗ để menu dính không che mất tiêu đề */
+}
+
+body {
+    margin: 0;
+    font-family: 'Be Vietnam Pro', Arial, sans-serif;   /* (Bài 3) phông chính + phông dự phòng */
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--muc);
+    background-color: var(--nen);
+    /* ⭐ NGOÀI BÀI HỌC: radial-gradient tạo các chấm tròn nhỏ lặp lại → nền giống giấy chấm bi */
+    background-image: radial-gradient(#D5CCFF 1.6px, transparent 1.6px);
+    background-size: 22px 22px;
+}
+
+/* ⭐ NGOÀI BÀI HỌC: ::selection – màu khi bôi đen chữ */
+::selection {
+    background-color: var(--vang);
+}
+
+h1, h2, h3 {
+    font-family: 'Baloo 2', 'Trebuchet MS', sans-serif;
+    margin: 0;
+    line-height: 1.1;
+}
+
+/* ⭐ NGOÀI BÀI HỌC: :focus-visible – viền sáng khi dùng phím Tab để di chuyển, giúp người không dùng chuột */
+a:focus-visible {
+    outline: 3px solid var(--xanh);
+    outline-offset: 3px;
+}
+
+/* "Tấm sticker" dùng chung – (Bài 3) Box Model */
+.the {
+    background-color: var(--trang);
+    border: 3px solid var(--muc);
+    padding: 28px;
+    border-radius: 20px;                     /* ⭐ NGOÀI BÀI HỌC: bo tròn góc */
+    box-shadow: 6px 6px 0 var(--muc);        /* ⭐ NGOÀI BÀI HỌC: bóng đổ (lệch phải 6px, xuống 6px, không nhòe) */
+}
+
+/* Nút bấm dùng chung */
+.nut {
+    display: inline-block;                   /* (Bài 5) để có padding, margin đầy đủ */
+    padding: 14px 26px;
+    margin: 6px 8px 6px 0;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--muc);
+    border: 3px solid var(--muc);
+    border-radius: 999px;                    /* ⭐ NGOÀI BÀI HỌC: bo tròn tối đa → nút hình viên thuốc */
+    box-shadow: 4px 4px 0 var(--muc);
+    transition: transform 0.15s, box-shadow 0.15s;   /* ⭐ NGOÀI BÀI HỌC: thay đổi từ từ trong 0.15 giây */
+}
+
+/* ⭐ NGOÀI BÀI HỌC: :hover (di chuột vào) + transform: translate (dịch chuyển) */
+.nut:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--muc);
+}
+
+/* ⭐ NGOÀI BÀI HỌC: :active (lúc đang bấm) → nút "lún" xuống */
+.nut:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--muc);
+}
+
+.nut-vang  { background-color: var(--vang); }
+.nut-trang { background-color: var(--trang); }
+
+
+/* ---------------------------------------------------------------------
+   2. THANH MENU – (Bài 4) position: sticky + (Bài 5) flexbox
+   --------------------------------------------------------------------- */
+.thanh-menu {
+    position: sticky;            /* dính trên đầu khi cuộn */
+    top: 0;
+    z-index: 100;                /* luôn nằm trên các phần khác */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 32px;
+    background-color: var(--nen);
+    border-bottom: 3px solid var(--muc);
+}
+
+.logo {
+    font-family: 'Baloo 2', 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--muc);
+    text-decoration: none;
+}
+
+.logo-cham {
+    color: var(--hong);
+}
+
+.menu-link {
+    display: flex;
+    gap: 6px;
+}
+
+.menu-link a {
+    color: var(--muc);
+    font-weight: 500;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 2px solid transparent;           /* viền trong suốt để khi hover không bị "nhảy" */
+    border-radius: 999px;
+    transition: background-color 0.2s;
+}
+
+.menu-link a:hover {
+    background-color: var(--vang);
+    border-color: var(--muc);
+}
+
+/* (Bài 4) Specificity: .menu-link .menu-noi-bat (20 điểm) thắng .menu-link a (11 điểm) */
+.menu-link .menu-noi-bat {
+    background-color: var(--muc);
+    color: var(--trang);
+}
+
+.menu-link .menu-noi-bat:hover {
+    background-color: var(--hong);
+}
+
+
+/* ---------------------------------------------------------------------
+   3. HERO – PHẦN ĐẦU TRANG
+   --------------------------------------------------------------------- */
+.hero {
+    display: flex;                           /* (Bài 5) chữ bên trái, ảnh bên phải */
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 70px 32px 90px 32px;
+}
+
+.loi-chao {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+}
+
+/* Bàn tay vẫy */
+.tay-vay {
+    display: inline-block;                   /* (Bài 5) inline-block thì mới xoay được */
+    transform-origin: 70% 80%;               /* ⭐ NGOÀI BÀI HỌC: điểm xoay ở cổ tay */
+    animation: vay-tay 2.6s infinite;        /* ⭐ NGOÀI BÀI HỌC: chạy hoạt ảnh vay-tay, lặp mãi mãi */
+}
+
+.ten {
+    font-size: 96px;
+    font-weight: 800;
+    line-height: 0.95;
+    color: var(--muc);
+    text-shadow: 5px 5px 0 var(--hong);      /* ⭐ NGOÀI BÀI HỌC: bóng chữ màu hồng, giống chữ in sticker */
+}
+
+.hero-mo-ta {
+    font-size: 19px;
+    max-width: 30em;
+    margin: 24px 0 28px 0;
+}
+
+/* Khu ảnh: CHA relative – các nhãn dán CON absolute (Bài 4) */
+.hero-anh {
+    position: relative;
+    width: 380px;
+    height: 380px;
+    flex-shrink: 0;                          /* ⭐ NGOÀI BÀI HỌC: không cho flexbox bóp nhỏ khung ảnh */
+}
+
+.khung-avatar {
+    width: 100%;
+    height: 100%;
+    background-color: var(--vang);
+    border: 4px solid var(--muc);
+    border-radius: 50%;                      /* ⭐ NGOÀI BÀI HỌC: bo 50% → hình tròn */
+    box-shadow: 10px 10px 0 var(--muc);
+    overflow: hidden;                        /* ⭐ NGOÀI BÀI HỌC: cắt phần ảnh tràn ra ngoài hình tròn */
+}
+
+.khung-avatar img {
+    display: block;
+    width: 100%;
+}
+
+.nhan-dan {
+    position: absolute;
+    font-family: 'Baloo 2', 'Trebuchet MS', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    padding: 6px 16px;
+    background-color: var(--trang);
+    border: 3px solid var(--muc);
+    border-radius: 14px;
+    box-shadow: 4px 4px 0 var(--muc);
+    animation: troi-nhe 4s infinite;         /* ⭐ NGOÀI BÀI HỌC: nhãn dán trôi lên xuống nhẹ nhàng */
+}
+
+/* ⭐ NGOÀI BÀI HỌC: rotate – xoay nghiêng nhãn dán (đơn vị deg = độ) */
+.nhan-html {
+    top: 34px;
+    left: -40px;
+    background-color: var(--hong);
+    color: var(--trang);
+    rotate: -10deg;
+}
+
+.nhan-css {
+    bottom: 50px;
+    right: -36px;
+    background-color: var(--xanh);
+    color: var(--trang);
+    rotate: 8deg;
+    animation-delay: 1s;                     /* ⭐ NGOÀI BÀI HỌC: chạy trễ 1 giây để không trôi cùng lúc */
+}
+
+.nhan-meo {
+    top: -6px;
+    right: 34px;
+    font-size: 34px;
+    padding: 2px 10px;
+    rotate: 12deg;
+    animation-delay: 2s;
+}
+
+.nhan-co {
+    bottom: -8px;
+    left: 50px;
+    font-size: 34px;
+    padding: 2px 10px;
+    background-color: var(--bac-ha);
+    rotate: -6deg;
+    animation-delay: 3s;
+}
+
+
+/* ---------------------------------------------------------------------
+   4. KHUNG CHUNG CHO CÁC PHẦN
+   --------------------------------------------------------------------- */
+.khu {
+    max-width: 1100px;
+    margin: 0 auto 70px auto;
+    padding: 0 32px;
+}
+
+/* "Tấm giấy" lớn nằm bên trong .khu (thẻ lồng nhau: .khu là cha, .tam-giay là con) */
+.tam-giay {
+    padding: 50px 40px;
+    border: 3px solid var(--muc);
+    border-radius: 32px;
+}
+
+.tam-trang {
+    background-color: var(--trang);
+    box-shadow: 8px 8px 0 var(--muc);
+}
+
+.tam-muc {
+    background-color: var(--muc);
+    box-shadow: 8px 8px 0 var(--hong);
+}
+
+.tieu-de-khu {
+    display: inline-block;                   /* (Bài 5) để nền "bút dạ quang" chỉ dài bằng chữ */
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 30px;
+    /* ⭐ NGOÀI BÀI HỌC: linear-gradient – 60% trên trong suốt, 40% dưới màu vàng → như tô bút dạ quang */
+    background-image: linear-gradient(transparent 60%, var(--vang) 60%);
+}
+
+.tieu-de-sang {
+    color: var(--trang);
+    background-image: linear-gradient(transparent 60%, var(--hong) 60%);
+}
+
+
+/* ---------------------------------------------------------------------
+   5. VỀ MÌNH – flexbox 2 cột
+   --------------------------------------------------------------------- */
+.ve-minh-luoi {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+}
+
+.the-gioi-thieu {
+    flex: 3;                                 /* (Bài 5) chiếm 3 phần */
+    font-size: 18px;
+}
+
+.the-gioi-thieu p {
+    margin: 0 0 14px 0;
+}
+
+.the-thong-tin {
+    flex: 2;                                 /* chiếm 2 phần */
+    list-style: none;                        /* bỏ dấu chấm đầu dòng của ul */
+    margin: 0;
+    background-color: var(--vang);
+    rotate: 1.5deg;                          /* ⭐ NGOÀI BÀI HỌC: nghiêng nhẹ như tờ giấy dán */
+}
+
+.the-thong-tin li {
+    font-weight: 700;
+    padding: 10px 0;
+    border-bottom: 2px dashed var(--muc);
+}
+
+.the-thong-tin li:last-child {               /* ⭐ NGOÀI BÀI HỌC: :last-child – chọn phần tử con cuối cùng */
+    border-bottom: none;
+}
+
+.nhan-thong-tin {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+/* ---------------------------------------------------------------------
+   6. KỸ NĂNG – thanh tiến độ (box model + width %)
+   --------------------------------------------------------------------- */
+.ky-nang-luoi {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px 48px;                          /* khoảng cách dọc 28px, ngang 48px */
+}
+
+.ky-nang {
+    flex: 1 1 40%;                           /* ⭐ NGOÀI BÀI HỌC (cách viết đầy đủ của flex) → 2 kỹ năng / hàng */
+}
+
+.ky-nang-dau {
+    display: flex;
+    justify-content: space-between;          /* tên bên trái, % bên phải */
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+/* Ống thanh (cha) */
+.thanh {
+    height: 24px;
+    background-color: var(--nen);
+    border: 3px solid var(--muc);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+/* Phần đã đầy (con) – độ rộng % viết ở HTML */
+.thanh-day {
+    height: 100%;
+    border-right: 3px solid var(--muc);
+    /* ⭐ NGOÀI BÀI HỌC: repeating-linear-gradient – sọc chéo trắng mờ lặp lại */
+    background-image: repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.35) 0 8px, transparent 8px 16px);
+}
+
+.thanh-hong   { background-color: var(--hong); }
+.thanh-xanh   { background-color: var(--xanh); }
+.thanh-vang   { background-color: var(--vang); }
+.thanh-bac-ha { background-color: var(--bac-ha); }
+
+
+/* ---------------------------------------------------------------------
+   7. SỞ THÍCH – flexbox + flex-wrap
+   --------------------------------------------------------------------- */
+.so-thich-luoi {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.so-thich {
+    flex: 1 1 200px;                         /* rộng tối thiểu ~200px, còn chỗ thì giãn ra */
+    transition: rotate 0.2s, transform 0.2s;
+}
+
+.so-thich:hover {
+    rotate: 0deg;                            /* di chuột vào → nằm thẳng lại */
+    transform: translateY(-6px);             /* và nhấc lên */
+}
+
+.bieu-tuong {
+    display: block;
+    font-size: 52px;
+    line-height: 1;
+    margin-bottom: 12px;
+}
+
+.so-thich h3 {
+    font-size: 26px;
+    margin-bottom: 6px;
+}
+
+.so-thich p {
+    margin: 0;
+}
+
+/* Mỗi tấm 1 màu, nghiêng 1 kiểu cho sinh động */
+.so-thich-hong   { background-color: #FFD6E3; rotate: -2deg; }
+.so-thich-vang   { background-color: #FFF1B8; rotate: 1.5deg; }
+.so-thich-xanh   { background-color: #D6E6FF; rotate: -1deg; }
+.so-thich-bac-ha { background-color: #CDF5F0; rotate: 2deg; }
+
+
+/* ---------------------------------------------------------------------
+   8. DỰ ÁN – thẻ là đường dẫn (a bọc ngoài h3, p: thẻ lồng nhau Bài 2)
+   --------------------------------------------------------------------- */
+.du-an-luoi {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+/* (Bài 4) Specificity: .tam-muc .the (20 điểm) ghi đè bóng của .the (10 điểm) */
+.tam-muc .the {
+    box-shadow: 6px 6px 0 var(--vang);
+}
+
+.du-an {
+    display: block;                          /* (Bài 5) thẻ a mặc định inline → đổi thành block */
+    flex: 1 1 200px;
+    color: var(--muc);
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.tam-muc .du-an:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 var(--vang);
+}
+
+.du-an-bai {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 2px 12px;
+    background-color: var(--bac-ha);
+    border: 2px solid var(--muc);
+    border-radius: 999px;
+    margin-bottom: 14px;
+}
+
+.du-an h3 {
+    font-size: 26px;
+    margin-bottom: 6px;
+}
+
+.du-an p {
+    margin: 0;
+}
+
+
+/* ---------------------------------------------------------------------
+   9. HÀNH TRÌNH – đường kẻ dọc + chấm tròn (position absolute, Bài 4)
+   --------------------------------------------------------------------- */
+.hanh-trinh {
+    list-style: none;                        /* bỏ số mặc định của ol */
+    margin: 0 0 0 14px;
+    padding: 0;
+    border-left: 4px dashed var(--muc);      /* đường kẻ dọc nối các mốc */
+}
+
+.moc {
+    position: relative;                      /* CHA làm mốc cho chấm tròn */
+    padding: 0 0 34px 38px;
+}
+
+.moc-cham {
+    position: absolute;                      /* CON nằm đè lên đường kẻ */
+    top: 4px;
+    left: -15px;                             /* tâm chấm (26px / 2 = 13px) đặt giữa đường kẻ 4px → -13 - 2 = -15px */
+    width: 26px;
+    height: 26px;
+    background-color: var(--hong);
+    border: 3px solid var(--muc);
+    border-radius: 50%;
+}
+
+.moc h3 {
+    font-size: 26px;
+}
+
+.moc p {
+    margin: 4px 0 0 0;
+    max-width: 36em;
+}
+
+/* Mốc tương lai: chấm rỗng, chữ mờ hơn */
+.moc-tiep-theo .moc-cham {
+    background-color: var(--trang);
+}
+
+.moc-tiep-theo {
+    padding-bottom: 0;                       /* mốc cuối: không cần khoảng trống phía dưới */
+    opacity: 0.7;                            /* ⭐ NGOÀI BÀI HỌC: độ trong suốt (1 = rõ, 0 = tàng hình) */
+}
+
+
+/* ---------------------------------------------------------------------
+   10. LIÊN HỆ & CHÂN TRANG
+   --------------------------------------------------------------------- */
+.the-lien-he {
+    background-color: var(--xanh);
+    color: var(--trang);
+    text-align: center;
+    padding: 56px 32px;
+    border-radius: 32px;
+    box-shadow: 10px 10px 0 var(--muc);
+}
+
+.lien-he-tieu-de {
+    font-size: 52px;
+    font-weight: 800;
+    text-shadow: 4px 4px 0 var(--muc);
+}
+
+.the-lien-he p {
+    font-size: 19px;
+    margin: 14px 0 26px 0;
+}
+
+.chan-trang {
+    text-align: center;
+    padding: 10px 20px 40px 20px;
+    font-size: 15px;
+}
+
+.chan-trang p {
+    margin: 4px 0;
+}
+
+.chan-trang a {
+    color: var(--muc);
+    font-weight: 700;
+}
+
+
+/* ---------------------------------------------------------------------
+   11. HOẠT ẢNH
+   ⭐ NGOÀI BÀI HỌC: @keyframes – mô tả hoạt ảnh qua từng mốc thời gian (%)
+   --------------------------------------------------------------------- */
+@keyframes vay-tay {
+    0%   { transform: rotate(0deg); }
+    10%  { transform: rotate(18deg); }
+    20%  { transform: rotate(-8deg); }
+    30%  { transform: rotate(18deg); }
+    40%  { transform: rotate(-4deg); }
+    50%  { transform: rotate(10deg); }
+    60%  { transform: rotate(0deg); }        /* vẫy xong thì nghỉ tới 100% */
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes troi-nhe {
+    0%   { translate: 0 0; }
+    50%  { translate: 0 -10px; }             /* ⭐ NGOÀI BÀI HỌC: translate – dịch lên trên 10px */
+    100% { translate: 0 0; }
+}
+
+
+/* ---------------------------------------------------------------------
+   12. RESPONSIVE – (Bài 5) Media queries, luôn đặt ở CUỐI file
+   --------------------------------------------------------------------- */
+
+/* 📟 TABLET: ≤ 992px */
+@media (max-width: 992px) {
+    .hero {
+        flex-direction: column-reverse;      /* ảnh lên trên, chữ xuống dưới */
+        text-align: center;
+        gap: 50px;
+        padding-top: 50px;
+    }
+
+    .hero-mo-ta {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .ten {
+        font-size: 76px;
+    }
+
+    .hero-anh {
+        width: 320px;
+        height: 320px;
+    }
+
+    .ve-minh-luoi {
+        flex-direction: column;              /* 2 cột → 1 cột */
+        align-items: stretch;
+    }
+
+    .the-thong-tin {
+        rotate: 0deg;
+    }
+}
+
+/* 📱 ĐIỆN THOẠI: ≤ 576px */
+@media (max-width: 576px) {
+    body {
+        font-size: 16px;
+    }
+
+    .thanh-menu {
+        position: static;                    /* điện thoại màn hình nhỏ → bỏ dính để đỡ che nội dung */
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px 16px;
+    }
+
+    .menu-link {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2px;
+    }
+
+    .menu-link a {
+        padding: 6px 12px;
+    }
+
+    .hero {
+        padding: 40px 20px 60px 20px;
+    }
+
+    .ten {
+        font-size: 56px;
+        text-shadow: 3px 3px 0 var(--hong);
+    }
+
+    .hero-anh {
+        width: 230px;
+        height: 230px;
+    }
+
+    .nhan-dan {
+        font-size: 16px;
+    }
+
+    .nhan-html { left: -24px; top: 16px; }
+    .nhan-css  { right: -24px; bottom: 30px; }
+    .nhan-meo,
+    .nhan-co   { font-size: 24px; }
+
+    .khu {
+        padding: 0 16px;
+        margin-bottom: 50px;
+    }
+
+    .tam-giay {
+        padding: 36px 20px;
+    }
+
+    .tieu-de-khu {
+        font-size: 36px;
+    }
+
+    .ky-nang {
+        flex: 1 1 100%;                      /* 1 kỹ năng / hàng */
+    }
+
+    .lien-he-tieu-de {
+        font-size: 36px;
+    }
+
+    .the-lien-he {
+        padding: 40px 20px;
+    }
+}
+
+/* ⭐ NGOÀI BÀI HỌC: Tôn trọng người dùng đã bật "giảm chuyển động" trong máy (người dễ chóng mặt) */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+    html {
+        scroll-behavior: auto;
+    }
+}

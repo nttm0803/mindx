@@ -1,0 +1,135 @@
+/* =========================================================
+   DỰ ÁN THE FLAG – BÀI 4
+   Ý tưởng chính: Cha relative – Con absolute
+   ========================================================= */
+
+body {
+    background-color: #E9ECEF;
+    font-family: Arial, sans-serif;
+    color: #212529;
+}
+
+.trang {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #364FC7;
+}
+
+.gioi-thieu, .cuoi {
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Khung trắng chứa từng lá cờ */
+.khung {
+    background-color: white;
+    padding: 10px 30px 20px 30px;
+    margin-bottom: 30px;
+    border: 3px solid #364FC7;
+}
+
+.giai-thich {
+    color: #495057;
+    font-style: italic;
+}
+
+/* ---------- KHUÔN CHUNG CHO MỌI LÁ CỜ ---------- */
+.co {
+    position: relative;        /* ⭐ CHA làm mốc cho các chi tiết absolute */
+    width: 300px;
+    height: 200px;
+    margin: 0 auto;            /* căn giữa lá cờ */
+    border: 1px solid #ADB5BD;
+}
+
+/* =================== VIỆT NAM =================== */
+.co-viet-nam {
+    background-color: #DA251D;
+}
+
+.ngoi-sao {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;              /* phủ kín lá cờ */
+    height: 200px;
+    text-align: center;        /* căn giữa ngang */
+    line-height: 200px;        /* căn giữa dọc (line-height = chiều cao) */
+    font-size: 150px;
+    color: #FFFF00;
+}
+
+/* =================== NHẬT BẢN =================== */
+.co-nhat-ban {
+    background-color: white;
+}
+
+.mat-troi {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    top: 40px;                 /* (200 - 120) / 2 */
+    left: 90px;                /* (300 - 120) / 2 */
+    background-color: #BC002D;
+    border-radius: 50%;        /* ⭐ NGOÀI BÀI HỌC: bo góc 50% biến hình vuông thành hình tròn */
+}
+
+/* =================== THỤY ĐIỂN =================== */
+.co-thuy-dien {
+    background-color: #006AA7;
+}
+
+.thanh-ngang {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 300px;
+    height: 40px;
+    background-color: #FECC00;
+}
+
+.thanh-doc {
+    position: absolute;
+    top: 0;
+    left: 90px;
+    width: 40px;
+    height: 200px;
+    background-color: #FECC00;
+}
+
+/* =================== THÁI LAN =================== */
+/* Cờ có tỉ lệ sọc 1 : 1 : 2 : 1 : 1 (tổng 6 phần, mỗi phần ≈ 33px) */
+.co-thai-lan {
+    background-color: #A51931;          /* lớp dưới cùng: đỏ */
+}
+
+.soc-trang {
+    position: absolute;
+    top: 33px;
+    left: 0;
+    width: 300px;
+    height: 134px;                      /* 4 phần ở giữa */
+    background-color: white;
+    z-index: 1;
+}
+
+.soc-xanh {
+    position: absolute;
+    top: 67px;
+    left: 0;
+    width: 300px;
+    height: 66px;                       /* 2 phần ở chính giữa */
+    background-color: #2D2A4A;
+    z-index: 2;                         /* nằm trên sọc trắng */
+}
+
+/* =================== THỬ THÁCH =================== */
+.thu-thach {
+    background-color: #FFF9DB;
+    border-color: #F59F00;
+}

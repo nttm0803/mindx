@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 👇 THẺ TITLE: chữ này hiện trên TAB trình duyệt, không hiện trong trang. Nhìn lên tab để xem! -->
+    <title>2. Các thẻ HTML cơ bản</title>
+</head>
+<body>
+    <p><a href="index.html">⬅ Về mục lục Bài 2</a></p>
+    <h1>🏗 Cấu trúc file HTML và các thẻ cơ bản</h1>
+
+    <!-- Link có dấu # sẽ nhảy tới phần tử có id tương ứng TRONG CÙNG TRANG -->
+    <p>
+        Đi nhanh tới:
+        <a href="#cau-truc">Cấu trúc</a> |
+        <a href="#the">Thẻ là gì</a> |
+        <a href="#title">Thẻ title</a> |
+        <a href="#van-ban">Văn bản</a> |
+        <a href="#danh-sach">Danh sách</a> |
+        <a href="#duong-dan">Đường dẫn</a> |
+        <a href="#hinh-anh">Hình ảnh</a>
+    </p>
+    <hr>
+
+    <!-- ================================================= -->
+    <!-- PHẦN 1: CẤU TRÚC FILE HTML                         -->
+    <!-- ================================================= -->
+    <h2 id="cau-truc">1. Cấu trúc của một file HTML</h2>
+    <p>Trang web nào cũng có chung một "bộ khung" như sau:</p>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="vi"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;title&gt;Tên trang hiện trên tab&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        Mọi nội dung người xem nhìn thấy nằm ở đây
+    &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+    <ul>
+        <li><b>&lt;!DOCTYPE html&gt;</b>: báo cho trình duyệt "đây là file HTML5".</li>
+        <li><b>&lt;html&gt;</b>: thẻ gốc, bọc toàn bộ trang. <code>lang="vi"</code> nghĩa là trang tiếng Việt.</li>
+        <li><b>&lt;head&gt;</b>: phần <i>đầu</i> – chứa thông tin cho trình duyệt, <b>không</b> hiện ra trang.</li>
+        <li><b>&lt;meta charset="UTF-8"&gt;</b>: giúp hiển thị đúng chữ tiếng Việt có dấu.</li>
+        <li><b>&lt;body&gt;</b>: phần <i>thân</i> – tất cả những gì hiện lên màn hình.</li>
+    </ul>
+    <p>🧠 <b>Dễ nhớ:</b> head giống "bộ não" (suy nghĩ, không ai nhìn thấy), body giống "cơ thể" (ai cũng nhìn thấy).</p>
+    <p>💡 <b>Mẹo:</b> trong VS Code gõ <b>!</b> rồi nhấn <b>Tab</b> để tạo khung này tự động.</p>
+
+    <!-- ================================================= -->
+    <!-- PHẦN 2: THẺ LÀ GÌ                                  -->
+    <!-- ================================================= -->
+    <h2 id="the">2. Thẻ (tag) là gì?</h2>
+    <p>Thẻ là "nhãn dán" cho nội dung, báo trình duyệt: "đây là tiêu đề", "đây là đoạn văn", "đây là ảnh"...</p>
+    <ul>
+        <li><b>Thẻ đôi</b>: có thẻ mở và thẻ đóng (thẻ đóng có dấu <b>/</b>). Ví dụ: <code>&lt;p&gt;Xin chào&lt;/p&gt;</code></li>
+        <li><b>Thẻ đơn</b>: chỉ có 1 thẻ, không bọc nội dung. Ví dụ: <code>&lt;br&gt;</code>, <code>&lt;hr&gt;</code>, <code>&lt;img&gt;</code></li>
+        <li><b>Thuộc tính</b> (attribute): thông tin thêm, viết trong thẻ mở. Ví dụ: <code>&lt;a <b>href="..."</b>&gt;</code></li>
+    </ul>
+<pre>
+&lt;a  href="https://mindx.edu.vn"&gt;  MindX  &lt;/a&gt;
+ ↑        ↑                          ↑        ↑
+tên   thuộc tính = "giá trị"     nội dung   thẻ đóng
+</pre>
+
+    <!-- ================================================= -->
+    <!-- PHẦN 3: THẺ TITLE                                  -->
+    <!-- ================================================= -->
+    <h2 id="title">3. Thẻ &lt;title&gt;</h2>
+    <ul>
+        <li>Nằm trong <b>&lt;head&gt;</b>.</li>
+        <li>Hiện chữ trên <b>tab trình duyệt</b> và là tên hiện ra khi tìm trên Google.</li>
+        <li>Mỗi trang chỉ có <b>1</b> thẻ title.</li>
+    </ul>
+    <p>👉 Thử ngay: mở code, đổi nội dung thẻ title của file này rồi lưu, nhìn lên tab xem có gì thay đổi.</p>
+
+    <!-- ================================================= -->
+    <!-- PHẦN 4: VĂN BẢN                                    -->
+    <!-- ================================================= -->
+    <h2 id="van-ban">4. Thẻ văn bản thường dùng</h2>
+    <h1>h1 – Tiêu đề to nhất (mỗi trang nên có 1 cái)</h1>
+    <h2>h2 – Tiêu đề cấp 2</h2>
+    <h3>h3 – Tiêu đề cấp 3</h3>
+    <h4>h4 – Tiêu đề cấp 4</h4>
+    <h5>h5 – Tiêu đề cấp 5</h5>
+    <h6>h6 – Tiêu đề nhỏ nhất</h6>
+    <p>Thẻ <b>p</b> là đoạn văn. Trong đoạn văn có thể có chữ <b>in đậm (b)</b>, <strong>quan trọng (strong)</strong>,
+        <i>in nghiêng (i)</i>, <em>nhấn mạnh (em)</em>.<br>
+        Thẻ <b>br</b> dùng để xuống dòng (như dòng này).</p>
+    <p>Thẻ <b>hr</b> vẽ một đường kẻ ngang ngăn cách nội dung 👇</p>
+    <hr>
+
+    <!-- ================================================= -->
+    <!-- PHẦN 5: DANH SÁCH                                  -->
+    <!-- ================================================= -->
+    <h2 id="danh-sach">5. Thẻ danh sách</h2>
+
+    <h3>a) Danh sách không thứ tự – &lt;ul&gt; (unordered list)</h3>
+    <p>Dùng khi thứ tự <b>không quan trọng</b>. Mỗi mục là 1 thẻ <b>&lt;li&gt;</b> (list item).</p>
+<pre>
+&lt;ul&gt;
+    &lt;li&gt;Táo&lt;/li&gt;
+    &lt;li&gt;Cam&lt;/li&gt;
+    &lt;li&gt;Xoài&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+    <p>Kết quả:</p>
+    <ul>
+        <li>Táo</li>
+        <li>Cam</li>
+        <li>Xoài</li>
+    </ul>
+
+    <h3>b) Danh sách có thứ tự – &lt;ol&gt; (ordered list)</h3>
+    <p>Dùng khi thứ tự <b>quan trọng</b>, ví dụ các bước nấu mì:</p>
+<pre>
+&lt;ol&gt;
+    &lt;li&gt;Đun sôi nước&lt;/li&gt;
+    &lt;li&gt;Thả mì vào&lt;/li&gt;
+    &lt;li&gt;Đợi 3 phút rồi ăn&lt;/li&gt;
+&lt;/ol&gt;
+</pre>
+    <p>Kết quả:</p>
+    <ol>
+        <li>Đun sôi nước</li>
+        <li>Thả mì vào</li>
+        <li>Đợi 3 phút rồi ăn</li>
+    </ol>
+
+    <p>Thuộc tính thú vị của ol: <code>type="A"</code> (A, B, C), <code>type="I"</code> (số La Mã), <code>start="5"</code> (bắt đầu từ 5):</p>
+    <ol type="A">
+        <li>Đáp án A</li>
+        <li>Đáp án B</li>
+    </ol>
+    <ol type="I" start="3">
+        <li>Bắt đầu từ III</li>
+        <li>Rồi tới IV</li>
+    </ol>
+
+    <h3>c) Danh sách lồng nhau</h3>
+    <p>Đặt 1 danh sách <b>bên trong thẻ li</b> của danh sách khác:</p>
+<pre>
+&lt;ul&gt;
+    &lt;li&gt;Đồ ăn
+        &lt;ul&gt;
+            &lt;li&gt;Phở&lt;/li&gt;
+            &lt;li&gt;Bánh mì&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Đồ uống&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+    <p>Kết quả:</p>
+    <ul>
+        <li>Đồ ăn
+            <ul>
+                <li>Phở</li>
+                <li>Bánh mì</li>
+            </ul>
+        </li>
+        <li>Đồ uống</li>
+    </ul>
+
+    <!-- ================================================= -->
+    <!-- PHẦN 6: ĐƯỜNG DẪN                                  -->
+    <!-- ================================================= -->
+    <h2 id="duong-dan">6. Thẻ đường dẫn &lt;a&gt; (anchor)</h2>
+    <p>Thẻ <b>a</b> tạo liên kết. Thuộc tính <b>href</b> là "địa chỉ muốn đến".</p>
+<pre>
+&lt;a href="https://www.google.com"&gt;Đi tới Google&lt;/a&gt;
+&lt;a href="https://www.google.com" target="_blank"&gt;Mở Google ở tab mới&lt;/a&gt;
+&lt;a href="3-format-va-the-long-nhau.html"&gt;Sang trang khác trong website&lt;/a&gt;
+&lt;a href="#cau-truc"&gt;Nhảy lên phần Cấu trúc&lt;/a&gt;
+&lt;a href="mailto:ban@gmail.com"&gt;Gửi email&lt;/a&gt;
+</pre>
+    <p>Kết quả (bấm thử nhé):</p>
+    <ul>
+        <li><a href="https://www.google.com">Đi tới Google</a> – mở ngay trên tab này.</li>
+        <li><a href="https://www.google.com" target="_blank">Mở Google ở tab mới</a> – nhờ <code>target="_blank"</code>.</li>
+        <li><a href="3-format-va-the-long-nhau.html">Sang trang khác trong website</a> – đường dẫn tới file trong máy.</li>
+        <li><a href="#cau-truc">Nhảy lên phần Cấu trúc</a> – dùng <b>#</b> + id.</li>
+        <li><a href="mailto:ban@gmail.com">Gửi email</a> – mở ứng dụng email.</li>
+    </ul>
+
+    <h3>Đường dẫn tuyệt đối và tương đối</h3>
+    <ul>
+        <li><b>Tuyệt đối</b>: địa chỉ đầy đủ, bắt đầu bằng <code>https://</code>. Dùng cho trang web bên ngoài.</li>
+        <li><b>Tương đối</b>: tính từ vị trí file hiện tại. Dùng cho file trong project của mình:
+            <ul>
+                <li><code>trang2.html</code> → file nằm <b>cùng thư mục</b>.</li>
+                <li><code>images/meo.svg</code> → <b>đi vào</b> thư mục images.</li>
+                <li><code>../index.html</code> → <b>đi ra</b> thư mục cha (2 dấu chấm = lùi ra 1 cấp).</li>
+            </ul>
+        </li>
+    </ul>
+
+    <!-- ================================================= -->
+    <!-- PHẦN 7: HÌNH ẢNH                                   -->
+    <!-- ================================================= -->
+    <h2 id="hinh-anh">7. Thẻ hình ảnh &lt;img&gt;</h2>
+    <p>Thẻ <b>img</b> là thẻ đơn (không có thẻ đóng). Các thuộc tính:</p>
+    <ul>
+        <li><b>src</b> (source): đường dẫn tới ảnh – <b>bắt buộc</b>.</li>
+        <li><b>alt</b>: chữ thay thế, hiện ra khi ảnh bị lỗi và giúp người khiếm thị nghe được nội dung ảnh.</li>
+        <li><b>width</b> / <b>height</b>: kích thước (đơn vị pixel). Chỉ cần ghi 1 cái, ảnh sẽ tự co giãn đúng tỉ lệ.</li>
+    </ul>
+<pre>
+&lt;img src="images/meo.svg" alt="Hình chú mèo cam" width="200"&gt;
+</pre>
+    <p>Kết quả:</p>
+    <!-- Ảnh nằm trong thư mục images, cạnh file này → đường dẫn tương đối -->
+    <img src="images/meo.svg" alt="Hình chú mèo cam" width="200">
+
+    <p>Nếu đường dẫn <b>sai</b>, ảnh không hiện mà chỉ hiện chữ trong alt:</p>
+    <img src="images/khong-ton-tai.png" alt="⚠ Ảnh lỗi! (đây là chữ trong alt)" width="200">
+
+    <h3>Ảnh bấm được: đặt img bên trong a</h3>
+<pre>
+&lt;a href="https://vi.wikipedia.org/wiki/Mèo" target="_blank"&gt;
+    &lt;img src="images/meo.svg" alt="Mèo" width="100"&gt;
+&lt;/a&gt;
+</pre>
+    <a href="https://vi.wikipedia.org/wiki/M%C3%A8o" target="_blank">
+        <img src="images/meo.svg" alt="Mèo - bấm vào để đọc thêm" width="100">
+    </a>
+    <p>👆 Bấm vào con mèo để mở Wikipedia. Đây chính là <b>thẻ lồng nhau</b> – học ở trang sau!</p>
+
+    <hr>
+    <p>
+        <a href="1-cai-dat-vscode.html">⬅ Trang trước</a> |
+        <a href="3-format-va-the-long-nhau.html">Trang tiếp theo ➡</a>
+    </p>
+</body>
+</html>

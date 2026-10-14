@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minh An – Góc nhỏ của mình</title>
+
+    <!--
+        =====================================================================
+        WEBSITE GIỚI THIỆU CÁ NHÂN – TỔNG HỢP BÀI 2 → BÀI 5
+        ---------------------------------------------------------------------
+        Kiến thức đã học được dùng trong website này:
+          Bài 2: cấu trúc HTML, title, ul/ol, a, img, thẻ lồng nhau
+          Bài 3: selectors, thuộc tính cơ bản, box model
+          Bài 4: position (relative, absolute, sticky), z-index, kế thừa
+          Bài 5: display, flexbox, media queries (responsive)
+
+        Những chỗ đánh dấu  ⭐ NGOÀI BÀI HỌC  trong file style.css là
+        kiến thức mở rộng (hiệu ứng, chuyển màu...) – có giải thích ngắn.
+
+        👉 Nhiệm vụ của em: thay tên, ảnh, thông tin bằng của chính em!
+        =====================================================================
+    -->
+
+    <!-- ⭐ NGOÀI BÀI HỌC: Google Fonts – tải phông chữ đẹp từ Internet (có hỗ trợ tiếng Việt).
+         Nếu không có mạng, trang sẽ tự dùng phông dự phòng trong máy. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===================== THANH MENU (position: sticky + flexbox) ===================== -->
+    <div class="thanh-menu">
+        <a class="logo" href="#trang-chu">Minh An<span class="logo-cham">.</span></a>
+        <div class="menu-link">
+            <a href="#ve-minh">Về mình</a>
+            <a href="#ky-nang">Kỹ năng</a>
+            <a href="#so-thich">Sở thích</a>
+            <a href="#du-an">Dự án</a>
+            <a href="#lien-he" class="menu-noi-bat">Liên hệ</a>
+        </div>
+    </div>
+
+    <!-- ===================== HERO – PHẦN ĐẦU TRANG ===================== -->
+    <div class="hero" id="trang-chu">
+        <div class="hero-chu">
+            <p class="loi-chao">Xin chào, mình là <span class="tay-vay">👋</span></p>
+            <h1 class="ten">Nguyễn<br>Minh An</h1>
+            <p class="hero-mo-ta">
+                Học sinh lớp 9 ở Hà Nội. Mình thích vẽ, nuôi một bé mèo tên Cam
+                và đang tập tự làm website bằng HTML và CSS.
+            </p>
+            <div class="hero-nut">
+                <a class="nut nut-vang" href="#du-an">Xem dự án của mình</a>
+                <a class="nut nut-trang" href="#lien-he">Nhắn cho mình</a>
+            </div>
+        </div>
+
+        <!-- Ảnh đại diện + các "nhãn dán" (cha relative – con absolute, học ở Bài 4) -->
+        <div class="hero-anh">
+            <div class="khung-avatar">
+                <img src="images/avatar.svg" alt="Ảnh đại diện hoạt hình của Minh An">
+            </div>
+            <span class="nhan-dan nhan-html">&lt;HTML&gt;</span>
+            <span class="nhan-dan nhan-css">{ CSS }</span>
+            <span class="nhan-dan nhan-meo">🐱</span>
+            <span class="nhan-dan nhan-co">🎨</span>
+        </div>
+    </div>
+
+    <!-- ===================== VỀ MÌNH ===================== -->
+    <div class="khu" id="ve-minh">
+        <h2 class="tieu-de-khu">Về mình</h2>
+
+        <div class="ve-minh-luoi">
+            <div class="the the-gioi-thieu">
+                <p>
+                    Mình bắt đầu thích máy tính từ năm lớp 6 khi làm được trò chơi đầu tiên bằng Scratch.
+                    Lên lớp 9, mình muốn tự làm ra thứ mà bạn bè có thể mở xem trên điện thoại,
+                    nên đã bắt đầu học lập trình web.
+                </p>
+                <p>
+                    Website này là sản phẩm mình tự làm sau 4 buổi học. Mỗi phần trên trang đều dùng
+                    một kiến thức đã học – thử bấm <b>F12</b> để soi code nhé!
+                </p>
+            </div>
+
+            <ul class="the the-thong-tin">
+                <li><span class="nhan-thong-tin">🎂 Ngày sinh</span> 12/05/2011</li>
+                <li><span class="nhan-thong-tin">🏫 Trường</span> THCS Ánh Dương</li>
+                <li><span class="nhan-thong-tin">📍 Sống ở</span> Hà Nội</li>
+                <li><span class="nhan-thong-tin">🎯 Ước mơ</span> Thiết kế game</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ===================== KỸ NĂNG (thanh tiến độ = box model + width %) ===================== -->
+    <div class="khu" id="ky-nang">
+      <div class="tam-giay tam-trang">
+        <h2 class="tieu-de-khu">Kỹ năng</h2>
+
+        <div class="ky-nang-luoi">
+            <div class="ky-nang">
+                <div class="ky-nang-dau"><span>HTML</span><span>85%</span></div>
+                <div class="thanh"><div class="thanh-day thanh-hong" style="width: 85%;"></div></div>
+            </div>
+            <div class="ky-nang">
+                <div class="ky-nang-dau"><span>CSS</span><span>70%</span></div>
+                <div class="thanh"><div class="thanh-day thanh-xanh" style="width: 70%;"></div></div>
+            </div>
+            <div class="ky-nang">
+                <div class="ky-nang-dau"><span>Vẽ trên Canva</span><span>80%</span></div>
+                <div class="thanh"><div class="thanh-day thanh-vang" style="width: 80%;"></div></div>
+            </div>
+            <div class="ky-nang">
+                <div class="ky-nang-dau"><span>Tiếng Anh</span><span>60%</span></div>
+                <div class="thanh"><div class="thanh-day thanh-bac-ha" style="width: 60%;"></div></div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== SỞ THÍCH (flexbox + flex-wrap) ===================== -->
+    <div class="khu" id="so-thich">
+        <h2 class="tieu-de-khu">Sở thích</h2>
+
+        <div class="so-thich-luoi">
+            <div class="the so-thich so-thich-hong">
+                <span class="bieu-tuong">🎨</span>
+                <h3>Vẽ tranh</h3>
+                <p>Vẽ nhân vật hoạt hình và thiết kế logo cho lớp.</p>
+            </div>
+            <div class="the so-thich so-thich-vang">
+                <span class="bieu-tuong">🐱</span>
+                <h3>Nuôi mèo</h3>
+                <p>Bé Cam rất thích nằm lên bàn phím khi mình code.</p>
+            </div>
+            <div class="the so-thich so-thich-xanh">
+                <span class="bieu-tuong">🏸</span>
+                <h3>Cầu lông</h3>
+                <p>Chơi cùng bố mỗi sáng Chủ nhật ở công viên.</p>
+            </div>
+            <div class="the so-thich so-thich-bac-ha">
+                <span class="bieu-tuong">🎮</span>
+                <h3>Chơi game</h3>
+                <p>Thích game giải đố, mơ ước tự làm một game riêng.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== DỰ ÁN (link tới các bài thực hành) ===================== -->
+    <!-- ⚠ Các link dưới đây dùng đường dẫn tương đối "../" – chỉ chạy khi giữ nguyên cấu trúc thư mục khóa học -->
+    <div class="khu" id="du-an">
+      <div class="tam-giay tam-muc">
+        <h2 class="tieu-de-khu tieu-de-sang">Dự án đã làm</h2>
+
+        <div class="du-an-luoi">
+            <a class="the du-an" href="../bai-02-html-co-ban/du-an-portfolio/index.html">
+                <span class="du-an-bai">Bài 2</span>
+                <h3>Portfolio đầu tiên</h3>
+                <p>Trang giới thiệu chỉ dùng HTML: danh sách, ảnh, đường dẫn.</p>
+            </a>
+            <a class="the du-an" href="../bai-03-css-co-ban/du-an-mindx-page/index.html">
+                <span class="du-an-bai">Bài 3</span>
+                <h3>MindX Page</h3>
+                <p>Trang giới thiệu khóa học, luyện selectors và box model.</p>
+            </a>
+            <a class="the du-an" href="../bai-04-css-nang-cao/du-an-the-flag/index.html">
+                <span class="du-an-bai">Bài 4</span>
+                <h3>The Flag</h3>
+                <p>Vẽ 4 lá cờ chỉ bằng position relative và absolute.</p>
+            </a>
+            <a class="the du-an" href="../bai-05-display-responsive-flexbox/index.html#thuc-hanh">
+                <span class="du-an-bai">Bài 5</span>
+                <h3>ShopTeen</h3>
+                <p>Menu và thẻ sản phẩm tự xếp lại theo màn hình.</p>
+            </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== HÀNH TRÌNH (ol + position absolute cho dấu chấm) ===================== -->
+    <div class="khu" id="hanh-trinh">
+        <h2 class="tieu-de-khu">Hành trình học web</h2>
+
+        <ol class="hanh-trinh">
+            <li class="moc">
+                <span class="moc-cham"></span>
+                <h3>Buổi 2 – Làm quen HTML</h3>
+                <p>Cài VS Code, viết trang web đầu tiên và hiểu website khác webpage thế nào.</p>
+            </li>
+            <li class="moc">
+                <span class="moc-cham"></span>
+                <h3>Buổi 3 – Tô màu bằng CSS</h3>
+                <p>Học selectors, box model và cách "soi" trang bằng Inspect.</p>
+            </li>
+            <li class="moc">
+                <span class="moc-cham"></span>
+                <h3>Buổi 4 – Định vị phần tử</h3>
+                <p>Hiểu độ ưu tiên, tính kế thừa, và vẽ lá cờ bằng position.</p>
+            </li>
+            <li class="moc">
+                <span class="moc-cham"></span>
+                <h3>Buổi 5 – Flexbox và Responsive</h3>
+                <p>Làm trang web tự co giãn đẹp trên cả điện thoại.</p>
+            </li>
+            <li class="moc moc-tiep-theo">
+                <span class="moc-cham"></span>
+                <h3>Tiếp theo – JavaScript</h3>
+                <p>Học cách làm cho trang web biết "phản ứng" khi người dùng bấm.</p>
+            </li>
+        </ol>
+    </div>
+
+    <!-- ===================== LIÊN HỆ ===================== -->
+    <div class="khu" id="lien-he">
+        <div class="the the-lien-he">
+            <h2 class="lien-he-tieu-de">Muốn làm bạn với mình?</h2>
+            <p>Nhắn cho mình nếu bạn cũng đang học code, hoặc chỉ muốn xem ảnh bé Cam.</p>
+            <div class="lien-he-nut">
+                <a class="nut nut-vang" href="mailto:minhan@example.com">✉️ minhan@example.com</a>
+                <a class="nut nut-trang" href="https://github.com" target="_blank">💻 GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== CHÂN TRANG ===================== -->
+    <div class="chan-trang">
+        <p>Tự làm bằng HTML và CSS bởi Minh An, 2026.</p>
+        <p><a href="../index.html">Về trang chủ khóa học</a></p>
+    </div>
+
+</body>
+</html>

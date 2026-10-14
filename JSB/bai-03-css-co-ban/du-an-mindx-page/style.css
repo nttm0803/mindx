@@ -1,0 +1,135 @@
+/* =========================================================
+   DỰ ÁN MINDX PAGE – BÀI 3
+   ========================================================= */
+
+/* Selector *: xóa margin mặc định của tất cả phần tử */
+* {
+    margin: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #2B2B2B;
+    background-color: #FFFFFF;
+}
+
+/* ---------- HEADER (dùng ID) ---------- */
+#header {
+    background-color: #FFFFFF;
+    padding: 18px 40px;               /* trên-dưới 18px | trái-phải 40px */
+    border-bottom: 4px solid #E3262E;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #E3262E;
+    margin-right: 40px;               /* đẩy menu ra xa logo */
+}
+
+/* Thẻ a có class menu */
+.menu {
+    color: #2B2B2B;
+    text-decoration: none;            /* bỏ gạch chân của link */
+    font-weight: bold;
+    padding: 8px 12px;
+    margin-right: 6px;
+}
+
+/* ⭐ NGOÀI BÀI HỌC (pseudo-class :hover): khi di chuột vào link thì đổi màu */
+.menu:hover {
+    color: #E3262E;
+}
+
+/* ---------- BANNER ---------- */
+#banner {
+    background-color: #E3262E;
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+#banner h1 {                          /* con cháu: h1 nằm trong #banner */
+    font-size: 40px;
+    margin-bottom: 16px;
+}
+
+#banner p {
+    font-size: 20px;
+    margin-bottom: 36px;
+}
+
+/* Nút bấm: thực chất là thẻ a được trang trí bằng padding + border */
+.nut {
+    background-color: #FFD43B;
+    color: #2B2B2B;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 14px 30px;
+    border: 3px solid white;
+}
+
+/* ---------- KHU VỰC CHUNG ---------- */
+.khu-vuc {
+    padding: 60px 20px;
+}
+
+.nen-xanh {
+    background-color: #FFF0F0;
+}
+
+.tieu-de {
+    text-align: center;
+    color: #E3262E;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+/* ---------- THẺ KHÓA HỌC (Box Model) ---------- */
+.the-khoa-hoc {
+    width: 70%;
+    margin: 0 auto 24px auto;         /* căn giữa + cách nhau 24px ở dưới */
+    padding: 24px 30px;
+    border: 2px solid #F1C0C2;
+    border-left: 10px solid #E3262E;  /* viền trái dày làm điểm nhấn */
+    background-color: white;
+}
+
+.the-khoa-hoc h3 {
+    font-size: 24px;
+    margin-bottom: 6px;
+}
+
+.do-tuoi {
+    color: #E3262E;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* ---------- DANH SÁCH LÝ DO ---------- */
+.danh-sach-ly-do {
+    width: 60%;
+    margin: 0 auto;
+    font-size: 19px;
+    line-height: 2;
+}
+
+/* ---------- LIÊN HỆ ---------- */
+.lien-he-dong {
+    text-align: center;
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+/* ---------- FOOTER ---------- */
+#footer {
+    background-color: #2B2B2B;
+    color: #CCCCCC;
+    text-align: center;
+    padding: 24px;
+}
+
+#footer a {
+    color: #FFD43B;
+}

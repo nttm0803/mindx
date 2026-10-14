@@ -1,0 +1,175 @@
+/* =========================================================
+   BÀI 3 – CSS CƠ BẢN
+   File này trang trí cho index.html (cách viết EXTERNAL CSS)
+   ========================================================= */
+
+/* ---------- KHUNG TRANG ---------- */
+
+/* Selector theo TÊN THẺ: áp dụng cho thẻ body */
+body {
+    background-color: #EEF4FF;
+    font-family: Arial, sans-serif;
+    color: #222;
+    line-height: 1.6;        /* khoảng cách giữa các dòng chữ */
+}
+
+/* Selector theo CLASS: khung trang rộng tối đa 860px, căn giữa */
+.trang {
+    max-width: 860px;        /* không rộng quá 860px */
+    margin: 0 auto;          /* trên-dưới 0, trái-phải tự động → căn giữa */
+    padding: 20px;
+}
+
+/* Selector NHÓM: h1 và h2 cùng màu xanh đậm */
+h1, h2 {
+    color: #1D3A8A;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h3 {
+    color: #E4572E;
+}
+
+.mo-ta {
+    font-size: 18px;
+}
+
+.muc-luc {
+    background-color: white;
+    padding: 12px;
+    border: 2px dashed #1D3A8A;   /* viền nét đứt */
+}
+
+/* Mỗi phần nội dung là 1 hộp trắng có viền */
+.phan {
+    background-color: white;
+    border: 2px solid #C9D6F2;
+    padding: 10px 25px 25px 25px; /* trên | phải | dưới | trái */
+    margin-top: 30px;
+}
+
+/* Khung hiển thị code */
+pre {
+    background-color: #1E1E2E;
+    color: #A6E3A1;
+    padding: 15px;
+    font-size: 15px;
+    overflow: auto;      /* ⭐ NGOÀI BÀI HỌC: code dài quá thì hiện thanh cuộn ngang */
+}
+
+.ghi-chu {
+    background-color: #FFF8E1;
+    border-left: 6px solid #FFC107;  /* chỉ có viền bên trái */
+    padding: 10px 15px;
+}
+
+/* ---------- PHẦN 1: 3 cách viết CSS ---------- */
+.vi-du-external {
+    color: darkorange;
+    font-weight: bold;
+}
+
+/* ---------- PHẦN 2: Các thuộc tính cơ bản ---------- */
+.tt-color       { color: crimson; }
+.tt-size        { font-size: 24px; }
+.tt-family      { font-family: 'Courier New', monospace; }
+.tt-weight      { font-weight: bold; }
+.tt-style       { font-style: italic; }
+.tt-align       { text-align: center; }
+.tt-decoration  { text-decoration: underline; }
+.tt-transform   { text-transform: uppercase; }
+
+.tt-hop {
+    background-color: lightyellow;
+    width: 300px;
+    height: 80px;
+    border: 3px solid orange;    /* độ dày | kiểu viền | màu */
+}
+
+.mau-ten { color: tomato; font-weight: bold; }
+.mau-hex { color: #FF5733; font-weight: bold; }
+.mau-rgb { color: rgb(30, 144, 255); font-weight: bold; }
+
+/* ---------- PHẦN 3: Selectors ---------- */
+
+/* Selector CON CHÁU: mọi thẻ p nằm trong .khu-selector */
+.khu-selector p {
+    color: gray;
+    padding: 6px;
+}
+
+/* Selector CLASS */
+.noi-bat {
+    background-color: #FFF3B0;
+}
+
+/* Selector ID: chỉ 1 phần tử duy nhất */
+#dac-biet {
+    color: white;
+    background-color: #6A4C93;
+}
+
+.chu-to {
+    font-size: 22px;
+}
+
+/* ---------- PHẦN 4: Inspect ---------- */
+.hop-bi-mat {
+    background-color: #D7F9F1;
+    border: 3px dotted #2A9D8F;   /* viền chấm chấm */
+    padding: 18px;
+}
+
+/* ---------- PHẦN 5: Box Model ---------- */
+
+/* Vùng cam nhạt bên ngoài giúp NHÌN THẤY margin của .hop-mau */
+.vung-margin {
+    background-color: #FFD8A8;
+    width: 312px;   /* = 252px (hộp) + 30px margin trái + 30px margin phải */
+    margin: 20px auto;
+    border: 1px dashed #E67700;
+}
+
+.hop-mau {
+    background-color: #74C0FC;    /* màu nền phủ cả content + padding */
+    padding: 20px;
+    border: 6px solid black;
+    margin: 30px;
+    width: 200px;
+}
+
+.noi-dung {
+    background-color: white;
+    height: 60px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.chu-thich-hinh {
+    text-align: center;
+}
+
+.so-sanh {
+    background-color: #B2F2BB;
+    border: 2px solid #2B8A3E;
+    width: 60%;
+}
+
+.padding-lon {
+    padding: 30px;
+    margin: 10px;
+}
+
+.margin-lon {
+    padding: 10px;
+    margin: 30px;
+}
+
+.cuoi-trang {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 30px;
+}

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 4 - Specificity, Inheritance, Positioning</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="trang" id="dau-trang">
+
+        <p><a href="../index.html">⬅ Về trang chủ khóa học</a></p>
+        <h1>⚔️ Bài 4: Độ ưu tiên, Kế thừa và Định vị</h1>
+
+        <p class="muc-luc">
+            <a href="#specificity">Specificity</a> |
+            <a href="#inheritance">Inheritance</a> |
+            <a href="#position">Positioning</a> |
+            <a href="du-an-the-flag/index.html">🛠 Dự án The Flag</a> |
+            <a href="on-tap.html">📝 Ôn tập kiểm tra</a>
+        </p>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 1: SPECIFICITY                                -->
+        <!-- ================================================= -->
+        <div class="phan" id="specificity">
+            <h2>1. Độ ưu tiên (Specificity)</h2>
+            <p>
+                Khi <b>nhiều đoạn CSS cùng nhắm vào 1 phần tử</b> và "cãi nhau"
+                (ví dụ cái bảo màu đỏ, cái bảo màu xanh), trình duyệt sẽ nghe theo selector <b>mạnh hơn</b>.
+            </p>
+
+            <h3>🏆 Bảng xếp hạng sức mạnh</h3>
+            <div class="bang-diem">
+                <p class="hang hang-1">🥇 <b>!important</b> – "Quyền lực tối thượng" (hạn chế dùng!)</p>
+                <p class="hang hang-2">🥈 <b>Inline style</b> (style="...") – 1000 điểm</p>
+                <p class="hang hang-3">🥉 <b>#id</b> – 100 điểm</p>
+                <p class="hang hang-4">4️⃣ <b>.class</b> – 10 điểm</p>
+                <p class="hang hang-5">5️⃣ <b>tên thẻ</b> (p, h1, div...) – 1 điểm</p>
+            </div>
+            <p>🧠 <b>Dễ nhớ:</b> Thẻ là <b>học sinh</b>, class là <b>lớp trưởng</b>, id là <b>thầy cô</b>, inline là <b>hiệu trưởng</b>. Ai chức to hơn thì người đó quyết!</p>
+
+            <h3>Ví dụ 1: Ai thắng?</h3>
+<pre>
+h4          { color: red;   }   /* 1 điểm   */
+.chu-xanh   { color: blue;  }   /* 10 điểm  */
+#chu-la     { color: green; }   /* 100 điểm */
+
+&lt;h4 class="chu-xanh" id="chu-la"&gt;Tôi màu gì?&lt;/h4&gt;
+</pre>
+            <h4 class="chu-xanh" id="chu-la">👉 Tôi màu gì? → Màu XANH LÁ vì #id có điểm cao nhất.</h4>
+            <h4 class="chu-xanh">👉 Còn tôi chỉ có class → màu XANH DƯƠNG.</h4>
+            <h4>👉 Tôi chẳng có gì → màu ĐỎ của selector h4.</h4>
+
+            <h3>Ví dụ 2: Cộng điểm</h3>
+<pre>
+.hop p        { color: orange; }  /* 10 + 1 = 11 điểm */
+.hop .dong    { color: purple; }  /* 10 + 10 = 20 điểm → THẮNG */
+</pre>
+            <div class="hop">
+                <p class="dong">👉 Dòng này màu TÍM vì .hop .dong (20 điểm) &gt; .hop p (11 điểm).</p>
+            </div>
+
+            <h3>Ví dụ 3: Bằng điểm thì sao?</h3>
+<pre>
+.the-a { color: red; }
+.the-a { color: deeppink; }   /* viết SAU → THẮNG */
+</pre>
+            <p class="the-a">👉 Bằng điểm thì CSS viết <b>sau cùng</b> sẽ thắng → màu hồng đậm.</p>
+            <p class="ghi-chu">💡 Mẹo: dùng Inspect (F12), CSS nào bị <s>gạch ngang</s> trong tab Styles là CSS đã <b>thua</b>.</p>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 2: INHERITANCE                                -->
+        <!-- ================================================= -->
+        <div class="phan" id="inheritance">
+            <h2>2. Tính kế thừa (Inheritance)</h2>
+            <p>
+                Giống như con cái thừa hưởng <b>màu mắt, màu tóc</b> từ bố mẹ,
+                thẻ con cũng <b>tự động nhận một số thuộc tính CSS</b> từ thẻ cha.
+            </p>
+
+            <div class="hai-cot">
+                <p class="cot cot-co"><b>✅ ĐƯỢC kế thừa</b> (thường liên quan đến chữ):<br>
+                    color, font-size, font-family, font-weight, text-align, line-height</p>
+                <p class="cot cot-khong"><b>❌ KHÔNG kế thừa</b> (thường liên quan đến hộp):<br>
+                    border, padding, margin, width, height, background-color</p>
+            </div>
+
+            <h3>Thử nghiệm</h3>
+<pre>
+.cha {
+    color: #2F9E44;        /* ✅ con sẽ thừa hưởng */
+    font-style: italic;    /* ✅ con sẽ thừa hưởng */
+    border: 3px solid red; /* ❌ con KHÔNG thừa hưởng */
+    padding: 15px;         /* ❌ con KHÔNG thừa hưởng */
+}
+</pre>
+            <div class="cha">
+                Đây là thẻ CHA (có viền đỏ)
+                <p class="con">Đây là thẻ CON: chữ cũng xanh, cũng nghiêng (kế thừa) nhưng KHÔNG có viền đỏ riêng.</p>
+            </div>
+
+            <h3>Từ khóa inherit – ép kế thừa</h3>
+            <p>Thẻ <b>a</b> có màu xanh dương mặc định nên không nhận màu từ cha. Muốn nó theo màu cha:</p>
+<pre>
+.menu-cam a {
+    color: inherit;   /* lấy màu giống thẻ cha */
+}
+</pre>
+            <p class="menu-cam">Đoạn văn màu cam có <a href="#">link mặc định</a> và <a class="link-ke-thua" href="#">link dùng inherit</a>.</p>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 3: POSITIONING                                -->
+        <!-- ================================================= -->
+        <div class="phan" id="position">
+            <h2>3. CSS Positioning – Định vị phần tử</h2>
+            <p>Thuộc tính <b>position</b> quyết định cách một phần tử được đặt trên trang. Đi kèm là <b>top, right, bottom, left</b> để dịch chuyển.</p>
+
+            <!-- static -->
+            <h3>a) position: static (mặc định)</h3>
+            <p>Phần tử nằm theo thứ tự bình thường. top/left <b>không có tác dụng</b>.</p>
+            <div class="san-choi">
+                <div class="o">1</div>
+                <div class="o">2</div>
+                <div class="o">3</div>
+            </div>
+
+            <!-- relative -->
+            <h3>b) position: relative (tương đối)</h3>
+            <p>Dịch chuyển <b>so với vị trí cũ của chính nó</b>. Chỗ cũ vẫn được <b>giữ nguyên</b> (để lại khoảng trống).</p>
+<pre>
+.o-relative {
+    position: relative;
+    top: 20px;     /* đẩy từ trên xuống 20px  */
+    left: 60px;    /* đẩy từ trái sang 60px   */
+}
+</pre>
+            <div class="san-choi">
+                <div class="o">1</div>
+                <div class="o o-relative">2</div>
+                <div class="o">3</div>
+            </div>
+
+            <!-- absolute -->
+            <h3>c) position: absolute (tuyệt đối)</h3>
+            <p>
+                Phần tử "bay" ra khỏi dòng chảy, <b>không giữ chỗ cũ</b>, và định vị theo
+                <b>thẻ cha gần nhất có position khác static</b> (thường đặt cha là <code>relative</code>).
+            </p>
+            <p>🧠 <b>Công thức vàng:</b> Cha <b>relative</b> – Con <b>absolute</b>.</p>
+<pre>
+.the-san-pham { position: relative; }  /* CHA làm mốc  */
+.nhan-hot {
+    position: absolute;                 /* CON bay theo cha */
+    top: -12px;
+    right: -12px;
+}
+</pre>
+            <div class="the-san-pham">
+                <span class="nhan-hot">HOT</span>
+                <b>🎧 Tai nghe Bluetooth</b><br>
+                Nhãn "HOT" được gắn vào góc trên bên phải nhờ absolute.
+            </div>
+
+            <!-- fixed -->
+            <h3>d) position: fixed (cố định)</h3>
+            <p>
+                Dính chặt vào <b>màn hình</b>, cuộn trang thế nào cũng không chạy.
+                👉 Nhìn góc dưới bên phải: nút <b>"⬆ Lên đầu"</b> chính là position: fixed!
+            </p>
+
+            <!-- sticky -->
+            <h3>e) position: sticky (dính khi cuộn)</h3>
+            <p>Bình thường như static, nhưng khi cuộn tới vị trí đã định thì <b>dính lại</b>. Hãy cuộn trong hộp bên dưới:</p>
+            <div class="hop-cuon">
+                <p class="tieu-de-dinh">🍎 Nhóm A</p>
+                <p>An</p><p>Anh</p><p>Ánh</p><p>Ân</p>
+                <p class="tieu-de-dinh">🍌 Nhóm B</p>
+                <p>Bảo</p><p>Bình</p><p>Bích</p><p>Bắc</p>
+                <p class="tieu-de-dinh">🍒 Nhóm C</p>
+                <p>Chi</p><p>Cường</p><p>Công</p><p>Cúc</p>
+            </div>
+
+            <!-- z-index -->
+            <h3>f) z-index – Ai nằm trên?</h3>
+            <p>Khi các phần tử chồng lên nhau, <b>z-index lớn hơn sẽ nằm trên</b>. (Chỉ có tác dụng khi có position khác static.)</p>
+            <div class="khu-z">
+                <div class="la-bai la-do">z-index: 1</div>
+                <div class="la-bai la-xanh">z-index: 3</div>
+                <div class="la-bai la-vang">z-index: 2</div>
+            </div>
+
+            <h3>📋 Tóm tắt</h3>
+            <ul>
+                <li><b>static</b>: mặc định, nằm yên theo thứ tự.</li>
+                <li><b>relative</b>: dịch so với chỗ cũ, vẫn giữ chỗ.</li>
+                <li><b>absolute</b>: bay theo cha gần nhất có position, không giữ chỗ.</li>
+                <li><b>fixed</b>: dính vào màn hình.</li>
+                <li><b>sticky</b>: dính lại khi cuộn tới.</li>
+            </ul>
+        </div>
+
+        <p class="cuoi-trang">
+            <a href="du-an-the-flag/index.html">🛠 Dự án The Flag</a> &nbsp;|&nbsp;
+            <a href="on-tap.html">📝 Ôn tập kiểm tra</a>
+        </p>
+    </div>
+
+    <!-- Nút cố định ở góc màn hình (position: fixed) -->
+    <a class="nut-len-dau" href="#dau-trang">⬆ Lên đầu</a>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <!-- ⚠ BẮT BUỘC cho responsive: báo điện thoại hiển thị đúng chiều rộng thật của màn hình -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 5 - Display, Responsive, Flexbox</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="trang">
+        <p><a href="../index.html">⬅ Về trang chủ khóa học</a></p>
+        <h1>📱 Bài 5: Display, Responsive và Flexbox</h1>
+
+        <!-- Thanh báo thiết bị: đổi chữ + màu tùy độ rộng màn hình (xem phần 2) -->
+        <div class="bao-thiet-bi">
+            <span class="chi-may-tinh">💻 Em đang xem trên MÁY TÍNH (rộng hơn 992px)</span>
+            <span class="chi-tablet">📟 Em đang xem trên TABLET (577px – 992px)</span>
+            <span class="chi-dien-thoai">📱 Em đang xem trên ĐIỆN THOẠI (≤ 576px)</span>
+        </div>
+
+        <p class="muc-luc">
+            <a href="#display">CSS display</a> |
+            <a href="#responsive">Responsive &amp; Media queries</a> |
+            <a href="#flexbox">Flexbox</a> |
+            <a href="#thuc-hanh">Thực hành</a>
+        </p>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 1: DISPLAY                                    -->
+        <!-- ================================================= -->
+        <div class="phan" id="display">
+            <h2>1. CSS display</h2>
+            <p>Thuộc tính <b>display</b> quyết định phần tử <b>chiếm chỗ như thế nào</b> trên trang.</p>
+
+            <h3>a) display: block</h3>
+            <p>Chiếm <b>trọn 1 dòng</b>, phần tử sau bị đẩy xuống dòng mới. Chỉnh được width, height.<br>
+               Mặc định là block: <code>div, p, h1–h6, ul, li</code>.</p>
+            <div class="khu-demo">
+                <span class="vd vd-block">Hộp 1</span>
+                <span class="vd vd-block">Hộp 2</span>
+                <span class="vd vd-block">Hộp 3</span>
+            </div>
+
+            <h3>b) display: inline</h3>
+            <p>Nằm <b>cùng 1 dòng</b> như chữ. <b>Không</b> chỉnh được width, height (đã đặt width: 120px nhưng không có tác dụng!).<br>
+               Mặc định là inline: <code>span, a, b, i, img</code>.</p>
+            <div class="khu-demo">
+                <div class="vd vd-inline">Hộp 1</div>
+                <div class="vd vd-inline">Hộp 2</div>
+                <div class="vd vd-inline">Hộp 3</div>
+            </div>
+
+            <h3>c) display: inline-block</h3>
+            <p>Kết hợp cả 2: <b>cùng dòng</b> như inline + <b>chỉnh được</b> width, height như block.</p>
+            <div class="khu-demo">
+                <div class="vd vd-inline-block">Hộp 1</div>
+                <div class="vd vd-inline-block">Hộp 2</div>
+                <div class="vd vd-inline-block">Hộp 3</div>
+            </div>
+
+            <h3>d) display: none</h3>
+            <p><b>Ẩn hoàn toàn</b>, không chiếm chỗ. Hộp 2 dưới đây đã bị ẩn:</p>
+            <div class="khu-demo">
+                <div class="vd vd-inline-block">Hộp 1</div>
+                <div class="vd vd-inline-block vd-none">Hộp 2</div>
+                <div class="vd vd-inline-block">Hộp 3</div>
+            </div>
+
+            <h3>📋 So sánh nhanh</h3>
+            <ul>
+                <li><b>block</b>: 1 mình 1 dòng ✅ width/height</li>
+                <li><b>inline</b>: chung dòng ❌ width/height</li>
+                <li><b>inline-block</b>: chung dòng ✅ width/height</li>
+                <li><b>none</b>: biến mất</li>
+            </ul>
+<pre>
+.vd-block        { display: block; }
+.vd-inline       { display: inline; }
+.vd-inline-block { display: inline-block; }
+.vd-none         { display: none; }
+</pre>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 2: RESPONSIVE                                 -->
+        <!-- ================================================= -->
+        <div class="phan" id="responsive">
+            <h2>2. Responsive website &amp; Media queries</h2>
+            <p>
+                <b>Responsive</b> là website <b>tự thay đổi giao diện</b> cho vừa với mọi màn hình:
+                điện thoại 📱, máy tính bảng 📟, máy tính 💻.
+            </p>
+            <p>🧠 <b>Dễ hiểu:</b> giống như nước 💧 – đổ vào cốc thì có hình cốc, đổ vào bình thì có hình bình.</p>
+
+            <h3>Bước 1: Thêm thẻ meta viewport vào head</h3>
+<pre>
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+</pre>
+            <p>Thiếu dòng này, điện thoại sẽ thu nhỏ cả trang máy tính lại, chữ bé tí.</p>
+
+            <h3>Bước 2: Viết Media queries</h3>
+            <p><b>Media query</b> = "<i>NẾU màn hình thỏa điều kiện, THÌ áp dụng CSS này</i>".</p>
+<pre>
+/* CSS bình thường: áp dụng cho mọi màn hình */
+.hop { background-color: blue; }
+
+/* NẾU màn hình rộng TỐI ĐA 768px (≤ 768px) THÌ ... */
+@media (max-width: 768px) {
+    .hop { background-color: orange; }
+}
+
+/* NẾU màn hình rộng TỐI THIỂU 1200px (≥ 1200px) THÌ ... */
+@media (min-width: 1200px) {
+    .hop { background-color: green; }
+}
+</pre>
+            <ul>
+                <li><b>max-width</b>: "nhỏ hơn hoặc bằng" → dùng cho màn hình nhỏ.</li>
+                <li><b>min-width</b>: "lớn hơn hoặc bằng" → dùng cho màn hình lớn.</li>
+                <li>⚠ Media query phải viết <b>bên dưới</b> CSS thường để ghi đè được.</li>
+            </ul>
+
+            <h3>Các mốc màn hình (breakpoint) hay dùng</h3>
+            <ul>
+                <li>📱 Điện thoại: ≤ 576px</li>
+                <li>📟 Tablet: 577px – 992px</li>
+                <li>💻 Máy tính: &gt; 992px</li>
+            </ul>
+
+            <h3>🧪 Thử ngay</h3>
+            <div class="hop-doi-mau">Kéo nhỏ cửa sổ trình duyệt và xem tôi đổi màu, đổi cỡ chữ!</div>
+            <p class="ghi-chu">
+                💡 Cách test nhanh: nhấn <b>F12</b> → nhấn <b>Ctrl + Shift + M</b> (Toggle device toolbar)
+                → chọn iPhone, iPad... để xem trang trên từng thiết bị. Thanh màu ở đầu trang cũng sẽ đổi theo!
+            </p>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 3: FLEXBOX                                    -->
+        <!-- ================================================= -->
+        <div class="phan" id="flexbox">
+            <h2>3. Flexbox – Sắp xếp phần tử dễ dàng</h2>
+            <p>
+                Flexbox giúp <b>xếp các phần tử theo hàng hoặc cột</b>, căn giữa, chia đều khoảng cách cực dễ.
+                Chỉ cần thêm <code>display: flex;</code> vào <b>thẻ cha</b>.
+            </p>
+            <ul>
+                <li><b>Flex container</b>: thẻ cha có <code>display: flex</code>.</li>
+                <li><b>Flex items</b>: các thẻ con trực tiếp, tự động xếp thành hàng ngang.</li>
+            </ul>
+            <p>🧠 <b>Dễ hiểu:</b> Thẻ cha là <b>cái kệ</b>, thẻ con là <b>những quyển sách</b>. Flexbox là cách mình sắp sách trên kệ.</p>
+
+            <h3>Trước và sau khi có display: flex</h3>
+            <p>Không có flex (các div tự xuống dòng):</p>
+            <div class="ke ke-thuong">
+                <div class="sach">A</div><div class="sach">B</div><div class="sach">C</div>
+            </div>
+            <p>Có <code>display: flex</code> (xếp thành hàng ngang):</p>
+            <div class="ke ke-flex">
+                <div class="sach">A</div><div class="sach">B</div><div class="sach">C</div>
+            </div>
+
+            <!-- ---------- flex-direction ---------- -->
+            <h3>a) flex-direction – Hướng xếp</h3>
+            <p class="nhan">row (mặc định) – hàng ngang trái → phải</p>
+            <div class="ke ke-flex" style="flex-direction: row;">
+                <div class="sach">1</div><div class="sach">2</div><div class="sach">3</div>
+            </div>
+            <p class="nhan">row-reverse – hàng ngang phải → trái</p>
+            <div class="ke ke-flex" style="flex-direction: row-reverse;">
+                <div class="sach">1</div><div class="sach">2</div><div class="sach">3</div>
+            </div>
+            <p class="nhan">column – cột dọc trên → dưới</p>
+            <div class="ke ke-flex" style="flex-direction: column;">
+                <div class="sach">1</div><div class="sach">2</div><div class="sach">3</div>
+            </div>
+            <p class="ghi-chu">ℹ Phần này dùng inline style để em dễ nhìn giá trị ngay trong HTML. Khi làm dự án thật, hãy viết vào file CSS nhé.</p>
+
+            <!-- ---------- justify-content ---------- -->
+            <h3>b) justify-content – Căn theo chiều ngang (trục chính)</h3>
+            <p class="nhan">flex-start (mặc định) – dồn về đầu</p>
+            <div class="ke ke-flex" style="justify-content: flex-start;">
+                <div class="sach">1</div><div class="sach">2</div><div class="sach">3</div>
+            </div>
+            <p class="nhan">center – dồn vào giữa</p>
+            <div class="ke ke-flex" style="justify-content: center;">
+                <div class="sach">1</div><div class="sach">2</div><div class="sach">3</div>
+            </div>
+            <p class="nhan">flex-end – dồn về cuối</p>
+            <div class="ke ke-flex" style="justify-content: flex-end;">
+                <div class="sach">1</div><div class="sach">2</div><div class="sach">3</div>
+            </div>
+            <p class="nhan">space-between – 2 đầu sát mép, khoảng giữa chia đều</p>
+            <div class="ke ke-flex" style="justify-content: space-between;">
+                <div class="sach">1</div><div class="sach">2</div><div class="sach">3</div>
+            </div>
+            <p class="nhan">space-around – mỗi phần tử có khoảng trống bằng nhau 2 bên</p>
+            <div class="ke ke-flex" style="justify-content: space-around;">
+                <div class="sach">1</div><div class="sach">2</div><div class="sach">3</div>
+            </div>
+            <p class="nhan">space-evenly – mọi khoảng trống đều bằng nhau</p>
+            <div class="ke ke-flex" style="justify-content: space-evenly;">
+                <div class="sach">1</div><div class="sach">2</div><div class="sach">3</div>
+            </div>
+
+            <!-- ---------- align-items ---------- -->
+            <h3>c) align-items – Căn theo chiều dọc (trục phụ)</h3>
+            <p>Kệ cao 130px, sách có chiều cao khác nhau để dễ nhìn:</p>
+            <p class="nhan">stretch (mặc định) – kéo dãn cho bằng chiều cao kệ (khi sách không đặt height)</p>
+            <div class="ke ke-flex ke-cao" style="align-items: stretch;">
+                <div class="sach sach-tu-do">1</div><div class="sach sach-tu-do">2</div><div class="sach sach-tu-do">3</div>
+            </div>
+            <p class="nhan">flex-start – sát mép trên</p>
+            <div class="ke ke-flex ke-cao" style="align-items: flex-start;">
+                <div class="sach">1</div><div class="sach sach-cao">2</div><div class="sach">3</div>
+            </div>
+            <p class="nhan">center – ở giữa theo chiều dọc</p>
+            <div class="ke ke-flex ke-cao" style="align-items: center;">
+                <div class="sach">1</div><div class="sach sach-cao">2</div><div class="sach">3</div>
+            </div>
+            <p class="nhan">flex-end – sát mép dưới</p>
+            <div class="ke ke-flex ke-cao" style="align-items: flex-end;">
+                <div class="sach">1</div><div class="sach sach-cao">2</div><div class="sach">3</div>
+            </div>
+            <p class="ghi-chu">⭐ Mẹo căn giữa "thần thánh": <code>display: flex; justify-content: center; align-items: center;</code></p>
+            <div class="ke ke-flex ke-cao" style="justify-content: center; align-items: center;">
+                <div class="sach">Ở chính giữa!</div>
+            </div>
+
+            <!-- ---------- flex-wrap & gap ---------- -->
+            <h3>d) flex-wrap – Cho phép xuống dòng</h3>
+            <p class="nhan">nowrap (mặc định) – cố nhét hết vào 1 hàng, các hộp bị bóp nhỏ lại</p>
+            <div class="ke ke-flex" style="flex-wrap: nowrap;">
+                <div class="sach sach-rong">1</div><div class="sach sach-rong">2</div><div class="sach sach-rong">3</div>
+                <div class="sach sach-rong">4</div><div class="sach sach-rong">5</div><div class="sach sach-rong">6</div>
+            </div>
+            <p class="nhan">wrap – hết chỗ thì xuống dòng</p>
+            <div class="ke ke-flex" style="flex-wrap: wrap;">
+                <div class="sach sach-rong">1</div><div class="sach sach-rong">2</div><div class="sach sach-rong">3</div>
+                <div class="sach sach-rong">4</div><div class="sach sach-rong">5</div><div class="sach sach-rong">6</div>
+            </div>
+
+            <h3>e) gap – Khoảng cách giữa các phần tử</h3>
+            <p class="nhan">gap: 30px</p>
+            <div class="ke ke-flex" style="gap: 30px;">
+                <div class="sach">1</div><div class="sach">2</div><div class="sach">3</div>
+            </div>
+
+            <h3>f) flex: 1 – Chia đều chỗ trống (đặt cho thẻ CON)</h3>
+            <p class="nhan">Hộp 2 có flex: 2 → rộng gấp đôi hộp 1 và 3 (flex: 1)</p>
+            <div class="ke ke-flex">
+                <div class="sach" style="flex: 1;">flex: 1</div>
+                <div class="sach" style="flex: 2;">flex: 2</div>
+                <div class="sach" style="flex: 1;">flex: 1</div>
+            </div>
+
+            <h3>📋 Tóm tắt Flexbox</h3>
+<pre>
+/* ĐẶT CHO THẺ CHA (container) */
+.cha {
+    display: flex;
+    flex-direction: row;            /* row | row-reverse | column        */
+    justify-content: center;        /* căn trục chính (ngang)            */
+    align-items: center;            /* căn trục phụ (dọc)                */
+    flex-wrap: wrap;                /* cho xuống dòng                    */
+    gap: 20px;                      /* khoảng cách giữa các con          */
+}
+
+/* ĐẶT CHO THẺ CON (item) */
+.con {
+    flex: 1;                        /* chia phần chỗ trống               */
+}
+</pre>
+            <p class="ghi-chu">🎮 Luyện thêm: chơi game <a href="https://flexboxfroggy.com/#vi" target="_blank">Flexbox Froggy</a> (có tiếng Việt) – giúp ếch về lá sen bằng Flexbox!</p>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 4: THỰC HÀNH                                  -->
+        <!-- ================================================= -->
+        <div class="phan" id="thuc-hanh">
+            <h2>4. Thực hành: Menu + thẻ sản phẩm responsive</h2>
+            <p>Kết hợp cả 3 kiến thức: <b>flexbox</b> để xếp, <b>media queries</b> để đổi bố cục, <b>display: none</b> để ẩn bớt trên điện thoại.</p>
+
+            <div class="menu">
+                <span class="menu-logo">🛍 ShopTeen</span>
+                <div class="menu-link">
+                    <a href="#">Trang chủ</a>
+                    <a href="#">Sản phẩm</a>
+                    <a href="#" class="an-tren-dt">Khuyến mãi</a>
+                    <a href="#" class="an-tren-dt">Liên hệ</a>
+                </div>
+            </div>
+
+            <div class="ds-san-pham">
+                <div class="san-pham">
+                    <div class="anh-sp">🎒</div>
+                    <h4>Balo đi học</h4>
+                    <p>250.000đ</p>
+                </div>
+                <div class="san-pham">
+                    <div class="anh-sp">🎧</div>
+                    <h4>Tai nghe</h4>
+                    <p>390.000đ</p>
+                </div>
+                <div class="san-pham">
+                    <div class="anh-sp">⌚</div>
+                    <h4>Đồng hồ</h4>
+                    <p>520.000đ</p>
+                </div>
+                <div class="san-pham">
+                    <div class="anh-sp">📓</div>
+                    <h4>Sổ tay</h4>
+                    <p>45.000đ</p>
+                </div>
+            </div>
+            <ul>
+                <li>💻 Máy tính: 4 sản phẩm / hàng.</li>
+                <li>📟 Tablet: 2 sản phẩm / hàng.</li>
+                <li>📱 Điện thoại: 1 sản phẩm / hàng, menu ẩn bớt 2 link.</li>
+            </ul>
+        </div>
+
+        <p class="cuoi-trang"><a href="../website-gioi-thieu-ca-nhan/index.html">🌟 Xem website tổng hợp cả khóa ➡</a></p>
+    </div>
+</body>
+</html>

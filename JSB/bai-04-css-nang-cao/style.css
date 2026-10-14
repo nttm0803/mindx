@@ -1,0 +1,215 @@
+/* =========================================================
+   BÀI 4 – SPECIFICITY, INHERITANCE, POSITIONING
+   ========================================================= */
+
+/* ---------- KHUNG TRANG (giống Bài 3) ---------- */
+body {
+    background-color: #FFF5F7;
+    font-family: Arial, sans-serif;
+    color: #222;
+    line-height: 1.6;
+}
+
+.trang {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2 { color: #A61E4D; }
+h3 { color: #1971C2; }
+
+.muc-luc {
+    background-color: white;
+    padding: 12px;
+    border: 2px dashed #A61E4D;
+}
+
+.phan {
+    background-color: white;
+    border: 2px solid #FCC2D7;
+    padding: 10px 25px 25px 25px;
+    margin-top: 30px;
+}
+
+pre {
+    background-color: #1E1E2E;
+    color: #A6E3A1;
+    padding: 15px;
+    font-size: 15px;
+    overflow: auto;   /* ⭐ NGOÀI BÀI HỌC: thanh cuộn khi code dài */
+}
+
+.ghi-chu {
+    background-color: #FFF8E1;
+    border-left: 6px solid #FFC107;
+    padding: 10px 15px;
+}
+
+.cuoi-trang {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+/* =========================================================
+   PHẦN 1: SPECIFICITY
+   ========================================================= */
+.bang-diem .hang {
+    padding: 8px 14px;
+    margin: 4px 0;
+    color: white;
+}
+/* Độ rộng giảm dần cho giống "bậc thang" sức mạnh */
+.hang-1 { background-color: #C92A2A; width: 90%; }
+.hang-2 { background-color: #E8590C; width: 80%; }
+.hang-3 { background-color: #F08C00; width: 70%; }
+.hang-4 { background-color: #2F9E44; width: 60%; }
+.hang-5 { background-color: #1971C2; width: 50%; }
+
+/* Ví dụ 1: cùng nhắm vào thẻ h4 */
+h4         { color: red; }                       /* 1 điểm   */
+.chu-xanh  { color: blue; }                      /* 10 điểm  */
+#chu-la    { color: green; }                     /* 100 điểm → thắng */
+
+/* Ví dụ 2: cộng điểm */
+.hop p     { color: orange; }                    /* 10 + 1  = 11 điểm */
+.hop .dong { color: purple; font-weight: bold; } /* 10 + 10 = 20 điểm → thắng */
+
+/* Ví dụ 3: bằng điểm → cái viết SAU thắng */
+.the-a { color: red; }
+.the-a { color: deeppink; font-weight: bold; }
+
+/* =========================================================
+   PHẦN 2: INHERITANCE
+   ========================================================= */
+.hai-cot .cot {
+    padding: 12px;
+    margin-bottom: 8px;
+}
+.cot-co    { background-color: #D3F9D8; color: #2B8A3E; }
+.cot-khong { background-color: #FFE3E3; color: #C92A2A; }
+
+.cha {
+    color: #2F9E44;        /* ✅ được kế thừa */
+    font-style: italic;    /* ✅ được kế thừa */
+    border: 3px solid red; /* ❌ không kế thừa */
+    padding: 15px;         /* ❌ không kế thừa */
+}
+
+/* .con KHÔNG khai báo color, font-style → tự nhận từ .cha */
+.con {
+    background-color: #F1F3F5;
+    padding: 8px;
+}
+
+.menu-cam {
+    color: #E8590C;
+    font-weight: bold;
+}
+
+.link-ke-thua {
+    color: inherit;   /* lấy màu cam của thẻ cha */
+}
+
+/* =========================================================
+   PHẦN 3: POSITIONING
+   ========================================================= */
+.san-choi {
+    background-color: #F1F3F5;
+    border: 2px dashed #ADB5BD;
+    padding: 10px;
+    height: 220px;
+}
+
+.o {
+    background-color: #4DABF7;
+    color: white;
+    font-weight: bold;
+    width: 60px;
+    height: 50px;
+    margin-bottom: 8px;
+    text-align: center;
+    line-height: 50px;          /* căn giữa chữ theo chiều dọc */
+}
+
+/* relative: dịch so với chỗ cũ */
+.o-relative {
+    background-color: #F76707;
+    position: relative;
+    top: 20px;
+    left: 60px;
+}
+
+/* absolute: cha relative – con absolute */
+.the-san-pham {
+    position: relative;          /* CHA làm mốc */
+    width: 260px;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #FFF4E6;
+    border: 2px solid #FD7E14;
+}
+
+.nhan-hot {
+    position: absolute;          /* CON bay theo cha */
+    top: -12px;
+    right: -12px;
+    background-color: #E03131;
+    color: white;
+    font-weight: bold;
+    padding: 4px 10px;
+}
+
+/* fixed: dính vào màn hình */
+.nut-len-dau {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #A61E4D;
+    color: white;
+    padding: 12px 18px;
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 10;
+}
+
+/* sticky: dính khi cuộn */
+.hop-cuon {
+    height: 200px;
+    overflow-y: scroll;          /* ⭐ NGOÀI BÀI HỌC: tạo vùng cuộn riêng bên trong hộp */
+    border: 2px solid #1971C2;
+}
+
+.hop-cuon p {
+    padding: 6px 12px;
+    margin: 0;
+}
+
+.tieu-de-dinh {
+    position: sticky;
+    top: 0;                      /* dính ở mép trên của hộp cuộn */
+    background-color: #1971C2;
+    color: white;
+    font-weight: bold;
+}
+
+/* z-index: lá bài chồng lên nhau */
+.khu-z {
+    position: relative;
+    height: 180px;
+}
+
+.la-bai {
+    position: absolute;
+    width: 140px;
+    height: 110px;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border: 3px solid white;
+}
+
+.la-do   { background-color: #E03131; top: 0;    left: 0;     z-index: 1; }
+.la-xanh { background-color: #1971C2; top: 30px; left: 60px;  z-index: 3; }
+.la-vang { background-color: #F59F00; top: 60px; left: 120px; z-index: 2; }

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3. Format code và thẻ lồng nhau</title>
+</head>
+<body>
+    <p><a href="index.html">⬅ Về mục lục Bài 2</a></p>
+    <h1>📦 Thẻ lồng nhau và Format code</h1>
+
+    <!-- ================================================= -->
+    <h2>1. Thẻ lồng nhau là gì?</h2>
+    <p>
+        Thẻ lồng nhau là khi <b>một thẻ nằm bên trong một thẻ khác</b>.
+        Giống như <b>búp bê Nga</b> 🪆: con búp bê to chứa con nhỏ hơn bên trong.
+    </p>
+    <ul>
+        <li>Thẻ bọc bên ngoài gọi là <b>thẻ cha</b> (parent).</li>
+        <li>Thẻ nằm bên trong gọi là <b>thẻ con</b> (child).</li>
+        <li>Các thẻ cùng một cha gọi là <b>anh em</b> (sibling).</li>
+    </ul>
+
+    <p>Ví dụ: thẻ <b>b</b> nằm trong thẻ <b>p</b>:</p>
+<pre>
+&lt;p&gt;Hôm nay em học &lt;b&gt;HTML&lt;/b&gt; rất vui.&lt;/p&gt;
+</pre>
+    <p>Kết quả: Hôm nay em học <b>HTML</b> rất vui.</p>
+
+    <h3>🌳 Cây HTML (cây gia phả)</h3>
+    <p>Cả trang HTML là một "cây gia phả" như thế này:</p>
+<pre>
+html                 ← ông tổ
+├── head             ← con của html
+│   ├── meta
+│   └── title
+└── body             ← con của html, anh em với head
+    ├── h1
+    └── ul           ← cha của các li
+        ├── li
+        └── li       ← các li là anh em với nhau
+</pre>
+
+    <h3>⚠ Quy tắc vàng: Mở sau – Đóng trước</h3>
+    <p>Thẻ nào mở <b>sau</b> thì phải đóng <b>trước</b>. Giống như cất đồ: hộp nhỏ phải đóng nắp trước, rồi mới đóng hộp to.</p>
+<pre>
+✅ ĐÚNG:  &lt;p&gt; Xin &lt;b&gt; chào &lt;/b&gt; &lt;/p&gt;
+                ↑   mở b ... đóng b  ↑
+          mở p ...................... đóng p
+
+❌ SAI:   &lt;p&gt; Xin &lt;b&gt; chào &lt;/p&gt; &lt;/b&gt;     ← đóng p trước khi đóng b → lỗi!
+</pre>
+
+    <h3>Một số kiểu lồng nhau hay gặp</h3>
+    <ul>
+        <li>Danh sách trong danh sách (ul trong li).</li>
+        <li>Ảnh trong đường dẫn (img trong a) → ảnh bấm được.</li>
+        <li>Chữ đậm, chữ nghiêng trong đoạn văn (b, i trong p).</li>
+        <li>Mọi thứ hiển thị đều nằm trong body.</li>
+    </ul>
+
+    <!-- ================================================= -->
+    <h2>2. Format code – căn chỉnh thụt lề</h2>
+    <p>
+        Trình duyệt <b>không quan tâm</b> code có thụt lề hay không, nhưng <b>con người</b> thì có!
+        Code thụt lề đẹp giúp nhìn ra ngay thẻ nào là cha, thẻ nào là con, dễ tìm lỗi hơn rất nhiều.
+    </p>
+
+    <h3>❌ Code chưa format (rất khó đọc)</h3>
+<pre>
+&lt;ul&gt;
+&lt;li&gt;Đồ ăn
+&lt;ul&gt;
+&lt;li&gt;Phở&lt;/li&gt;
+&lt;li&gt;Bánh mì&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+
+    <h3>✅ Code đã format (dễ đọc)</h3>
+<pre>
+&lt;ul&gt;
+    &lt;li&gt;Đồ ăn
+        &lt;ul&gt;
+            &lt;li&gt;Phở&lt;/li&gt;
+            &lt;li&gt;Bánh mì&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+
+    <h3>Quy tắc thụt lề</h3>
+    <ol>
+        <li>Mỗi khi vào <b>một cấp con</b>, thụt vào <b>1 nấc</b> (nhấn phím Tab, thường = 4 dấu cách hoặc 2 dấu cách).</li>
+        <li>Thẻ mở và thẻ đóng của cùng 1 thẻ phải <b>thẳng hàng</b> với nhau.</li>
+        <li>Các thẻ anh em thì <b>thẳng hàng</b> với nhau.</li>
+    </ol>
+
+    <h3>Format tự động trong VS Code</h3>
+    <ul>
+        <li>Nhấn <b>Shift + Alt + F</b> (Mac: Shift + Option + F).</li>
+        <li>Hoặc bật <b>Format On Save</b> + cài <b>Prettier</b>: mỗi lần Ctrl + S là code tự đẹp.</li>
+        <li>Thụt lề thủ công: bôi đen nhiều dòng rồi nhấn <b>Tab</b> (thụt vào) hoặc <b>Shift + Tab</b> (lùi ra).</li>
+    </ul>
+
+    <h2>✏️ Bài tập nhỏ</h2>
+    <p>Đoạn code sau bị lỗi lồng thẻ. Em hãy tìm lỗi và format lại cho đúng:</p>
+<pre>
+&lt;ol&gt;&lt;li&gt;Bước 1: &lt;i&gt;Mở VS Code&lt;/li&gt;&lt;/i&gt;
+&lt;li&gt;Bước 2: Gõ ! và Tab&lt;/li&gt;&lt;/ol&gt;
+</pre>
+    <p><i>Gợi ý: thẻ i được mở sau thẻ li, vậy phải đóng trước hay sau thẻ li?</i></p>
+
+    <hr>
+    <p>
+        <a href="2-cac-the-html.html">⬅ Trang trước</a> |
+        <a href="4-website-va-webpage.html">Trang tiếp theo ➡</a>
+    </p>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Flag - Vẽ lá cờ bằng CSS</title>
+    <link rel="stylesheet" href="style.css">
+    <!--
+        DỰ ÁN BÀI 4: THE FLAG
+        Vẽ lá cờ CHỈ bằng HTML + CSS, dùng:
+          - Box Model (width, height, background-color)
+          - position: relative (lá cờ – CHA) + absolute (các chi tiết – CON)
+          - z-index để xếp lớp
+    -->
+</head>
+<body>
+    <div class="trang">
+        <h1>🏳️ The Flag – Vẽ cờ bằng CSS Position</h1>
+        <p class="gioi-thieu">Mỗi lá cờ là 1 hộp <b>relative</b>. Mọi chi tiết bên trong là <b>absolute</b>.</p>
+
+        <!-- ===== CỜ VIỆT NAM ===== -->
+        <div class="khung">
+            <h2>🇻🇳 Việt Nam</h2>
+            <div class="co co-viet-nam">
+                <!-- Ngôi sao là ký tự ★, đặt absolute và căn giữa lá cờ -->
+                <div class="ngoi-sao">★</div>
+            </div>
+            <p class="giai-thich">Nền đỏ + ngôi sao vàng ở chính giữa (dùng ký tự ★ phóng to).</p>
+        </div>
+
+        <!-- ===== CỜ NHẬT BẢN ===== -->
+        <div class="khung">
+            <h2>🇯🇵 Nhật Bản</h2>
+            <div class="co co-nhat-ban">
+                <div class="mat-troi"></div>
+            </div>
+            <p class="giai-thich">Nền trắng + hình tròn đỏ. Tính vị trí: top = (200 − 120) / 2 = 40px; left = (300 − 120) / 2 = 90px.</p>
+        </div>
+
+        <!-- ===== CỜ THỤY ĐIỂN ===== -->
+        <div class="khung">
+            <h2>🇸🇪 Thụy Điển</h2>
+            <div class="co co-thuy-dien">
+                <div class="thanh-ngang"></div>
+                <div class="thanh-doc"></div>
+            </div>
+            <p class="giai-thich">Nền xanh + 2 thanh vàng: 1 thanh ngang và 1 thanh dọc lệch về bên trái.</p>
+        </div>
+
+        <!-- ===== CỜ THÁI LAN ===== -->
+        <div class="khung">
+            <h2>🇹🇭 Thái Lan</h2>
+            <div class="co co-thai-lan">
+                <div class="soc-trang"></div>
+                <div class="soc-xanh"></div>
+            </div>
+            <p class="giai-thich">Xếp lớp: nền đỏ → sọc trắng to đè lên → sọc xanh đè lên cùng (z-index).</p>
+        </div>
+
+        <!-- ===== THỬ THÁCH ===== -->
+        <div class="khung thu-thach">
+            <h2>🎯 Thử thách cho em</h2>
+            <ol>
+                <li>Vẽ cờ <b>Indonesia</b> (nửa trên đỏ, nửa dưới trắng).</li>
+                <li>Vẽ cờ <b>Pháp</b> (3 sọc dọc: xanh – trắng – đỏ).</li>
+                <li>Vẽ cờ <b>Lào</b> (đỏ – xanh – đỏ, giữa có hình tròn trắng).</li>
+                <li>Khó: vẽ cờ <b>Thụy Sĩ</b> (nền đỏ, dấu cộng trắng ở giữa).</li>
+            </ol>
+        </div>
+
+        <p class="cuoi"><a href="../index.html">⬅ Về Bài 4</a></p>
+    </div>
+</body>
+</html>
