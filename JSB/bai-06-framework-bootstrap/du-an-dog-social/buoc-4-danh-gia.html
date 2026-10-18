@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Social – Đánh giá của khách hàng (Carousel)</title>
+    <!-- Phông chữ Google Fonts (cần Internet, không có vẫn chạy bằng phông dự phòng) -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Gắn Bootstrap TRƯỚC -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- Gắn style.css SAU để CSS của em đè được Bootstrap -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section id="danh-gia" class="nen-nhat py-5">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-4">Chủ nuôi nói gì về Dog Social</h2>
+
+        <div id="khung-danh-gia" class="carousel slide" data-bs-theme="dark">
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                    <div class="loi-nhan-xet text-center">
+                        <p class="fs-3 fw-semibold">“Bé Bơ nhà mình nhút nhát lắm. Sau hai tuần dùng Dog Social, bé đã có cả nhóm bạn đi dạo mỗi sáng thứ Bảy.”</p>
+                        <div class="avatar">🐶</div>
+                        <b>Minh Anh</b><br>
+                        <small class="text-secondary">Chủ của Bơ, Golden Retriever</small>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="loi-nhan-xet text-center">
+                        <p class="fs-3 fw-semibold">“Mình tìm được bạn chơi cho Mực chỉ trong một buổi chiều. Giờ hôm nào hai bé cũng hẹn nhau.”</p>
+                        <div class="avatar">🐕</div>
+                        <b>Quốc Bảo</b><br>
+                        <small class="text-secondary">Chủ của Mực, Phú Quốc</small>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#khung-danh-gia" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#khung-danh-gia" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </div>
+</section>
+
+    <!-- JavaScript của Bootstrap: cần cho carousel (bước 4) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 6 - Framework, Bootstrap, Web Design</title>
+    <!-- Bootstrap chỉ dùng cho các khung "Kết quả" (cần Internet).
+         style.css gắn SAU Bootstrap để style của trang tài liệu được ưu tiên. -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="trang">
+        <p><a href="../index.html">⬅ Về trang chủ khóa học</a></p>
+        <h1>🚀 Bài 6: Framework, Bootstrap, Web Design &amp; Dự án Dog Social</h1>
+        <p>Tài liệu tra cứu cho học sinh. Học xong bài này em sẽ biết dùng sẵn code của người khác (Bootstrap) để làm web nhanh hơn, chọn màu cho đẹp, và bắt đầu dự án <b>Dog Social</b>.</p>
+
+        <p class="muc-luc">
+            <a href="#framework">1. Framework</a> |
+            <a href="#bootstrap">2. Bootstrap</a> |
+            <a href="#design">3. Web Design &amp; Color Theory</a> |
+            <a href="#dog-social">4. Dự án Dog Social (phần 1)</a> |
+            <a href="#tra-cuu">5. Bảng tra cứu nhanh</a>
+        </p>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 1: FRAMEWORK                                  -->
+        <!-- ================================================= -->
+        <div class="phan" id="framework">
+            <h2>1. Giới thiệu về Framework</h2>
+
+            <h3>Framework là gì?</h3>
+            <p><b>Framework</b> là bộ code viết sẵn (khung sườn) do người khác làm, em chỉ việc dùng lại thay vì tự viết từ đầu.</p>
+            <p>Ví dụ đời thường: muốn ăn bánh, em có thể tự trồng lúa, xay bột… hoặc mua <b>bột làm bánh trộn sẵn</b> – chỉ cần thêm nước và nướng. Framework chính là "bột trộn sẵn" của lập trình viên.</p>
+
+            <h3>Vì sao dùng Framework?</h3>
+            <ul>
+                <li><b>Nhanh:</b> có sẵn nút bấm, thanh menu, lưới chia cột… chỉ cần gọi tên.</li>
+                <li><b>Đẹp và đồng nhất:</b> giao diện đã được thiết kế chuyên nghiệp.</li>
+                <li><b>Responsive sẵn:</b> tự co giãn trên điện thoại, tablet, máy tính (nhớ lại Bài 5).</li>
+                <li><b>Ít lỗi:</b> hàng triệu người đã dùng và kiểm tra.</li>
+            </ul>
+
+            <h3>Một số framework phổ biến</h3>
+            <table>
+                <tr><th>Tên</th><th>Dùng cho</th><th>Ghi chú</th></tr>
+                <tr><td>Bootstrap</td><td>Giao diện (CSS/JS)</td><td><b>Học trong bài này</b></td></tr>
+                <tr><td>Tailwind CSS</td><td>Giao diện (CSS)</td><td>Viết style bằng class nhỏ</td></tr>
+                <tr><td>React, Vue</td><td>Web có nhiều tương tác (JavaScript)</td><td>Học sau này</td></tr>
+            </table>
+
+            <div class="ghi-nho">
+                💡 <b>Ghi nhớ:</b> Framework không thay thế HTML/CSS. Em vẫn phải hiểu HTML/CSS thì mới dùng framework giỏi.
+            </div>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 2: BOOTSTRAP                                  -->
+        <!-- ================================================= -->
+        <div class="phan" id="bootstrap">
+            <h2>2. Giới thiệu về Bootstrap</h2>
+            <p><b>Bootstrap</b> là framework CSS phổ biến nhất thế giới. Em dùng nó bằng cách <b>thêm tên class</b> vào thẻ HTML.</p>
+
+            <h3>2.1. Cách gắn Bootstrap vào trang</h3>
+            <p>Cách dễ nhất là <b>CDN</b> (tải qua Internet): dán dòng <code>&lt;link&gt;</code> vào <code>&lt;head&gt;</code>.</p>
+<pre><code>&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Trang của em&lt;/title&gt;
+    &lt;link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"&gt;
+&lt;/head&gt;</code></pre>
+            <div class="luu-y">
+                ⚠ Phải có Internet. Nếu nút/màu không hiện đúng, kiểm tra lại link và kết nối mạng.
+                Menu thả xuống, carousel… cần thêm file JavaScript của Bootstrap (chưa bắt buộc ở bài này).
+            </div>
+
+            <h3>2.2. Nút bấm (Button)</h3>
+<pre><code>&lt;button class="btn btn-primary"&gt;Xanh dương&lt;/button&gt;
+&lt;button class="btn btn-success"&gt;Xanh lá&lt;/button&gt;
+&lt;button class="btn btn-danger"&gt;Đỏ&lt;/button&gt;
+&lt;button class="btn btn-outline-dark"&gt;Viền đen&lt;/button&gt;</code></pre>
+            <div class="vi-du">
+                <b>▶ Kết quả:</b>
+                <button class="btn btn-primary">Xanh dương</button>
+                <button class="btn btn-success">Xanh lá</button>
+                <button class="btn btn-danger">Đỏ</button>
+                <button class="btn btn-outline-dark">Viền đen</button>
+            </div>
+
+            <h3>2.3. Container và hệ thống lưới (Grid)</h3>
+            <p>Bootstrap chia chiều rộng thành <b>12 cột</b>. Cấu trúc luôn là: <code>container</code> → <code>row</code> → <code>col</code>.</p>
+<pre><code>&lt;div class="container"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-md-4"&gt;Cột 1&lt;/div&gt;
+        &lt;div class="col-md-4"&gt;Cột 2&lt;/div&gt;
+        &lt;div class="col-md-4"&gt;Cột 3&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            <div class="vi-du">
+                <b>▶ Kết quả (thu nhỏ cửa sổ để thấy 3 cột xếp chồng lại):</b>
+                <div class="container-fluid">
+                    <div class="row text-center">
+                        <div class="col-md-4 bg-warning p-3">Cột 1</div>
+                        <div class="col-md-4 bg-info p-3">Cột 2</div>
+                        <div class="col-md-4 bg-success text-white p-3">Cột 3</div>
+                    </div>
+                </div>
+            </div>
+
+            <table>
+                <tr><th>Class</th><th>Ý nghĩa</th></tr>
+                <tr><td><code>col-4</code></td><td>Chiếm 4/12 chiều rộng ở mọi màn hình</td></tr>
+                <tr><td><code>col-md-4</code></td><td>Chiếm 4/12 khi màn hình ≥ 768px; nhỏ hơn thì mỗi cột chiếm cả hàng</td></tr>
+                <tr><td><code>col-lg-3</code></td><td>Chiếm 3/12 khi màn hình ≥ 992px</td></tr>
+            </table>
+            <p>Các mốc (breakpoint): <code>sm</code> ≥ 576px, <code>md</code> ≥ 768px, <code>lg</code> ≥ 992px, <code>xl</code> ≥ 1200px.</p>
+            <div class="ghi-nho">💡 Tổng số cột trong 1 hàng nên là 12. Ví dụ 4 + 4 + 4, hoặc 6 + 6, hoặc 3 + 9.</div>
+
+            <h3>2.4. Các class tiện ích hay dùng</h3>
+            <table>
+                <tr><th>Nhóm</th><th>Class</th><th>Tác dụng</th></tr>
+                <tr><td>Khoảng cách</td><td><code>m-3</code>, <code>p-3</code>, <code>mt-2</code>, <code>px-4</code></td><td>margin / padding. Số 0–5 là mức to nhỏ. <code>t b s e x y</code> = trên, dưới, trái, phải, ngang, dọc</td></tr>
+                <tr><td>Chữ</td><td><code>text-center</code>, <code>fw-bold</code>, <code>fs-1</code>…<code>fs-6</code></td><td>Canh giữa, in đậm, cỡ chữ</td></tr>
+                <tr><td>Màu chữ</td><td><code>text-primary</code>, <code>text-danger</code>, <code>text-white</code></td><td>Đổi màu chữ</td></tr>
+                <tr><td>Màu nền</td><td><code>bg-primary</code>, <code>bg-light</code>, <code>bg-dark</code></td><td>Đổi màu nền</td></tr>
+                <tr><td>Flexbox</td><td><code>d-flex</code>, <code>justify-content-center</code>, <code>align-items-center</code></td><td>Giống flexbox Bài 5, nhưng viết bằng class</td></tr>
+                <tr><td>Ảnh</td><td><code>img-fluid</code>, <code>rounded</code>, <code>rounded-circle</code></td><td>Ảnh co giãn, bo góc, bo tròn</td></tr>
+            </table>
+
+            <h3>2.5. Card – thẻ nội dung</h3>
+            <p><b>Card</b> là một "tấm thẻ" gói gọn thông tin về một thứ gì đó (một chú chó, một sản phẩm, một bạn trong lớp…). Em sẽ dùng Card rất nhiều trong dự án Dog Social.</p>
+<pre><code>&lt;div class="card" style="width: 18rem;"&gt;
+    &lt;div class="card-body"&gt;
+        &lt;h5 class="card-title"&gt;Corgi&lt;/h5&gt;
+        &lt;p class="card-text"&gt;Chân ngắn, rất đáng yêu.&lt;/p&gt;
+        &lt;a href="#" class="btn btn-primary"&gt;Xem thêm&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            <div class="vi-du">
+                <b>▶ Kết quả:</b>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Corgi</h5>
+                        <p class="card-text">Chân ngắn, rất đáng yêu.</p>
+                        <a href="#bootstrap" class="btn btn-primary">Xem thêm</a>
+                    </div>
+                </div>
+            </div>
+
+            <p>Mỗi class làm một việc:</p>
+            <table>
+                <tr><th>Class</th><th>Việc nó làm</th></tr>
+                <tr><td><code>card</code></td><td>Tạo khung thẻ có viền và bo góc</td></tr>
+                <tr><td><code>card-body</code></td><td>Chừa lề bên trong để chữ không dính sát viền</td></tr>
+                <tr><td><code>card-title</code></td><td>Tiêu đề của thẻ</td></tr>
+                <tr><td><code>card-text</code></td><td>Đoạn mô tả</td></tr>
+                <tr><td><code>style="width: 18rem;"</code></td><td>Đặt chiều rộng thẻ (nếu bỏ đi, thẻ sẽ rộng hết khung chứa nó)</td></tr>
+            </table>
+
+            <h4>Thêm ảnh vào thẻ</h4>
+            <p>Thêm thẻ <code>&lt;img&gt;</code> với class <code>card-img-top</code> <b>ngay phía trên</b> <code>card-body</code>. Ảnh sẽ tự co giãn vừa chiều rộng thẻ.</p>
+<pre><code>&lt;div class="card" style="width: 18rem;"&gt;
+    &lt;img src="images/corgi.jpg" class="card-img-top" alt="Chú chó Corgi"&gt;
+    &lt;div class="card-body"&gt;
+        ...
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            <div class="ghi-nho">💡 Đường dẫn <code>src</code> phải đúng với thư mục của em (nhớ lại đường dẫn ở Bài 2). Nếu ảnh không hiện, kiểm tra lại tên file và thư mục <code>images</code>.</div>
+
+            <div class="bai-tap">
+                <b>✏ Thử một mình:</b> tạo một Card giới thiệu <b>bản thân em</b> hoặc <b>thú cưng của em</b> (tiêu đề = tên, mô tả = 1–2 câu, nút "Xem thêm"). Sau đó đổi nút thành <code>btn-success</code> hoặc <code>btn-outline-dark</code> xem có gì khác.
+            </div>
+
+            <h3>2.6. Thanh điều hướng (Navbar)</h3>
+            <div class="vi-du">
+                <b>▶ Kết quả (phiên bản đơn giản, không cần JavaScript):</b>
+                <nav class="navbar bg-dark navbar-dark px-3">
+                    <a class="navbar-brand" href="#bootstrap">🐶 Dog Social</a>
+                    <div>
+                        <a class="text-white me-3" href="#bootstrap">Trang chủ</a>
+                        <a class="text-white me-3" href="#bootstrap">Giống chó</a>
+                        <a class="text-white" href="#bootstrap">Liên hệ</a>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="ghi-nho">
+                💡 <b>Mẹo tra cứu:</b> không cần nhớ hết! Vào <a href="https://getbootstrap.com/docs/5.3/" target="_blank">getbootstrap.com/docs</a>, tìm thành phần mình cần (Buttons, Card, Navbar…), chép code mẫu rồi sửa nội dung.
+            </div>
+
+            <div class="luu-y">
+                ⚠ <b>Lỗi hay gặp:</b>
+                <ul>
+                    <li>Quên <code>&lt;meta name="viewport"&gt;</code> → trang không responsive trên điện thoại.</li>
+                    <li>Đặt <code>col</code> ngoài <code>row</code>, hoặc <code>row</code> ngoài <code>container</code> → lưới bị lệch.</li>
+                    <li>Gõ sai tên class (ví dụ <code>btn-prymary</code>) → Bootstrap bỏ qua, không báo lỗi.</li>
+                    <li>Muốn đè style của Bootstrap: viết CSS riêng trong <code>style.css</code> và <b>gắn sau</b> link Bootstrap (nhớ Specificity ở Bài 4).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 3: WEB DESIGN & COLOR THEORY                  -->
+        <!-- ================================================= -->
+        <div class="phan" id="design">
+            <h2>3. Web Design &amp; Color Theory</h2>
+
+            <h3>3.1. Nguyên tắc thiết kế web cơ bản</h3>
+            <table>
+                <tr><th>Nguyên tắc</th><th>Ý nghĩa</th><th>Cách làm</th></tr>
+                <tr><td>Căn chỉnh (Alignment)</td><td>Các phần tử thẳng hàng, gọn gàng</td><td>Dùng chung 1 lề trái hoặc canh giữa nhất quán</td></tr>
+                <tr><td>Tương phản (Contrast)</td><td>Chữ và nền phải dễ phân biệt</td><td>Chữ đậm trên nền sáng, hoặc chữ trắng trên nền tối</td></tr>
+                <tr><td>Khoảng trắng (White space)</td><td>Chừa chỗ trống để mắt "thở"</td><td>Dùng <code>padding</code>, <code>margin</code> thoải mái</td></tr>
+                <tr><td>Phân cấp (Hierarchy)</td><td>Cái quan trọng thì to và nổi hơn</td><td>Tiêu đề lớn, nội dung nhỏ hơn, nút kêu gọi có màu nổi</td></tr>
+                <tr><td>Nhất quán (Consistency)</td><td>Cùng loại thì cùng kiểu</td><td>Mọi nút cùng màu, cùng bo góc; chỉ dùng 1–2 phông chữ</td></tr>
+            </table>
+
+            <h3>3.2. Color Theory – Lý thuyết màu sắc</h3>
+            <p><b>Bánh xe màu</b> gồm: <b>màu cơ bản</b> (đỏ, vàng, xanh dương), <b>màu thứ cấp</b> (cam, xanh lá, tím – trộn từ 2 màu cơ bản) và <b>màu bậc ba</b>.</p>
+            <div class="vi-du" style="text-align:center">
+                <img src="images/banh-xe-mau.svg" alt="Bánh xe màu 12 màu: màu cơ bản, thứ cấp và bậc ba" style="max-width:100%; width:400px">
+                <p>Hình: bánh xe màu 12 màu. Hai màu <b>đối diện nhau</b> là cặp màu bổ sung (ví dụ xanh dương – cam).</p>
+            </div>
+
+            <h4>Màu nóng và màu lạnh</h4>
+            <div class="bang-mau">
+                <div class="o-mau" style="background-color:#E03131">Đỏ – năng lượng</div>
+                <div class="o-mau" style="background-color:#F76707">Cam – vui vẻ</div>
+                <div class="o-mau sang" style="background-color:#FCC419">Vàng – tươi sáng</div>
+                <div class="o-mau" style="background-color:#2F9E44">Xanh lá – tự nhiên</div>
+                <div class="o-mau" style="background-color:#1971C2">Xanh dương – tin cậy</div>
+                <div class="o-mau" style="background-color:#7048E8">Tím – sáng tạo</div>
+            </div>
+            <p>Màu nóng (đỏ, cam, vàng) tạo cảm giác ấm áp, sôi động. Màu lạnh (xanh lá, xanh dương, tím) tạo cảm giác bình tĩnh, tin cậy.</p>
+
+            <h4>Các cách phối màu</h4>
+            <table>
+                <tr><th>Kiểu phối</th><th>Cách chọn</th><th>Cảm giác</th></tr>
+                <tr><td>Đơn sắc (Monochromatic)</td><td>1 màu, đổi độ sáng/tối</td><td>Hài hòa, dễ làm, khó sai</td></tr>
+                <tr><td>Tương đồng (Analogous)</td><td>3 màu nằm cạnh nhau trên bánh xe</td><td>Êm dịu, tự nhiên</td></tr>
+                <tr><td>Bổ sung (Complementary)</td><td>2 màu đối diện nhau (xanh dương – cam)</td><td>Tương phản mạnh, nổi bật</td></tr>
+            </table>
+            <div class="bang-mau">
+                <div class="o-mau" style="background-color:#0B3D91">Đơn sắc – đậm</div>
+                <div class="o-mau" style="background-color:#1971C2">Đơn sắc – vừa</div>
+                <div class="o-mau sang" style="background-color:#A5D8FF">Đơn sắc – nhạt</div>
+                <div class="o-mau" style="background-color:#1971C2">Bổ sung – xanh</div>
+                <div class="o-mau" style="background-color:#F76707">Bổ sung – cam</div>
+            </div>
+
+            <h4>Khi nào chọn cách phối màu nào?</h4>
+            <table>
+                <tr><th>Kiểu phối</th><th>Nên chọn khi…</th><th>Hợp với</th><th>Lưu ý</th></tr>
+                <tr>
+                    <td><b>Đơn sắc</b></td>
+                    <td>Em mới tập thiết kế, muốn trang trông gọn gàng và "chắc tay"; hoặc cần giao diện nghiêm túc, tập trung vào nội dung.</td>
+                    <td>Blog, trang học tập, trang giới thiệu cá nhân, web tối giản</td>
+                    <td>Dễ bị nhàm và khó làm nút bấm nổi bật. Hãy dùng màu <b>đậm nhất</b> cho nút quan trọng.</td>
+                </tr>
+                <tr>
+                    <td><b>Tương đồng</b></td>
+                    <td>Em muốn trang <b>êm mắt, có không khí</b> (vui vẻ, ấm áp hoặc mát mẻ) mà vẫn có nhiều sắc độ.</td>
+                    <td>Web du lịch, ẩm thực, thiên nhiên, thú cưng (như Dog Social)</td>
+                    <td>Độ tương phản yếu, nên chọn 1 màu <b>đậm hơn hẳn</b> làm màu nhấn và chữ phải đủ tối/sáng.</td>
+                </tr>
+                <tr>
+                    <td><b>Bổ sung</b></td>
+                    <td>Em muốn <b>thu hút sự chú ý</b> vào một chỗ: nút mua hàng, nút đăng ký, banner khuyến mãi.</td>
+                    <td>Web bán hàng, game, trang sự kiện, poster</td>
+                    <td>Rất "gắt" nếu dùng 50–50. Dùng 1 màu làm nền chính, màu đối diện chỉ chấm phá (khoảng 10%).</td>
+                </tr>
+            </table>
+
+            <div class="ghi-nho">
+                💡 <b>Cách chọn nhanh cho học sinh:</b>
+                <ol>
+                    <li>Hỏi: trang của mình muốn người xem cảm thấy gì? (nghiêm túc, dịu nhẹ, sôi động)</li>
+                    <li>Chưa chắc chắn → chọn <b>đơn sắc</b>, rồi thêm 1 màu nhấn.</li>
+                    <li>Muốn đẹp, dịu → <b>tương đồng</b>. Muốn nổi bật nút bấm → <b>bổ sung</b>.</li>
+                    <li>Luôn kiểm tra lại bằng quy tắc 60-30-10 bên dưới.</li>
+                </ol>
+            </div>
+            <p><b>Ví dụ cho Dog Social:</b> nền trắng và xanh nhạt (60%), xanh dương đậm cho banner, menu, thẻ nổi bật (30%), vàng cho các nút quan trọng (10%). Xanh dương và vàng gần như đối diện nhau trên bánh xe màu (phối <b>bổ sung</b>), nên nút vàng nổi bật rõ trên nền xanh.</p>
+
+            <h4>Quy tắc 60 – 30 – 10</h4>
+            <ul>
+                <li><b>60%</b> màu chủ đạo (thường là nền, màu nhạt/trung tính)</li>
+                <li><b>30%</b> màu phụ (thanh menu, khung, tiêu đề)</li>
+                <li><b>10%</b> màu nhấn (nút bấm quan trọng)</li>
+            </ul>
+
+            <h3>3.3. Cách viết màu trong CSS</h3>
+            <table>
+                <tr><th>Cách viết</th><th>Ví dụ</th></tr>
+                <tr><td>Tên màu</td><td><code>color: red;</code></td></tr>
+                <tr><td>Mã Hex</td><td><code>color: #F76707;</code></td></tr>
+                <tr><td>RGB</td><td><code>color: rgb(247, 103, 7);</code></td></tr>
+            </table>
+
+            <div class="ghi-nho">
+                💡 <b>Công cụ chọn màu:</b>
+                <a href="https://coolors.co" target="_blank">coolors.co</a> (tạo bảng màu tự động),
+                <a href="https://color.adobe.com" target="_blank">color.adobe.com</a> (bánh xe màu).
+                Nên chọn trước <b>3–4 màu</b> cho cả trang rồi dùng đi dùng lại.
+            </div>
+            <div class="luu-y">
+                ⚠ Đừng dùng quá nhiều màu chói cùng lúc, và đừng để chữ xám nhạt trên nền trắng – rất khó đọc.
+            </div>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 4: DỰ ÁN DOG SOCIAL (PHẦN 1)                  -->
+        <!-- ================================================= -->
+        <div class="phan" id="dog-social">
+            <h2>4. Dự án Dog Social (phần 1)</h2>
+            <p>Mục tiêu: làm <b>trang chủ giới thiệu ứng dụng Dog Social</b> (mạng xã hội giúp chủ nuôi tìm bạn chơi cho chú chó) bằng Bootstrap. Trang khá dài nên được <b>chia thành 6 bước nhỏ</b>, mỗi bước là một khối giao diện.</p>
+
+            <p style="text-align:center">
+                <a class="btn btn-warning btn-lg" href="du-an-dog-social/index.html">👉 Mở trang thực hành từng bước</a>
+                <a class="btn btn-outline-dark btn-lg" href="du-an-dog-social/hoan-chinh.html">Xem trang hoàn chỉnh</a>
+            </p>
+
+            <h3>6 bước thực hành</h3>
+            <table>
+                <tr><th>Bước</th><th>Khối giao diện</th><th>Kiến thức luyện tập</th></tr>
+                <tr><td>1</td><td>Thanh menu</td><td><code>navbar</code>, <code>d-flex</code>, ẩn/hiện theo màn hình (<code>d-none d-md-inline</code>)</td></tr>
+                <tr><td>2</td><td>Banner (Hero)</td><td>Lưới 2 cột, chữ to <code>display-4</code>, nút viền, khung điện thoại bằng CSS</td></tr>
+                <tr><td>3</td><td>3 tính năng</td><td><code>row</code> + <code>col-md-4</code>, ô icon bo góc</td></tr>
+                <tr><td>4</td><td>Đánh giá khách hàng</td><td><code>carousel</code> (cần JavaScript của Bootstrap)</td></tr>
+                                <tr><td>5</td><td>Bảng giá 3 gói</td><td><code>card</code>, <code>list-unstyled</code>, <code>badge</code>, nổi bật 1 thẻ</td></tr>
+                <tr><td>6</td><td>Kêu gọi + chân trang</td><td>Nút bo tròn, nền vàng/navy</td></tr>
+            </table>
+            <div class="ghi-nho">💡 Gợi ý: làm từng bước, mở trình duyệt kiểm tra rồi mới làm bước tiếp theo. Đừng viết hết cả trang rồi mới xem – lỗi sẽ rất khó tìm.</div>
+            <div class="ghi-nho">💡 <b>Hiệu ứng hover:</b> Bootstrap có sẵn hover cho nút. Các hiệu ứng khác (link đổi màu, thẻ nổi lên, icon nhún) em tự viết bằng <code>:hover</code> + <code>transition</code> trong <code>style.css</code> – xem trong từng bước.</div>
+
+            <div class="bai-tap">
+                <h3>✅ Danh sách kiểm tra phần 1</h3>
+                <ul>
+                    <li>☐ Đã gắn Bootstrap và <code>viewport</code></li>
+                    <li>☐ Làm đủ 6 khối giao diện, đúng thứ tự</li>
+                    <li>☐ Các khối chia cột tự xếp chồng trên điện thoại</li>
+                    <li>☐ Carousel đổi được lời nhận xét</li>
+                    <li>☐ Chỉ dùng bảng màu 3–4 màu đã chọn</li>
+                    <li>☐ Xem thử được trên giao diện điện thoại</li>
+                </ul>
+                <p>Phần 2 (buổi sau) sẽ hoàn thiện dự án.</p>
+            </div>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 5: BẢNG TRA CỨU NHANH                         -->
+        <!-- ================================================= -->
+        <div class="phan" id="tra-cuu">
+            <h2>5. Bảng tra cứu nhanh</h2>
+            <table>
+                <tr><th>Em muốn…</th><th>Dùng</th></tr>
+                <tr><td>Nút bấm có màu</td><td><code>class="btn btn-primary"</code></td></tr>
+                <tr><td>Giới hạn chiều rộng, canh giữa trang</td><td><code>class="container"</code></td></tr>
+                <tr><td>Chia cột responsive</td><td><code>row</code> + <code>col-12 col-md-6 col-lg-4</code></td></tr>
+                <tr><td>Khoảng cách giữa các cột</td><td><code>row g-3</code></td></tr>
+                <tr><td>Canh giữa chữ</td><td><code>text-center</code></td></tr>
+                <tr><td>Chữ đậm / to</td><td><code>fw-bold</code> / <code>fs-1</code></td></tr>
+                <tr><td>Padding / margin</td><td><code>p-3</code> / <code>m-3</code>, <code>mt-4</code>, <code>px-2</code></td></tr>
+                <tr><td>Màu nền / màu chữ</td><td><code>bg-dark</code> / <code>text-white</code></td></tr>
+                <tr><td>Thẻ nội dung</td><td><code>card</code>, <code>card-body</code>, <code>card-title</code>, <code>card-text</code></td></tr>
+                <tr><td>Ảnh co giãn theo khung</td><td><code>img-fluid</code></td></tr>
+                <tr><td>Xếp ngang, canh giữa</td><td><code>d-flex justify-content-center align-items-center</code></td></tr>
+            </table>
+
+            <h3>Câu hỏi tự kiểm tra</h3>
+            <ol>
+                <li>Framework là gì? Kể 2 lợi ích khi dùng framework.</li>
+                <li>Bootstrap chia chiều rộng thành bao nhiêu cột?</li>
+                <li><code>col-md-6</code> khác <code>col-6</code> ở điểm nào?</li>
+                <li>Quy tắc 60-30-10 nói về điều gì?</li>
+                <li>Vì sao file <code>style.css</code> của em phải gắn sau link Bootstrap?</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

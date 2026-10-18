@@ -1,0 +1,102 @@
+/* =========================================================
+   BÀI 6 – FRAMEWORK, BOOTSTRAP, WEB DESIGN & COLOR THEORY
+   (CSS của TRANG TÀI LIỆU – không phải của Bootstrap)
+   ========================================================= */
+
+body {
+    background-color: #FFF4E6;
+    font-family: Arial, sans-serif;
+    color: #212529;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.trang {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2 { color: #D9480F; }
+h3     { color: #5F3DC4; }
+
+.muc-luc {
+    background-color: white;
+    padding: 12px;
+    border: 2px dashed #D9480F;
+}
+
+.phan {
+    background-color: white;
+    border: 2px solid #FFD8A8;
+    padding: 10px 25px 25px 25px;
+    margin-top: 30px;
+}
+
+pre {
+    background-color: #1E1E2E;
+    color: #A6E3A1;
+    padding: 15px;
+    font-size: 15px;
+    overflow-x: auto;
+}
+
+code {
+    background-color: #F1F3F5;
+    padding: 2px 6px;
+    color: #C92A2A;
+}
+pre code { background: none; color: inherit; padding: 0; }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+}
+th, td {
+    border: 1px solid #ADB5BD;
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+}
+th { background-color: #FFE8CC; }
+
+.ghi-nho {
+    background-color: #FFF9DB;
+    border-left: 6px solid #FAB005;
+    padding: 10px 15px;
+    margin: 15px 0;
+}
+
+.luu-y {
+    background-color: #FFE3E3;
+    border-left: 6px solid #E03131;
+    padding: 10px 15px;
+    margin: 15px 0;
+}
+
+.vi-du {
+    border: 2px dashed #868E96;
+    padding: 15px;
+    margin: 15px 0;
+}
+.vi-du > b { display: block; margin-bottom: 8px; color: #495057; }
+
+/* Ô màu minh họa phần Color Theory */
+.bang-mau { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+.o-mau {
+    width: 120px;
+    padding: 30px 8px 8px 8px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    text-shadow: 0 0 3px black;
+}
+.o-mau.sang { color: #212529; text-shadow: none; }
+
+.bai-tap {
+    background-color: #E7F5FF;
+    border: 2px solid #339AF0;
+    padding: 10px 20px;
+    margin-top: 15px;
+}

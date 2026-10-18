@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dự án Dog Social - Thực hành từng bước</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="trang">
+        <p><a href="../index.html#dog-social">⬅ Về Bài 6</a></p>
+        <h1>🐾 Dự án Dog Social – thực hành từng bước</h1>
+        <p>Trang web Dog Social hoàn chỉnh khá dài, nên ta <b>chia thành 6 phần nhỏ</b>. Mỗi bước em làm một phần trong file riêng, kiểm tra đúng rồi mới sang bước tiếp theo. Cuối cùng ghép lại thành một trang.</p>
+        <p><a href="hoan-chinh.html" target="_blank"><b>👉 Xem trang hoàn chỉnh (tab mới)</b></a> – hãy mở trước để biết mình đang hướng tới điều gì.</p>
+
+        <p class="muc-luc"><a href="#chuan-bi">0. Chuẩn bị</a> | <a href="#buoc-1">1. Thanh menu (Navbar)</a> | <a href="#buoc-2">2. Banner (Hero)</a> | <a href="#buoc-3">3. Ba tính năng nổi bật</a> | <a href="#buoc-4">4. Đánh giá của khách hàng (Carousel)</a> | <a href="#buoc-5">5. Bảng giá (3 gói)</a> | <a href="#buoc-6">6. Kêu gọi hành động và chân trang</a> | <a href="#ghep">7. Ghép lại</a></p>
+
+        <div class="phan" id="chuan-bi">
+            <h2>Bước 0: Chuẩn bị</h2>
+            <ol>
+                <li>Tạo thư mục <code>du-an-dog-social</code> chứa <code>index.html</code> và <code>style.css</code>.</li>
+                <li>Mỗi bước dưới đây làm <b>lần lượt</b> trong cùng <code>index.html</code>; xong bước nào, mở trình duyệt xem bước đó. (Hoặc tạo file riêng <code>buoc-1.html</code>, <code>buoc-2.html</code>… để thử từng phần.)</li>
+                <li>Chép khung <code>&lt;head&gt;</code> bên dưới và CSS chung vào <code>style.css</code>.</li>
+            </ol>
+            <details open><summary>Khung HTML (head + cuối body)</summary><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="vi"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Dog Social&lt;/title&gt;
+    &lt;!-- Phông chữ Google Fonts (cần Internet, không có vẫn chạy bằng phông dự phòng) --&gt;
+    &lt;link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@400;600;700&amp;display=swap" rel="stylesheet"&gt;
+    &lt;!-- Gắn Bootstrap TRƯỚC --&gt;
+    &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"&gt;
+    &lt;!-- Gắn style.css SAU để CSS của em đè được Bootstrap --&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    ... (code các bước) ...
+
+    &lt;!-- JavaScript của Bootstrap: cần cho carousel (bước 4) --&gt;
+    &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></details>
+            <details><summary>CSS chung</summary><pre><code>/* ===== CSS CHUNG (làm trước) ===== */
+:root {
+    --xanh:  #4361FF;   /* màu chủ đạo */
+    --vang:  #FFC93C;   /* màu nhấn */
+    --navy:  #1D2550;   /* chữ đậm, footer */
+    --nhat:  #EEF2FF;   /* nền xanh nhạt */
+}
+
+body { font-family: "Nunito", Arial, sans-serif; color: var(--navy); }
+h1, h2, h3, h4, h5, .navbar-brand { font-family: "Fredoka", Arial, sans-serif; }
+
+.nen-xanh { background-color: var(--xanh); }
+.nen-vang { background-color: var(--vang); }
+.nen-nhat { background-color: var(--nhat); }
+
+.btn-vang { background-color: var(--vang); color: var(--navy); border: none; }
+.btn-vang { transition: transform 0.2s, background-color 0.2s; }
+.btn-vang:hover { background-color: #FFB703; color: var(--navy); transform: translateY(-3px); }
+
+/* Hiệu ứng :hover cho link menu / footer: link như một nút, rê chuột thì đổi màu nền */
+.link-hover {
+    padding: 6px 14px;
+    border-radius: 999px;
+    transition: background-color 0.2s, color 0.2s;
+}
+.link-hover:hover { background-color: var(--vang); color: var(--navy) !important; }
+
+/* Nút viền trắng: khi rê chuột thì đổi chữ sang màu xanh */
+.btn-outline-light:hover { color: var(--xanh); }
+</code></pre></details>
+            <div class="bang-mau">
+                <div class="o-mau" style="background-color:#4361FF">Xanh – màu chủ đạo</div>
+                <div class="o-mau sang" style="background-color:#FFC93C">Vàng – màu nhấn</div>
+                <div class="o-mau" style="background-color:#1D2550">Navy – chữ, footer</div>
+                <div class="o-mau sang" style="background-color:#EEF2FF">Xanh nhạt – nền</div>
+            </div>
+            <p>Bảng màu này là phối <b>tương đồng/bổ sung</b>: xanh dương và vàng gần như đối diện nhau trên bánh xe màu, nên nút vàng rất nổi bật trên nền xanh.</p>
+        </div>
+
+        <div class="phan" id="buoc-1">
+            <h2>Bước 1: Thanh menu (Navbar)</h2>
+            <p><b>🎯 Mục tiêu:</b> Thanh menu nền xanh: logo bên trái; bên phải là 3 link và nút vàng "Tải ứng dụng". Trên điện thoại, 3 link tự ẩn đi, chỉ còn nút.</p>
+            <div class="vi-du">
+                <b>▶ Giao diện cần làm (<a href="buoc-1-navbar.html" target="_blank">mở tab mới</a>):</b>
+                <iframe src="buoc-1-navbar.html" title="Bước 1" style="width:100%; height:90px; border:2px solid #1D2550;"></iframe>
+            </div>
+            <h3>Class Bootstrap sẽ dùng</h3>
+            <table><tr><th>Class</th><th>Tác dụng</th></tr><tr><td><code>navbar</code></td><td>Thanh menu</td></tr><tr><td><code>container</code></td><td>Giới hạn chiều rộng, canh giữa</td></tr><tr><td><code>d-flex align-items-center gap-3</code></td><td>Xếp ngang, canh giữa, cách nhau</td></tr><tr><td><code>d-none d-md-inline</code></td><td>Ẩn ở màn nhỏ, hiện từ ≥ 768px</td></tr><tr><td><code>text-white text-decoration-none</code></td><td>Chữ trắng, bỏ gạch chân</td></tr></table>
+            <p>Hãy tự làm trong file riêng của em trước, rồi mới mở đáp án:</p>
+            <details><summary>👀 Xem code HTML đáp án</summary><pre><code>&lt;nav class="navbar nen-xanh py-3"&gt;
+    &lt;div class="container"&gt;
+        &lt;a class="navbar-brand text-white fw-bold" href="#"&gt;🐾 Dog Social&lt;/a&gt;
+        &lt;div class="d-flex align-items-center gap-3"&gt;
+            &lt;a class="link-hover text-white text-decoration-none d-none d-md-inline" href="#tinh-nang"&gt;Tính năng&lt;/a&gt;
+            &lt;a class="link-hover text-white text-decoration-none d-none d-md-inline" href="#danh-gia"&gt;Đánh giá&lt;/a&gt;
+            &lt;a class="link-hover text-white text-decoration-none d-none d-md-inline" href="#bang-gia"&gt;Bảng giá&lt;/a&gt;
+            &lt;a class="btn btn-vang btn-sm fw-bold" href="#"&gt;Tải ứng dụng&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;</code></pre></details>
+            
+            <div class="bai-tap"><b>✏ Thử thách:</b> Thu nhỏ cửa sổ dưới 768px và quan sát 3 link biến mất. Thử đổi <code>d-md-inline</code> thành <code>d-lg-inline</code>. Rê chuột vào link (xem CSS <code>.link-hover:hover</code> ở bước 0): link đổi nền vàng giống một cái nút. Thử đổi <code>var(--vang)</code> thành màu khác.</div>
+        </div>
+        <div class="phan" id="buoc-2">
+            <h2>Bước 2: Banner (Hero)</h2>
+            <p><b>🎯 Mục tiêu:</b> Nền xanh, chia 2 cột: bên trái tiêu đề lớn + mô tả + 2 nút; bên phải là khung điện thoại với thẻ chú chó. Điện thoại: 2 cột xếp chồng.</p>
+            <div class="vi-du">
+                <b>▶ Giao diện cần làm (<a href="buoc-2-hero.html" target="_blank">mở tab mới</a>):</b>
+                <iframe src="buoc-2-hero.html" title="Bước 2" style="width:100%; height:620px; border:2px solid #1D2550;"></iframe>
+            </div>
+            <h3>Class Bootstrap sẽ dùng</h3>
+            <table><tr><th>Class</th><th>Tác dụng</th></tr><tr><td><code>row align-items-center g-5</code></td><td>Chia cột, canh giữa theo chiều dọc</td></tr><tr><td><code>col-md-6</code></td><td>Mỗi cột chiếm nửa hàng từ ≥ 768px</td></tr><tr><td><code>display-4 fw-bold</code></td><td>Tiêu đề rất to, đậm</td></tr><tr><td><code>btn btn-outline-light</code></td><td>Nút viền trắng</td></tr><tr><td><code>badge</code></td><td>Nhãn nhỏ (Poodle, Hiền…)</td></tr></table>
+            <p>Hãy tự làm trong file riêng của em trước, rồi mới mở đáp án:</p>
+            <details><summary>👀 Xem code HTML đáp án</summary><pre><code>&lt;section class="hero nen-xanh text-white"&gt;
+    &lt;div class="container py-5"&gt;
+        &lt;div class="row align-items-center g-5"&gt;
+
+            &lt;!-- Cột trái: chữ --&gt;
+            &lt;div class="col-md-6"&gt;
+                &lt;h1 class="display-4 fw-bold"&gt;Cún của bạn xứng đáng có thêm bạn mới.&lt;/h1&gt;
+                &lt;p class="fs-5 mt-3"&gt;Dog Social giúp chủ nuôi tìm những chú chó hợp tính, hẹn đi dạo và kết nối với nhau chỉ trong vài lần chạm.&lt;/p&gt;
+                &lt;a href="#" class="btn btn-vang btn-lg fw-bold me-2 mb-2"&gt;Tham gia miễn phí&lt;/a&gt;
+                &lt;a href="#" class="btn btn-outline-light btn-lg mb-2"&gt;Xem cách hoạt động&lt;/a&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Cột phải: khung điện thoại --&gt;
+            &lt;div class="col-md-6"&gt;
+                &lt;div class="dien-thoai mx-auto"&gt;
+                    &lt;div class="man-hinh"&gt;
+                        &lt;div class="fw-bold mb-2"&gt;🐾 Dog Social&lt;/div&gt;
+                        &lt;div class="the-cun"&gt;
+                            &lt;div class="anh-cun"&gt;🐶&lt;/div&gt;
+                            &lt;div class="p-3 text-dark"&gt;
+                                &lt;b&gt;Mochi, 2 tuổi&lt;/b&gt;&lt;br&gt;
+                                &lt;small class="text-secondary"&gt;Cách bạn 800 m&lt;/small&gt;&lt;br&gt;
+                                &lt;span class="badge text-bg-primary"&gt;Poodle&lt;/span&gt;
+                                &lt;span class="badge text-bg-primary"&gt;Hiền&lt;/span&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="text-center mt-3"&gt;
+                            &lt;span class="nut-tron"&gt;✕&lt;/span&gt;
+                            &lt;span class="nut-tron nut-tim"&gt;♥&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre></details>
+            <details><summary>Xem CSS của bước này</summary><pre><code>/* ===== BƯỚC 2: HERO ===== */
+.dien-thoai {
+    width: 250px;
+    background-color: var(--navy);
+    border-radius: 36px;
+    padding: 10px;
+    transform: rotate(4deg);
+}
+.man-hinh {
+    background-color: white;
+    color: var(--navy);
+    border-radius: 28px;
+    padding: 16px;
+    text-align: left;
+}
+.the-cun { border-radius: 18px; overflow: hidden; background-color: var(--vang); }
+.anh-cun { font-size: 90px; text-align: center; padding: 14px 0; }
+.the-cun &gt; div:last-child { background-color: white; }
+
+.nut-tron {
+    display: inline-block;
+    width: 44px; height: 44px; line-height: 44px;
+    border-radius: 50%;
+    background-color: #F1F3F5;
+    margin: 0 6px;
+}
+.nut-tim { background-color: #FF6B81; color: white; }
+
+/* Hover: nút tròn phóng to, điện thoại xoay thẳng lại */
+.nut-tron { cursor: pointer; transition: transform 0.2s; }
+.nut-tron:hover { transform: scale(1.2); }
+.dien-thoai { transition: transform 0.3s; }
+.dien-thoai:hover { transform: rotate(0deg) scale(1.03); }</code></pre></details>
+            <div class="bai-tap"><b>✏ Thử thách:</b> Đổi <code>rotate(4deg)</code> thành <code>-4deg</code> hoặc <code>0deg</code>. Thử đổi emoji 🐶 thành 🐕 hoặc 🐩.</div>
+        </div>
+        <div class="phan" id="buoc-3">
+            <h2>Bước 3: Ba tính năng nổi bật</h2>
+            <p><b>🎯 Mục tiêu:</b> Tiêu đề giữa trang và 3 cột: mỗi cột có ô icon bo góc, tiêu đề nhỏ và đoạn mô tả. Điện thoại: 3 cột xếp chồng.</p>
+            <div class="vi-du">
+                <b>▶ Giao diện cần làm (<a href="buoc-3-tinh-nang.html" target="_blank">mở tab mới</a>):</b>
+                <iframe src="buoc-3-tinh-nang.html" title="Bước 3" style="width:100%; height:380px; border:2px solid #1D2550;"></iframe>
+            </div>
+            <h3>Class Bootstrap sẽ dùng</h3>
+            <table><tr><th>Class</th><th>Tác dụng</th></tr><tr><td><code>py-5</code></td><td>Khoảng trống trên dưới</td></tr><tr><td><code>text-center fw-bold</code></td><td>Canh giữa, đậm</td></tr><tr><td><code>row g-4</code></td><td>Hàng + khoảng cách giữa cột</td></tr><tr><td><code>col-12 col-md-4</code></td><td>1 cột ở điện thoại, 3 cột ở máy tính</td></tr><tr><td><code>text-secondary</code></td><td>Chữ xám cho mô tả</td></tr></table>
+            <p>Hãy tự làm trong file riêng của em trước, rồi mới mở đáp án:</p>
+            <details><summary>👀 Xem code HTML đáp án</summary><pre><code>&lt;section id="tinh-nang" class="container py-5"&gt;
+    &lt;h2 class="text-center fw-bold mb-5"&gt;Mọi thứ để cún có bạn chơi&lt;/h2&gt;
+    &lt;div class="row g-4"&gt;
+
+        &lt;div class="col-12 col-md-4"&gt;
+            &lt;div class="o-icon" style="background-color:#EEF2FF"&gt;🦴&lt;/div&gt;
+            &lt;h5 class="fw-bold"&gt;Ghép đôi theo tính cách&lt;/h5&gt;
+            &lt;p class="text-secondary"&gt;Nhập giống, tuổi và mức năng lượng của cún. Dog Social gợi ý những bạn chơi hợp nhất quanh khu bạn sống.&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class="col-12 col-md-4"&gt;
+            &lt;div class="o-icon" style="background-color:#FFF3C4"&gt;📍&lt;/div&gt;
+            &lt;h5 class="fw-bold"&gt;Hẹn đi dạo gần nhà&lt;/h5&gt;
+            &lt;p class="text-secondary"&gt;Chọn công viên, giờ đi dạo và mời bạn mới. Bạn thấy ngay ai đang ở gần và rảnh cùng giờ.&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class="col-12 col-md-4"&gt;
+            &lt;div class="o-icon" style="background-color:#FFE3E3"&gt;💬&lt;/div&gt;
+            &lt;h5 class="fw-bold"&gt;Trò chuyện an toàn&lt;/h5&gt;
+            &lt;p class="text-secondary"&gt;Chỉ nhắn tin được khi hai bên cùng thích. Hồ sơ đều được xác minh, nên bạn yên tâm hơn khi gặp mặt.&lt;/p&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre></details>
+            <details><summary>Xem CSS của bước này</summary><pre><code>/* ===== BƯỚC 3: TÍNH NĂNG ===== */
+.o-icon {
+    width: 56px; height: 56px;
+    line-height: 56px;
+    text-align: center;
+    font-size: 28px;
+    border-radius: 14px;
+    margin-bottom: 14px;
+    transition: transform 0.2s;
+}
+
+/* Hover: rê chuột vào cột thì icon nhún lên */
+.col-md-4:hover .o-icon { transform: translateY(-6px) rotate(-6deg); }</code></pre></details>
+            <div class="bai-tap"><b>✏ Thử thách:</b> Thêm cột thứ 4 (đổi <code>col-md-4</code> thành <code>col-md-3</code> cho cả 4 cột). Mỗi cột phải có tổng 12 chia hết!</div>
+        </div>
+        <div class="phan" id="buoc-4">
+            <h2>Bước 4: Đánh giá của khách hàng (Carousel)</h2>
+            <p><b>🎯 Mục tiêu:</b> Nền xanh nhạt, lời nhận xét ở giữa, có mũi tên trái/phải để chuyển qua lại giữa các lời nhận xét. Cần JavaScript của Bootstrap.</p>
+            <div class="vi-du">
+                <b>▶ Giao diện cần làm (<a href="buoc-4-danh-gia.html" target="_blank">mở tab mới</a>):</b>
+                <iframe src="buoc-4-danh-gia.html" title="Bước 4" style="width:100%; height:380px; border:2px solid #1D2550;"></iframe>
+            </div>
+            <h3>Class Bootstrap sẽ dùng</h3>
+            <table><tr><th>Class</th><th>Tác dụng</th></tr><tr><td><code>carousel slide</code></td><td>Khung trình chiếu</td></tr><tr><td><code>carousel-item active</code></td><td>Một trang (trang đầu phải có active)</td></tr><tr><td><code>carousel-control-prev / next</code></td><td>Mũi tên trái / phải</td></tr><tr><td><code>data-bs-theme="dark"</code></td><td>Mũi tên màu tối trên nền sáng</td></tr><tr><td><code>fs-3</code></td><td>Cỡ chữ lớn</td></tr></table>
+            <p>Hãy tự làm trong file riêng của em trước, rồi mới mở đáp án:</p>
+            <details><summary>👀 Xem code HTML đáp án</summary><pre><code>&lt;section id="danh-gia" class="nen-nhat py-5"&gt;
+    &lt;div class="container"&gt;
+        &lt;h2 class="text-center fw-bold mb-4"&gt;Chủ nuôi nói gì về Dog Social&lt;/h2&gt;
+
+        &lt;div id="khung-danh-gia" class="carousel slide" data-bs-theme="dark"&gt;
+            &lt;div class="carousel-inner"&gt;
+
+                &lt;div class="carousel-item active"&gt;
+                    &lt;div class="loi-nhan-xet text-center"&gt;
+                        &lt;p class="fs-3 fw-semibold"&gt;“Bé Bơ nhà mình nhút nhát lắm. Sau hai tuần dùng Dog Social, bé đã có cả nhóm bạn đi dạo mỗi sáng thứ Bảy.”&lt;/p&gt;
+                        &lt;div class="avatar"&gt;🐶&lt;/div&gt;
+                        &lt;b&gt;Minh Anh&lt;/b&gt;&lt;br&gt;
+                        &lt;small class="text-secondary"&gt;Chủ của Bơ, Golden Retriever&lt;/small&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class="carousel-item"&gt;
+                    &lt;div class="loi-nhan-xet text-center"&gt;
+                        &lt;p class="fs-3 fw-semibold"&gt;“Mình tìm được bạn chơi cho Mực chỉ trong một buổi chiều. Giờ hôm nào hai bé cũng hẹn nhau.”&lt;/p&gt;
+                        &lt;div class="avatar"&gt;🐕&lt;/div&gt;
+                        &lt;b&gt;Quốc Bảo&lt;/b&gt;&lt;br&gt;
+                        &lt;small class="text-secondary"&gt;Chủ của Mực, Phú Quốc&lt;/small&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+            &lt;/div&gt;
+
+            &lt;button class="carousel-control-prev" type="button" data-bs-target="#khung-danh-gia" data-bs-slide="prev"&gt;
+                &lt;span class="carousel-control-prev-icon"&gt;&lt;/span&gt;
+            &lt;/button&gt;
+            &lt;button class="carousel-control-next" type="button" data-bs-target="#khung-danh-gia" data-bs-slide="next"&gt;
+                &lt;span class="carousel-control-next-icon"&gt;&lt;/span&gt;
+            &lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre></details>
+            <details><summary>Xem CSS của bước này</summary><pre><code>/* ===== BƯỚC 4: ĐÁNH GIÁ ===== */
+.loi-nhan-xet { max-width: 640px; margin: 0 auto; padding: 10px 0 20px; }
+.avatar {
+    width: 56px; height: 56px; line-height: 56px;
+    margin: 0 auto 8px;
+    font-size: 30px;
+    border-radius: 50%;
+    background-color: #FFE8CC;
+    transition: transform 0.2s;
+}
+.avatar:hover { transform: scale(1.15); }</code></pre></details>
+            <div class="bai-tap"><b>✏ Thử thách:</b> Thêm lời nhận xét thứ 3 (copy một khối <code>carousel-item</code>, nhớ <b>bỏ</b> chữ <code>active</code>).</div>
+        </div>
+        <div class="phan" id="buoc-5">
+            <h2>Bước 5: Bảng giá (3 gói)</h2>
+            <p><b>🎯 Mục tiêu:</b> 3 thẻ gói dịch vụ. Thẻ giữa nổi bật: nền xanh, chữ trắng, cao hơn hai thẻ bên cạnh, có nhãn "Phổ biến nhất".</p>
+            <div class="vi-du">
+                <b>▶ Giao diện cần làm (<a href="buoc-5-bang-gia.html" target="_blank">mở tab mới</a>):</b>
+                <iframe src="buoc-5-bang-gia.html" title="Bước 5" style="width:100%; height:600px; border:2px solid #1D2550;"></iframe>
+            </div>
+            <h3>Class Bootstrap sẽ dùng</h3>
+            <table><tr><th>Class</th><th>Tác dụng</th></tr><tr><td><code>card h-100 shadow-sm</code></td><td>Thẻ cao bằng nhau, có bóng</td></tr><tr><td><code>list-unstyled</code></td><td>Bỏ dấu chấm đầu dòng</td></tr><tr><td><code>align-items-center (trên row)</code></td><td>Thẻ giữa cao hơn nhìn nổi bật</td></tr><tr><td><code>badge</code></td><td>Nhãn nhỏ</td></tr><tr><td><code>w-100</code></td><td>Nút rộng bằng thẻ</td></tr></table>
+            <p>Hãy tự làm trong file riêng của em trước, rồi mới mở đáp án:</p>
+            <details><summary>👀 Xem code HTML đáp án</summary><pre><code>&lt;section id="bang-gia" class="container py-5"&gt;
+    &lt;h2 class="text-center fw-bold"&gt;Chọn gói phù hợp với cún của bạn&lt;/h2&gt;
+    &lt;p class="text-center text-secondary mb-5"&gt;Bắt đầu miễn phí. Nâng cấp bất cứ lúc nào.&lt;/p&gt;
+
+    &lt;div class="row g-4 align-items-center"&gt;
+
+        &lt;!-- Gói 1 --&gt;
+        &lt;div class="col-12 col-md-4"&gt;
+            &lt;div class="card h-100 shadow-sm"&gt;
+                &lt;div class="card-body p-4"&gt;
+                    &lt;h5 class="fw-bold"&gt;Cún con&lt;/h5&gt;
+                    &lt;p class="gia"&gt;0đ &lt;small&gt;/ tháng&lt;/small&gt;&lt;/p&gt;
+                    &lt;p class="text-secondary"&gt;Dành cho người mới thử.&lt;/p&gt;
+                    &lt;ul class="list-unstyled my-3"&gt;
+                        &lt;li&gt;✓ 5 lượt thích mỗi ngày&lt;/li&gt;
+                        &lt;li&gt;✓ 1 hồ sơ cún&lt;/li&gt;
+                        &lt;li&gt;✓ Nhắn tin với bạn đã ghép đôi&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;a href="#" class="btn btn-outline-primary w-100 fw-bold"&gt;Bắt đầu miễn phí&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Gói 2: nổi bật --&gt;
+        &lt;div class="col-12 col-md-4"&gt;
+            &lt;div class="card h-100 goi-noi-bat shadow-lg"&gt;
+                &lt;div class="card-body p-4 py-5"&gt;
+                    &lt;h5 class="fw-bold"&gt;Cún ngoan &lt;span class="badge btn-vang float-end"&gt;Phổ biến nhất&lt;/span&gt;&lt;/h5&gt;
+                    &lt;p class="gia"&gt;59.000đ &lt;small&gt;/ tháng&lt;/small&gt;&lt;/p&gt;
+                    &lt;p&gt;Cho người dắt cún đi dạo mỗi ngày.&lt;/p&gt;
+                    &lt;ul class="list-unstyled my-3"&gt;
+                        &lt;li&gt;✓ Không giới hạn lượt thích&lt;/li&gt;
+                        &lt;li&gt;✓ Tối đa 3 hồ sơ cún&lt;/li&gt;
+                        &lt;li&gt;✓ Lọc theo giống và độ tuổi&lt;/li&gt;
+                        &lt;li&gt;✓ Xem ai đã thích cún của bạn&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;a href="#" class="btn btn-vang w-100 fw-bold"&gt;Chọn gói Cún ngoan&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Gói 3 --&gt;
+        &lt;div class="col-12 col-md-4"&gt;
+            &lt;div class="card h-100 shadow-sm"&gt;
+                &lt;div class="card-body p-4"&gt;
+                    &lt;h5 class="fw-bold"&gt;Cún VIP&lt;/h5&gt;
+                    &lt;p class="gia"&gt;129.000đ &lt;small&gt;/ tháng&lt;/small&gt;&lt;/p&gt;
+                    &lt;p class="text-secondary"&gt;Dành cho cả đàn.&lt;/p&gt;
+                    &lt;ul class="list-unstyled my-3"&gt;
+                        &lt;li&gt;✓ Mọi tính năng của Cún ngoan&lt;/li&gt;
+                        &lt;li&gt;✓ Hồ sơ không giới hạn&lt;/li&gt;
+                        &lt;li&gt;✓ Tạo nhóm đi dạo riêng&lt;/li&gt;
+                        &lt;li&gt;✓ Ưu tiên hiển thị trong khu vực&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;a href="#" class="btn btn-outline-primary w-100 fw-bold"&gt;Chọn gói Cún VIP&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre></details>
+            <details><summary>Xem CSS của bước này</summary><pre><code>/* ===== BƯỚC 5: BẢNG GIÁ ===== */
+.gia { font-family: "Fredoka", Arial, sans-serif; font-size: 32px; font-weight: 700; margin-bottom: 0; }
+.gia small { font-size: 14px; font-weight: 400; }
+
+.goi-noi-bat { background-color: var(--xanh); color: white; border: none; }
+
+/* Hover: thẻ nổi lên và đổ bóng đậm hơn */
+.card { transition: transform 0.25s, box-shadow 0.25s; }
+.card:hover { transform: translateY(-8px); box-shadow: 0 1rem 2rem rgba(29, 37, 80, 0.2) !important; }</code></pre></details>
+            <div class="bai-tap"><b>✏ Thử thách:</b> Thử bỏ <code>align-items-center</code> ở <code>row</code> để xem 3 thẻ bằng nhau. Đổi gói nổi bật sang gói Cún VIP. Rê chuột vào từng thẻ rồi đổi <code>translateY(-8px)</code> thành <code>-16px</code>.</div>
+        </div>
+        <div class="phan" id="buoc-6">
+            <h2>Bước 6: Kêu gọi hành động và chân trang</h2>
+            <p><b>🎯 Mục tiêu:</b> Dải nền vàng với tiêu đề, mô tả và 2 nút tải ứng dụng bo tròn; bên dưới là footer nền navy có logo, các link và dòng bản quyền.</p>
+            <div class="vi-du">
+                <b>▶ Giao diện cần làm (<a href="buoc-6-cta-footer.html" target="_blank">mở tab mới</a>):</b>
+                <iframe src="buoc-6-cta-footer.html" title="Bước 6" style="width:100%; height:420px; border:2px solid #1D2550;"></iframe>
+            </div>
+            <h3>Class Bootstrap sẽ dùng</h3>
+            <table><tr><th>Class</th><th>Tác dụng</th></tr><tr><td><code>btn-dark rounded-pill</code></td><td>Nút đen bo tròn như viên thuốc</td></tr><tr><td><code>px-4</code></td><td>Chừa lề hai bên nút</td></tr><tr><td><code>text-center py-5</code></td><td>Canh giữa, thoáng</td></tr><tr><td><code>text-white</code></td><td>Chữ trắng trên nền tối</td></tr><tr><td><code>opacity-75</code></td><td>Làm chữ mờ bớt</td></tr></table>
+            <p>Hãy tự làm trong file riêng của em trước, rồi mới mở đáp án:</p>
+            <details><summary>👀 Xem code HTML đáp án</summary><pre><code>&lt;section class="nen-vang text-center py-5"&gt;
+    &lt;div class="container py-3"&gt;
+        &lt;h2 class="fw-bold"&gt;Sẵn sàng cho buổi dạo chơi đầu tiên?&lt;/h2&gt;
+        &lt;p class="fs-5"&gt;Tải Dog Social và tìm bạn mới cho cún ngay hôm nay.&lt;/p&gt;
+        &lt;a href="#" class="btn btn-lg rounded-pill px-4 fw-bold text-white nut-toi"&gt;Tải trên App Store&lt;/a&gt;
+        &lt;a href="#" class="btn btn-lg rounded-pill px-4 fw-bold text-white nut-toi"&gt;Tải trên Google Play&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;footer class="chan-trang text-center text-white py-4"&gt;
+    &lt;div class="fw-bold fs-5 mb-2"&gt;🐾 Dog Social&lt;/div&gt;
+    &lt;div class="mb-2"&gt;
+        &lt;a href="#tinh-nang" class="link-hover text-white text-decoration-none mx-2"&gt;Tính năng&lt;/a&gt;
+        &lt;a href="#danh-gia" class="link-hover text-white text-decoration-none mx-2"&gt;Đánh giá&lt;/a&gt;
+        &lt;a href="#bang-gia" class="link-hover text-white text-decoration-none mx-2"&gt;Bảng giá&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;small class="opacity-75"&gt;© 2026 Dog Social. Dự án học tập tại MindX.&lt;/small&gt;
+&lt;/footer&gt;</code></pre></details>
+            <details><summary>Xem CSS của bước này</summary><pre><code>/* ===== BƯỚC 6: CTA + FOOTER ===== */
+.nut-toi { background-color: var(--navy); margin: 4px; }
+.nut-toi { transition: transform 0.2s, background-color 0.2s; }
+.nut-toi:hover { background-color: #11173A; color: white; transform: translateY(-3px); }
+
+.chan-trang { background-color: var(--navy); }</code></pre></details>
+            <div class="bai-tap"><b>✏ Thử thách:</b> Đổi nền footer sang màu khác trong bảng màu của em, nhớ giữ chữ đủ tương phản (đọc lại phần Web Design).</div>
+        </div>
+
+        <div class="phan" id="ghep">
+            <h2>Bước 7: Ghép lại</h2>
+            <p>Dán code 6 bước vào <code>&lt;body&gt;</code> theo đúng thứ tự: Navbar → Hero → Tính năng → Đánh giá → Bảng giá → CTA + Footer. Kết quả phải giống <a href="hoan-chinh.html" target="_blank">trang hoàn chỉnh</a>.</p>
+            <div class="ghi-nho">💡 <b>Nếu có lỗi:</b> bấm F12 xem Console; kiểm tra tên class có gõ sai không; kiểm tra thẻ đóng <code>&lt;/div&gt;</code> có đủ; nhớ link <code>style.css</code> nằm sau link Bootstrap.</div>
+        </div>
+    </div>
+</body>
+</html>

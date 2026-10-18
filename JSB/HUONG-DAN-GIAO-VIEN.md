@@ -9,9 +9,9 @@
 ```
 khoa-hoc-web/
 ├── index.html                         Trang chủ khóa học
+├── bai-01-cai-dat-vscode/             Cài extension VS Code (Live Server...)
 ├── bai-02-html-co-ban/                CHỈ HTML (chưa có CSS)
 │   ├── index.html                     Mục lục bài 2
-│   ├── 1-cai-dat-vscode.html
 │   ├── 2-cac-the-html.html            Cấu trúc, title, danh sách, đường dẫn, ảnh
 │   ├── 3-format-va-the-long-nhau.html
 │   ├── 4-website-va-webpage.html
@@ -25,6 +25,9 @@ khoa-hoc-web/
 │   └── du-an-the-flag/                4 lá cờ + thử thách
 ├── bai-05-display-responsive-flexbox/
 │   └── index.html + style.css         display, media queries, flexbox, thực hành ShopTeen
+├── bai-06-framework-bootstrap/
+│   ├── index.html + style.css         Framework, Bootstrap (cần Internet), Web Design, Color Theory, Dog Social phần 1
+│   └── du-an-dog-social/              index.html = hướng dẫn 6 bước thực hành; buoc-1..6 = từng khối; hoan-chinh.html = bản đầy đủ
 └── website-gioi-thieu-ca-nhan/        Website tổng hợp cả khóa
 ```
 

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-label="Bánh xe màu 12 màu">
+<style>text{font-family:Arial,sans-serif;font-size:12px;font-weight:bold;text-anchor:middle}</style>
+<path d="M150.8,16.5 A190,190 0 0 1 249.2,16.5 L222.0,117.9 A85,85 0 0 0 178.0,117.9 Z" fill="#E03131" stroke="white" stroke-width="3"/>
+<text x="200.0" y="66.5" fill="white" font-size="11">Đỏ</text>
+<path d="M249.2,16.5 A190,190 0 0 1 334.4,65.6 L260.1,139.9 A85,85 0 0 0 222.0,117.9 Z" fill="#F76707" stroke="white" stroke-width="3"/>
+<text x="268.8" y="84.9" fill="white" font-size="11">Đỏ cam</text>
+<path d="M334.4,65.6 A190,190 0 0 1 383.5,150.8 L282.1,178.0 A85,85 0 0 0 260.1,139.9 Z" fill="#FD7E14" stroke="white" stroke-width="3"/>
+<text x="319.1" y="135.2" fill="white" font-size="11">Cam</text>
+<path d="M383.5,150.8 A190,190 0 0 1 383.5,249.2 L282.1,222.0 A85,85 0 0 0 282.1,178.0 Z" fill="#FCC419" stroke="white" stroke-width="3"/>
+<text x="337.5" y="204.0" fill="#212529" font-size="11">Vàng cam</text>
+<path d="M383.5,249.2 A190,190 0 0 1 334.4,334.4 L260.1,260.1 A85,85 0 0 0 282.1,222.0 Z" fill="#FFE066" stroke="white" stroke-width="3"/>
+<text x="319.1" y="272.8" fill="#212529" font-size="11">Vàng</text>
+<path d="M334.4,334.4 A190,190 0 0 1 249.2,383.5 L222.0,282.1 A85,85 0 0 0 260.1,260.1 Z" fill="#94D82D" stroke="white" stroke-width="3"/>
+<text x="268.8" y="323.1" fill="#212529" font-size="11">Vàng lục</text>
+<path d="M249.2,383.5 A190,190 0 0 1 150.8,383.5 L178.0,282.1 A85,85 0 0 0 222.0,282.1 Z" fill="#2F9E44" stroke="white" stroke-width="3"/>
+<text x="200.0" y="341.5" fill="white" font-size="11">Xanh lá</text>
+<path d="M150.8,383.5 A190,190 0 0 1 65.6,334.4 L139.9,260.1 A85,85 0 0 0 178.0,282.1 Z" fill="#12B886" stroke="white" stroke-width="3"/>
+<text x="131.2" y="323.1" fill="white" font-size="11">Lục lam</text>
+<path d="M65.6,334.4 A190,190 0 0 1 16.5,249.2 L117.9,222.0 A85,85 0 0 0 139.9,260.1 Z" fill="#1971C2" stroke="white" stroke-width="3"/>
+<text x="80.9" y="272.8" fill="white" font-size="11">Xanh dương</text>
+<path d="M16.5,249.2 A190,190 0 0 1 16.5,150.8 L117.9,178.0 A85,85 0 0 0 117.9,222.0 Z" fill="#4C6EF5" stroke="white" stroke-width="3"/>
+<text x="62.5" y="204.0" fill="white" font-size="11">Xanh tím</text>
+<path d="M16.5,150.8 A190,190 0 0 1 65.6,65.6 L139.9,139.9 A85,85 0 0 0 117.9,178.0 Z" fill="#7048E8" stroke="white" stroke-width="3"/>
+<text x="80.9" y="135.2" fill="white" font-size="11">Tím</text>
+<path d="M65.6,65.6 A190,190 0 0 1 150.8,16.5 L178.0,117.9 A85,85 0 0 0 139.9,139.9 Z" fill="#C2255C" stroke="white" stroke-width="3"/>
+<text x="131.2" y="84.9" fill="white" font-size="11">Đỏ tím</text>
+<circle cx="200" cy="200" r="78" fill="white" stroke="#ADB5BD"/>
+<text x="200" y="180" fill="#212529" font-size="13">BÁNH XE MÀU</text>
+<text x="200" y="202" fill="#E03131" font-size="12">Cơ bản: đỏ, vàng, xanh</text>
+<text x="200" y="220" fill="#2F9E44" font-size="12">Thứ cấp: cam, lá, tím</text>
+<text x="200" y="238" fill="#868E96" font-size="12">Bậc ba: còn lại</text>
+</svg>
