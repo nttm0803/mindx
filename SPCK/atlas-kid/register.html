@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Đăng ký – Atlas Kid</title>
+  <meta name="description" content="Tạo tài khoản Atlas Kid để lập sổ tay hành trình của riêng bạn.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
+</head>
+<body>
+  <!-- ==================== HEADER (đầu trang) – BẮT ĐẦU ====================
+       Header giống nhau ở cả 5 trang: sửa ở đây thì nhớ sửa cả 4 trang còn lại.
+       Ô #authArea (nút Đăng nhập/Đăng ký hoặc menu tài khoản) do js/storage.js tự điền. -->
+  <header class="site-header">
+    <nav class="navbar" aria-label="Điều hướng chính">
+      <div class="container header-inner">
+        <a class="navbar-brand brand" href="index.html"><span class="brand-logo" aria-hidden="true">🌍</span>Atlas Kid</a>
+        <ul class="navbar-nav main-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Khám phá</a></li>
+          <li class="nav-item"><a class="nav-link" href="wishlist.html">Sổ tay hành trình</a></li>
+        </ul>
+        <div id="authArea" class="auth-area"></div>
+      </div>
+    </nav>
+  </header>
+  <!-- ==================== HEADER – KẾT THÚC ==================== -->
+
+  <!-- ==================== NỘI DUNG CHÍNH (main) – BẮT ĐẦU ==================== -->
+  <main class="auth-layout">
+    <section class="auth-panel">
+      <h1>Tạo sổ tay hành trình của riêng bạn</h1>
+      <ul class="auth-points">
+        <li><span class="point-icon" aria-hidden="true">🌏</span>Lưu bao nhiêu quốc gia tuỳ thích</li>
+        <li><span class="point-icon" aria-hidden="true">📝</span>Viết ghi chú cho từng điểm đến</li>
+        <li><span class="point-icon" aria-hidden="true">👤</span>Cập nhật hồ sơ bất cứ lúc nào</li>
+      </ul>
+      <div class="flag-row" aria-hidden="true">
+        <img src="https://flags.restcountries.com/v5/svg/vn.svg" alt="">
+        <img src="https://flags.restcountries.com/v5/svg/jp.svg" alt="">
+        <img src="https://flags.restcountries.com/v5/svg/fr.svg" alt="">
+        <img src="https://flags.restcountries.com/v5/svg/br.svg" alt="">
+        <img src="https://flags.restcountries.com/v5/svg/au.svg" alt="">
+      </div>
+    </section>
+
+    <section class="auth-side">
+      <div class="card-x auth-card wide">
+        <h2 class="auth-title">Đăng ký</h2>
+        <div id="registerAlert"></div>
+        <form id="registerForm" novalidate>
+          <div class="register-grid">
+            <div class="mb-3">
+              <label class="form-label" for="regName">Họ và tên</label>
+              <input class="form-control" type="text" id="regName" autocomplete="name" aria-describedby="regNameError">
+              <div class="field-error" id="regNameError"></div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="regAge">Tuổi</label>
+              <input class="form-control" type="number" id="regAge" min="6" max="100" step="1" inputmode="numeric" aria-describedby="regAgeError regAgeHint">
+              <div class="field-error" id="regAgeError"></div>
+              <div class="form-hint" id="regAgeHint">Nhập số từ 6 đến 100</div>
+            </div>
+            <div class="mb-3 span-2">
+              <label class="form-label" for="regEmail">Email</label>
+              <input class="form-control" type="email" id="regEmail" autocomplete="email" placeholder="ban@gmail.com" aria-describedby="regEmailError">
+              <div class="field-error" id="regEmailError"></div>
+            </div>
+            <div class="mb-3 span-2">
+              <label class="form-label" for="regAddress">Địa chỉ</label>
+              <input class="form-control" type="text" id="regAddress" maxlength="120" autocomplete="street-address" placeholder="Ví dụ: Quận Hải Châu, Đà Nẵng" aria-describedby="regAddressError">
+              <div class="field-error" id="regAddressError"></div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="regPassword">Mật khẩu</label>
+              <input class="form-control" type="password" id="regPassword" autocomplete="new-password" aria-describedby="regPasswordError regPasswordHint">
+              <div class="field-error" id="regPasswordError"></div>
+              <div class="form-hint" id="regPasswordHint">Ít nhất 6 ký tự</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="regConfirm">Nhập lại mật khẩu</label>
+              <input class="form-control" type="password" id="regConfirm" autocomplete="new-password" aria-describedby="regConfirmError">
+              <div class="field-error" id="regConfirmError"></div>
+            </div>
+          </div>
+          <button class="btn btn-sun btn-lg-pill w-100 mt-2" type="submit">Tạo tài khoản</button>
+        </form>
+        <p class="auth-switch">Đã có tài khoản? <a class="keep-next" href="login.html">Đăng nhập</a></p>
+      </div>
+    </section>
+  </main>
+  <!-- ==================== NỘI DUNG CHÍNH – KẾT THÚC ==================== -->
+
+  <!-- ==================== FOOTER (chân trang) – BẮT ĐẦU ====================
+       Footer giống nhau ở cả 5 trang: sửa ở đây thì nhớ sửa cả 4 trang còn lại. -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand">🌍 Atlas Kid</p>
+          <p class="mb-0">Công cụ tra cứu quốc gia và lập sổ tay hành trình dành cho học sinh yêu địa lý, thích khám phá thế giới.</p>
+        </div>
+        <nav aria-labelledby="footerPages">
+          <h2 class="footer-title" id="footerPages">Trang web</h2>
+          <ul class="footer-links">
+            <li><a href="index.html">Khám phá quốc gia</a></li>
+            <li><a href="wishlist.html">Sổ tay hành trình</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2 class="footer-title">Nguồn dữ liệu</h2>
+          <ul class="footer-links">
+            <li>REST Countries API</li>
+            <li><a href="https://restcountries.com" target="_blank" rel="noopener">restcountries.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-copy">© 2026 Atlas Kid – Sản phẩm học tập môn Tin học.</p>
+    </div>
+  </footer>
+  <!-- ==================== FOOTER – KẾT THÚC ==================== -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

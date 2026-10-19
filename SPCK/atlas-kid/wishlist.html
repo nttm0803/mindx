@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sổ tay hành trình – Atlas Kid</title>
+  <meta name="description" content="Các quốc gia bạn đã yêu thích, gắn tag Chưa đến, Sẽ đến hoặc Đã đến.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
+</head>
+<body>
+  <!-- ==================== HEADER (đầu trang) – BẮT ĐẦU ====================
+       Header giống nhau ở cả 5 trang: sửa ở đây thì nhớ sửa cả 4 trang còn lại.
+       Ô #authArea (nút Đăng nhập/Đăng ký hoặc menu tài khoản) do js/storage.js tự điền. -->
+  <header class="site-header">
+    <nav class="navbar" aria-label="Điều hướng chính">
+      <div class="container header-inner">
+        <a class="navbar-brand brand" href="index.html"><span class="brand-logo" aria-hidden="true">🌍</span>Atlas Kid</a>
+        <ul class="navbar-nav main-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Khám phá</a></li>
+          <li class="nav-item"><a class="nav-link" href="wishlist.html">Sổ tay hành trình</a></li>
+        </ul>
+        <div id="authArea" class="auth-area"></div>
+      </div>
+    </nav>
+  </header>
+  <!-- ==================== HEADER – KẾT THÚC ==================== -->
+
+  <!-- ==================== NỘI DUNG CHÍNH (main) – BẮT ĐẦU ==================== -->
+  <main>
+    <section class="page-banner banner-sun">
+      <div class="container">
+        <h1>Sổ tay hành trình</h1>
+        <p>Các quốc gia bạn đã yêu thích. Gắn tag Chưa đến, Sẽ đến hoặc Đã đến để theo dõi hành trình của mình nhé!</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- 3 ô thống kê -->
+      <div class="stats-grid">
+        <div class="stat-card stat-coral"><span class="stat-num" id="statTotal">0</span><span>quốc gia<br>yêu thích</span></div>
+        <div class="stat-card stat-blue"><span class="stat-num" id="statWill">0</span><span>sẽ đến<br>trong tương lai</span></div>
+        <div class="stat-card stat-mint"><span class="stat-num" id="statBeen">0</span><span>quốc gia<br>đã đến</span></div>
+      </div>
+
+      <div class="trips-layout">
+        <!-- FORM THÊM / SỬA -->
+        <section class="panel" aria-labelledby="formTitle">
+          <h2 class="panel-title" id="formTitle">Thêm quốc gia yêu thích</h2>
+          <form id="tripForm" novalidate>
+            <div class="mb-3">
+              <label class="form-label" for="countrySelect">Quốc gia</label>
+              <select class="form-select" id="countrySelect" aria-describedby="countrySelectError">
+                <option value="">Đang tải danh sách quốc gia...</option>
+              </select>
+              <div class="field-error" id="countrySelectError"></div>
+            </div>
+
+            <fieldset class="mb-3">
+              <legend class="form-label">Tag</legend>
+              <div class="tag-pills">
+                <label class="tag-pill" style="--soft:#EEF2F7;--dark:#1F2A44;--solid:#8A94A8">
+                  <input type="radio" name="tag" value="not" checked>⏳ Chưa đến
+                </label>
+                <label class="tag-pill" style="--soft:#DCEBFF;--dark:#1F5FC4;--solid:#3A86FF">
+                  <input type="radio" name="tag" value="will">✈️ Sẽ đến
+                </label>
+                <label class="tag-pill" style="--soft:#D3F5EC;--dark:#0E7A64;--solid:#2EC4A6">
+                  <input type="radio" name="tag" value="been">✅ Đã đến
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="mb-3" id="tripDateWrap" hidden>
+              <label class="form-label" for="tripDate" id="tripDateLabel">Ngày dự định hoặc ngày đến</label>
+              <input class="form-control" type="date" id="tripDate" aria-describedby="tripDateError">
+              <div class="field-error" id="tripDateError"></div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="tripNote">Ghi chú (tối đa 200 ký tự)</label>
+              <textarea class="form-control" id="tripNote" rows="3" maxlength="200" placeholder="Vì sao bạn thích nơi này?" aria-describedby="noteCount"></textarea>
+              <div class="form-hint text-end" id="noteCount">0/200</div>
+            </div>
+
+            <button class="btn btn-sun w-100" type="submit" id="submitBtn">❤️ Thêm vào yêu thích</button>
+            <button class="btn btn-outline-ink w-100 mt-3" type="button" id="cancelEditBtn" hidden>Huỷ sửa</button>
+          </form>
+        </section>
+
+        <!-- DANH SÁCH YÊU THÍCH -->
+        <section aria-labelledby="listTitle">
+          <h2 class="visually-hidden" id="listTitle">Danh sách quốc gia yêu thích</h2>
+          <div class="filter-tabs" role="group" aria-label="Lọc theo tag">
+            <button type="button" class="filter-tab" data-filter="all" aria-pressed="true">Tất cả <span class="tab-count">0</span></button>
+            <button type="button" class="filter-tab" data-filter="not" aria-pressed="false">⏳ Chưa đến <span class="tab-count">0</span></button>
+            <button type="button" class="filter-tab" data-filter="will" aria-pressed="false">✈️ Sẽ đến <span class="tab-count">0</span></button>
+            <button type="button" class="filter-tab" data-filter="been" aria-pressed="false">✅ Đã đến <span class="tab-count">0</span></button>
+          </div>
+          <p class="tip-bar">💡 Mẹo: bấm vào tag trên thẻ để đổi nhanh giữa Chưa đến, Sẽ đến và Đã đến.</p>
+          <div class="trip-grid" id="tripGrid"></div>
+          <div class="status-box" id="tripEmpty" hidden></div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <!-- ==================== NỘI DUNG CHÍNH – KẾT THÚC ==================== -->
+
+  <!-- ==================== FOOTER (chân trang) – BẮT ĐẦU ====================
+       Footer giống nhau ở cả 5 trang: sửa ở đây thì nhớ sửa cả 4 trang còn lại. -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand">🌍 Atlas Kid</p>
+          <p class="mb-0">Công cụ tra cứu quốc gia và lập sổ tay hành trình dành cho học sinh yêu địa lý, thích khám phá thế giới.</p>
+        </div>
+        <nav aria-labelledby="footerPages">
+          <h2 class="footer-title" id="footerPages">Trang web</h2>
+          <ul class="footer-links">
+            <li><a href="index.html">Khám phá quốc gia</a></li>
+            <li><a href="wishlist.html">Sổ tay hành trình</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2 class="footer-title">Nguồn dữ liệu</h2>
+          <ul class="footer-links">
+            <li>REST Countries API</li>
+            <li><a href="https://restcountries.com" target="_blank" rel="noopener">restcountries.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-copy">© 2026 Atlas Kid – Sản phẩm học tập môn Tin học.</p>
+    </div>
+  </footer>
+  <!-- ==================== FOOTER – KẾT THÚC ==================== -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/trips.js"></script>
+</body>
+</html>
