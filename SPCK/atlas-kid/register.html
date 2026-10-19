@@ -55,35 +55,35 @@
         <form id="registerForm" novalidate>
           <div class="register-grid">
             <div class="mb-3">
-              <label class="form-label" for="regName">Họ và tên</label>
-              <input class="form-control" type="text" id="regName" autocomplete="name" aria-describedby="regNameError">
+              <label class="form-label" for="regName">Họ và tên<span class="required-mark" aria-hidden="true">*</span></label>
+              <input class="form-control" type="text" id="regName" required autocomplete="name" aria-describedby="regNameError">
               <div class="field-error" id="regNameError"></div>
             </div>
             <div class="mb-3">
-              <label class="form-label" for="regAge">Tuổi</label>
-              <input class="form-control" type="number" id="regAge" min="6" max="100" step="1" inputmode="numeric" aria-describedby="regAgeError regAgeHint">
+              <label class="form-label" for="regAge">Tuổi<span class="required-mark" aria-hidden="true">*</span></label>
+              <input class="form-control" type="number" id="regAge" required min="6" max="100" step="1" inputmode="numeric" aria-describedby="regAgeError regAgeHint">
               <div class="field-error" id="regAgeError"></div>
               <div class="form-hint" id="regAgeHint">Nhập số từ 6 đến 100</div>
             </div>
             <div class="mb-3 span-2">
-              <label class="form-label" for="regEmail">Email</label>
-              <input class="form-control" type="email" id="regEmail" autocomplete="email" placeholder="ban@gmail.com" aria-describedby="regEmailError">
+              <label class="form-label" for="regEmail">Email<span class="required-mark" aria-hidden="true">*</span></label>
+              <input class="form-control" type="email" id="regEmail" required autocomplete="email" placeholder="ban@gmail.com" aria-describedby="regEmailError">
               <div class="field-error" id="regEmailError"></div>
             </div>
             <div class="mb-3 span-2">
-              <label class="form-label" for="regAddress">Địa chỉ</label>
-              <input class="form-control" type="text" id="regAddress" maxlength="120" autocomplete="street-address" placeholder="Ví dụ: Quận Hải Châu, Đà Nẵng" aria-describedby="regAddressError">
+              <label class="form-label" for="regAddress">Địa chỉ<span class="required-mark" aria-hidden="true">*</span></label>
+              <input class="form-control" type="text" id="regAddress" required maxlength="120" autocomplete="street-address" placeholder="Ví dụ: Quận Hải Châu, Đà Nẵng" aria-describedby="regAddressError">
               <div class="field-error" id="regAddressError"></div>
             </div>
             <div class="mb-3">
-              <label class="form-label" for="regPassword">Mật khẩu</label>
-              <input class="form-control" type="password" id="regPassword" autocomplete="new-password" aria-describedby="regPasswordError regPasswordHint">
+              <label class="form-label" for="regPassword">Mật khẩu<span class="required-mark" aria-hidden="true">*</span></label>
+              <input class="form-control" type="password" id="regPassword" required autocomplete="new-password" aria-describedby="regPasswordError regPasswordHint">
               <div class="field-error" id="regPasswordError"></div>
               <div class="form-hint" id="regPasswordHint">Ít nhất 6 ký tự</div>
             </div>
             <div class="mb-3">
-              <label class="form-label" for="regConfirm">Nhập lại mật khẩu</label>
-              <input class="form-control" type="password" id="regConfirm" autocomplete="new-password" aria-describedby="regConfirmError">
+              <label class="form-label" for="regConfirm">Nhập lại mật khẩu<span class="required-mark" aria-hidden="true">*</span></label>
+              <input class="form-control" type="password" id="regConfirm" required autocomplete="new-password" aria-describedby="regConfirmError">
               <div class="field-error" id="regConfirmError"></div>
             </div>
           </div>
@@ -119,7 +119,7 @@
           </ul>
         </div>
       </div>
-      <p class="footer-copy">© 2026 Atlas Kid – Sản phẩm học tập môn Tin học.</p>
+      <p class="footer-copy">© 2026 Atlas Kid – Sản phẩm cuối khóa.</p>
     </div>
   </footer>
   <!-- ==================== FOOTER – KẾT THÚC ==================== -->

@@ -32,7 +32,7 @@
 
   <!-- ==================== NỘI DUNG CHÍNH (main) – BẮT ĐẦU ==================== -->
   <main>
-    <section class="page-banner banner-sun">
+    <section class="page-banner banner-sun banner-compact">
       <div class="container">
         <h1>Sổ tay hành trình</h1>
         <p>Các quốc gia bạn đã yêu thích. Gắn tag Chưa đến, Sẽ đến hoặc Đã đến để theo dõi hành trình của mình nhé!</p>
@@ -40,25 +40,30 @@
     </section>
 
     <div class="container">
-      <!-- 3 ô thống kê -->
-      <div class="stats-grid">
-        <div class="stat-card stat-coral"><span class="stat-num" id="statTotal">0</span><span>quốc gia<br>yêu thích</span></div>
-        <div class="stat-card stat-blue"><span class="stat-num" id="statWill">0</span><span>sẽ đến<br>trong tương lai</span></div>
-        <div class="stat-card stat-mint"><span class="stat-num" id="statBeen">0</span><span>quốc gia<br>đã đến</span></div>
-      </div>
+      <!-- DANH SÁCH YÊU THÍCH -->
+      <section class="trips-section" aria-labelledby="listTitle">
+        <h2 class="visually-hidden" id="listTitle">Danh sách quốc gia yêu thích</h2>
+        <div class="trips-toolbar">
+          <div class="filter-tabs" role="group" aria-label="Lọc theo tag">
+            <button type="button" class="filter-tab" data-filter="all" aria-pressed="true">Tất cả <span class="tab-count">0</span></button>
+            <button type="button" class="filter-tab" data-filter="not" aria-pressed="false">⏳ Chưa đến <span class="tab-count">0</span></button>
+            <button type="button" class="filter-tab" data-filter="will" aria-pressed="false">✈️ Sẽ đến <span class="tab-count">0</span></button>
+            <button type="button" class="filter-tab" data-filter="been" aria-pressed="false">✅ Đã đến <span class="tab-count">0</span></button>
+          </div>
+          <a class="btn btn-sun" href="index.html">➕ Thêm quốc gia</a>
+        </div>
+        <div class="trip-grid" id="tripGrid"></div>
+        <div class="status-box" id="tripEmpty" hidden></div>
+      </section>
+    </div>
 
-      <div class="trips-layout">
-        <!-- FORM THÊM / SỬA -->
-        <section class="panel" aria-labelledby="formTitle">
-          <h2 class="panel-title" id="formTitle">Thêm quốc gia yêu thích</h2>
-          <form id="tripForm" novalidate>
-            <div class="mb-3">
-              <label class="form-label" for="countrySelect">Quốc gia</label>
-              <select class="form-select" id="countrySelect" aria-describedby="countrySelectError">
-                <option value="">Đang tải danh sách quốc gia...</option>
-              </select>
-              <div class="field-error" id="countrySelectError"></div>
-            </div>
+    <!-- HỘP THOẠI SỬA (Bootstrap modal) -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content round-modal">
+          <button type="button" class="close-x" data-bs-dismiss="modal" aria-label="Đóng">✕</button>
+          <form class="modal-body p-4" id="tripForm" novalidate>
+            <h2 class="detail-action-title" id="editTitle">Sửa</h2>
 
             <fieldset class="mb-3">
               <legend class="form-label">Tag</legend>
@@ -81,30 +86,18 @@
               <div class="field-error" id="tripDateError"></div>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-4">
               <label class="form-label" for="tripNote">Ghi chú (tối đa 200 ký tự)</label>
               <textarea class="form-control" id="tripNote" rows="3" maxlength="200" placeholder="Vì sao bạn thích nơi này?" aria-describedby="noteCount"></textarea>
               <div class="form-hint text-end" id="noteCount">0/200</div>
             </div>
 
-            <button class="btn btn-sun w-100" type="submit" id="submitBtn">❤️ Thêm vào yêu thích</button>
-            <button class="btn btn-outline-ink w-100 mt-3" type="button" id="cancelEditBtn" hidden>Huỷ sửa</button>
+            <div class="detail-buttons">
+              <button class="btn btn-outline-ink" type="button" data-bs-dismiss="modal">Huỷ</button>
+              <button class="btn btn-sun" type="submit">Lưu thay đổi</button>
+            </div>
           </form>
-        </section>
-
-        <!-- DANH SÁCH YÊU THÍCH -->
-        <section aria-labelledby="listTitle">
-          <h2 class="visually-hidden" id="listTitle">Danh sách quốc gia yêu thích</h2>
-          <div class="filter-tabs" role="group" aria-label="Lọc theo tag">
-            <button type="button" class="filter-tab" data-filter="all" aria-pressed="true">Tất cả <span class="tab-count">0</span></button>
-            <button type="button" class="filter-tab" data-filter="not" aria-pressed="false">⏳ Chưa đến <span class="tab-count">0</span></button>
-            <button type="button" class="filter-tab" data-filter="will" aria-pressed="false">✈️ Sẽ đến <span class="tab-count">0</span></button>
-            <button type="button" class="filter-tab" data-filter="been" aria-pressed="false">✅ Đã đến <span class="tab-count">0</span></button>
-          </div>
-          <p class="tip-bar">💡 Mẹo: bấm vào tag trên thẻ để đổi nhanh giữa Chưa đến, Sẽ đến và Đã đến.</p>
-          <div class="trip-grid" id="tripGrid"></div>
-          <div class="status-box" id="tripEmpty" hidden></div>
-        </section>
+        </div>
       </div>
     </div>
   </main>
@@ -134,7 +127,7 @@
           </ul>
         </div>
       </div>
-      <p class="footer-copy">© 2026 Atlas Kid – Sản phẩm học tập môn Tin học.</p>
+      <p class="footer-copy">© 2026 Atlas Kid – Sản phẩm cuối khóa.</p>
     </div>
   </footer>
   <!-- ==================== FOOTER – KẾT THÚC ==================== -->

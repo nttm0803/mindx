@@ -39,8 +39,8 @@ hiện thông báo lỗi kèm nút "Tải lại".
   người dùng lưu yêu thích với tag **⏳ Chưa đến / ✈️ Sẽ đến / ✅ Đã đến**, ngày và ghi chú.
 - **Đăng ký / Đăng nhập** (`register.html`, `login.html`): kiểm tra từng ô, báo lỗi ngay dưới ô,
   chặn email trùng, tự quay lại trang trước đó (tham số `?next=`).
-- **Sổ tay hành trình** (`wishlist.html`) – CRUD yêu thích: thêm (không cho trùng), xem, sửa, xoá,
-  đổi tag nhanh ngay trên thẻ, lọc theo tag, 3 ô thống kê.
+- **Sổ tay hành trình** (`wishlist.html`) – CRUD yêu thích: xem, sửa (trong hộp thoại), xoá,
+  đổi tag nhanh ngay trên thẻ, lọc theo tag kèm số lượng; nút "Thêm quốc gia" dẫn về trang chủ để lưu thêm.
 - **Hồ sơ** (`profile.html`) – CRUD tài khoản: xem thẻ danh tính, sửa thông tin, chọn ảnh đại diện,
   đổi mật khẩu, xoá tài khoản (phải gõ đúng email để xác nhận).
 - Giao diện đáp ứng điện thoại (390px), máy tính bảng (768px) và máy tính (1440px).
@@ -92,7 +92,7 @@ Session Storage, mỗi lần mở trình duyệt chỉ tốn 3 lượt gọi.
 | Header, body, footer | Cả 5 trang có `<header>`, `<main>`, `<footer>` viết sẵn trong HTML |
 | Đáp ứng đa thiết bị | `@media` trong `custom.css` (900px, 760px, 700px) |
 | Dữ liệu từ API ngoài | `fetchCountries()` trong `storage.js`, dùng ở trang chủ, hộp thoại, form sổ tay |
-| CSS Grid | lưới quốc gia, lưới yêu thích, ô thống kê, footer, bố cục hồ sơ/sổ tay, ô thông tin hộp thoại, trang đăng nhập/đăng ký, 3 bước "Cách dùng" |
+| CSS Grid | lưới quốc gia, lưới yêu thích, ô số liệu ở hồ sơ, footer, bố cục hồ sơ, ô thông tin hộp thoại, trang đăng nhập/đăng ký, 3 bước "Cách dùng" |
 | Đăng nhập/đăng ký + Local Storage | `auth.js` + phần "Tài khoản" trong `storage.js` |
 | CRUD | Yêu thích: `addTrip` / `getTrips` / `updateTrip` / `removeTrip`; Tài khoản: `registerUser` / `getCurrentUser` / `updateUser` / `deleteAccount` |
 

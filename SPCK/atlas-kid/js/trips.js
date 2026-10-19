@@ -1,33 +1,27 @@
 /* =========================================================
    trips.js – Sổ tay hành trình (CRUD yêu thích):
-   thống kê, form thêm / sửa, lọc theo tag, đổi tag nhanh, xoá
+   lọc theo tag, đổi tag nhanh, sửa trong hộp thoại, xoá
+   (thêm quốc gia mới làm ở trang chủ)
    ========================================================= */
 
 const user = requireLogin();   // chưa đăng nhập thì bị chuyển sang trang Đăng nhập
-let countries = [];            // danh sách quốc gia cho ô chọn (từ API)
-let editingCode = '';          // mã quốc gia đang sửa ("" = đang thêm mới)
+let editingCode = '';          // mã quốc gia đang sửa trong hộp thoại
 let activeFilter = 'all';      // tab lọc đang chọn
 
 const tripForm = document.getElementById('tripForm');
-const countrySelect = document.getElementById('countrySelect');
 const dateInput = document.getElementById('tripDate');
 const noteInput = document.getElementById('tripNote');
 const noteCount = document.getElementById('noteCount');
-const formTitle = document.getElementById('formTitle');
-const submitBtn = document.getElementById('submitBtn');
-const cancelEditBtn = document.getElementById('cancelEditBtn');
+const editTitle = document.getElementById('editTitle');
+const editModal = new bootstrap.Modal('#editModal');
 const tripGrid = document.getElementById('tripGrid');
 const tripEmpty = document.getElementById('tripEmpty');
 
-// ---------- Vẽ thống kê, tab và danh sách ----------
+// ---------- Vẽ tab và danh sách ----------
 
 function renderAll() {
   const trips = getTrips(user.email);
   const countTag = tag => trips.filter(t => t.tag === tag).length;
-
-  document.getElementById('statTotal').textContent = trips.length;
-  document.getElementById('statWill').textContent = countTag('will');
-  document.getElementById('statBeen').textContent = countTag('been');
 
   document.querySelectorAll('.filter-tab').forEach(tab => {
     const key = tab.dataset.filter;
@@ -40,7 +34,7 @@ function renderAll() {
 
   tripEmpty.hidden = list.length > 0;
   tripEmpty.innerHTML = trips.length === 0
-    ? '<p class="status-emoji" aria-hidden="true">📒</p><p class="fw-bold mb-0">Sổ tay còn trống. Chọn một quốc gia ở biểu mẫu bên cạnh, hoặc <a href="index.html">khám phá thêm ở trang chủ</a>.</p>'
+    ? '<p class="status-emoji" aria-hidden="true">📒</p><p class="fw-bold mb-0">Sổ tay còn trống. Hãy <a href="index.html">khám phá trang chủ</a> và bấm vào một quốc gia để lưu nhé.</p>'
     : '<p class="fw-bold mb-0">Chưa có quốc gia nào với tag này.</p>';
 }
 
@@ -83,18 +77,7 @@ function tripCardHtml(t) {
     </article>`;
 }
 
-// ---------- Form thêm / sửa ----------
-
-async function loadCountryOptions() {
-  try {
-    countries = await fetchCountries();
-    countrySelect.innerHTML = '<option value="">Chọn quốc gia...</option>'
-      + countries.map(c => `<option value="${escapeHtml(c.code)}">${escapeHtml(c.name)}</option>`).join('');
-    if (editingCode) countrySelect.value = editingCode; // đang sửa dở thì chọn lại quốc gia
-  } catch (err) {
-    countrySelect.innerHTML = '<option value="">Chưa tải được danh sách quốc gia</option>';
-  }
-}
+// ---------- Hộp thoại sửa ----------
 
 function selectedTag() {
   return tripForm.querySelector('input[name="tag"]:checked').value;
@@ -113,34 +96,14 @@ function startEdit(code) {
   if (!trip) return;
   editingCode = code;
 
-  // Ô chọn có thể chưa có quốc gia này (API chưa tải xong) thì thêm tạm vào
-  if (![...countrySelect.options].some(option => option.value === code)) {
-    countrySelect.add(new Option(trip.name, trip.code));
-  }
-  countrySelect.value = code;
-  countrySelect.disabled = true;
   tripForm.elements.tag.value = TAGS[trip.tag] ? trip.tag : 'not';
   dateInput.value = trip.date;
   noteInput.value = trip.note;
-
-  formTitle.textContent = `Sửa ${trip.name}`;
-  submitBtn.textContent = 'Lưu thay đổi';
-  cancelEditBtn.hidden = false;
-  showErrors({ countrySelect: '', tripDate: '' });
+  editTitle.textContent = `Sửa ${trip.name}`;
+  setFieldError(dateInput, '');
   updateDateField();
   updateNoteCount();
-}
-
-function resetForm() {
-  editingCode = '';
-  tripForm.reset();
-  countrySelect.disabled = false;
-  formTitle.textContent = 'Thêm quốc gia yêu thích';
-  submitBtn.textContent = '❤️ Thêm vào yêu thích';
-  cancelEditBtn.hidden = true;
-  showErrors({ countrySelect: '', tripDate: '' });
-  updateDateField();
-  updateNoteCount();
+  editModal.show();
 }
 
 tripForm.addEventListener('change', e => {
@@ -148,34 +111,20 @@ tripForm.addEventListener('change', e => {
     updateDateField();
     setFieldError(dateInput, '');
   }
-  if (e.target === countrySelect) setFieldError(countrySelect, '');
 });
 dateInput.addEventListener('input', () => setFieldError(dateInput, ''));
 noteInput.addEventListener('input', updateNoteCount);
-cancelEditBtn.addEventListener('click', resetForm);
+document.getElementById('editModal').addEventListener('shown.bs.modal', () => noteInput.focus());
 
 tripForm.addEventListener('submit', e => {
   e.preventDefault();
   const data = { tag: selectedTag(), date: dateInput.value, note: noteInput.value };
-  const dateError = checkTripDate(data.tag, data.date);
+  if (!showErrors({ tripDate: checkTripDate(data.tag, data.date) })) return;
 
-  if (editingCode) {
-    // Sửa: không đổi quốc gia, chỉ đổi tag / ngày / ghi chú
-    if (!showErrors({ tripDate: dateError })) return;
-    const trip = updateTrip(user.email, editingCode, data);
-    showToast(`Đã cập nhật ${trip.name}.`);
-  } else {
-    // Thêm mới: phải chọn quốc gia và không được trùng
-    const country = countries.find(c => c.code === countrySelect.value);
-    let countryError = country ? '' : 'Hãy chọn một quốc gia.';
-    if (country && findTrip(user.email, country.code)) {
-      countryError = 'Quốc gia này đã có trong sổ tay. Hãy bấm Sửa ở danh sách để cập nhật.';
-    }
-    if (!showErrors({ countrySelect: countryError, tripDate: dateError })) return;
-    addTrip(user.email, country, data);
-    showToast(`Đã lưu ${country.name} vào yêu thích.`);
-  }
-  resetForm();
+  // Chỉ đổi tag / ngày / ghi chú, không đổi quốc gia
+  const trip = updateTrip(user.email, editingCode, data);
+  showToast(`Đã cập nhật ${trip.name}.`);
+  editModal.hide();
   renderAll();
 });
 
@@ -185,7 +134,6 @@ function removeOne(code) {
   const trip = findTrip(user.email, code);
   if (!trip || !confirm(`Bỏ ${trip.name} khỏi yêu thích?`)) return;
   removeTrip(user.email, code);
-  if (editingCode === code) resetForm();
   showToast(`Đã bỏ ${trip.name} khỏi yêu thích.`);
   renderAll();
 }
@@ -195,9 +143,6 @@ tripGrid.addEventListener('click', e => {
   if (!btn) return;
   if (btn.dataset.action === 'edit') {
     startEdit(btn.dataset.code);
-    // Trên điện thoại form nằm phía trên, cuộn lên cho thấy
-    if (window.matchMedia('(max-width: 900px)').matches) tripForm.scrollIntoView({ block: 'start' });
-    noteInput.focus({ preventScroll: true });
   } else {
     removeOne(btn.dataset.code);
   }
@@ -209,7 +154,6 @@ tripGrid.addEventListener('change', e => {
   const code = e.target.dataset.code;
   const trip = updateTrip(user.email, code, { tag: e.target.value });
   showToast(`Đã đổi ${trip.name} sang ${TAGS[trip.tag].label}.`);
-  if (editingCode === code) startEdit(code); // form đang sửa thẻ này thì cập nhật theo
   renderAll();
   const select = [...tripGrid.querySelectorAll('.tag-select')].find(s => s.dataset.code === code);
   if (select) select.focus(); // giữ chỗ cho người dùng bàn phím
@@ -223,8 +167,4 @@ document.querySelectorAll('.filter-tab').forEach(tab => {
 });
 
 // ---------- Khởi động ----------
-if (user) {
-  renderAll();
-  updateDateField();
-  loadCountryOptions();
-}
+if (user) renderAll();

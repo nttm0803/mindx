@@ -179,6 +179,10 @@ b, strong { font-weight: 800; }
   font-size: 15px;
   margin-bottom: 6px;
 }
+.required-mark {          /* dấu * đỏ cho trường bắt buộc */
+  color: #D93025;
+  margin-left: 2px;
+}
 .form-control, .form-select {
   border: 2px solid var(--line);
   border-radius: 16px;
@@ -848,45 +852,24 @@ fieldset legend.form-label { font-size: 15px; }
 .banner-sun { background: var(--sun-soft); }
 .banner-mint { background: var(--mint-soft); }
 
-/* 3 ô thống kê (CSS Grid), kéo chồng lên dải tiêu đề */
-.stats-grid {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: -42px;
-}
-.stat-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 26px;
-  border: 2px solid var(--line);
-  border-radius: 22px;
-  box-shadow: var(--shadow-card);
-  font-weight: 800;
-  line-height: 1.25;
-}
-.stat-num {
-  font-family: var(--font-head);
-  font-weight: 800;
-  font-size: 46px;
-  line-height: 1;
-}
-.stat-coral { background: var(--coral-soft); }
-.stat-coral .stat-num { color: #B3302F; }
+/* Nền màu cho ô thống kê ở trang hồ sơ */
 .stat-blue { background: var(--blue-soft); }
-.stat-blue .stat-num, .stat-blue b { color: #1B4FA8; }
+.stat-blue b { color: #1B4FA8; }
 .stat-mint { background: var(--mint-soft); }
-.stat-mint .stat-num, .stat-mint b { color: #0E7A64; }
+.stat-mint b { color: #0E7A64; }
 
-/* Bố cục chính: form bên trái, danh sách bên phải (CSS Grid) */
-.trips-layout {
-  display: grid;
-  grid-template-columns: 350px 1fr;
-  gap: 28px;
-  margin-top: 32px;
-  align-items: start;
+/* Dải tiêu đề không có nội dung chồng lên thì không cần chừa khoảng dưới */
+.page-banner.banner-compact { padding-bottom: 48px; }
+
+/* Danh sách chiếm hết chiều ngang; hàng trên cùng: tab lọc bên trái, nút thêm bên phải */
+.trips-section { margin-top: 32px; }
+.trips-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 22px;
 }
 .tag-pills { display: flex; flex-wrap: wrap; gap: 8px; }
 .tag-pill {
@@ -920,14 +903,6 @@ fieldset legend.form-label { font-size: 15px; }
 .filter-tab:hover { border-color: var(--ink); }
 .filter-tab .tab-count { font-size: 12px; opacity: .75; }
 .filter-tab[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
-.tip-bar {
-  margin: 16px 0 18px;
-  padding: 8px 16px;
-  border-radius: 14px;
-  background: var(--sun-soft);
-  font-size: 14px;
-  font-weight: 700;
-}
 
 /* Lưới thẻ yêu thích (CSS Grid) */
 .trip-grid {
@@ -1094,7 +1069,6 @@ fieldset legend.form-label { font-size: 15px; }
 /* ---------- 11. Responsive ---------- */
 @media (max-width: 900px) {
   .hero-grid,
-  .trips-layout,
   .profile-layout,
   .auth-layout { grid-template-columns: 1fr; }
   .globe-wrap { max-width: 380px; }
@@ -1132,8 +1106,7 @@ fieldset legend.form-label { font-size: 15px; }
   .country-name { font-size: 19px; }
   .card-line { font-size: 13px; }
 
-  .steps-grid, .stats-grid { grid-template-columns: 1fr; }
-  .stats-grid { gap: 14px; }
+  .steps-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 22px; }
   .site-footer { margin-top: 56px; border-radius: 32px 32px 0 0; }
 
@@ -1148,6 +1121,7 @@ fieldset legend.form-label { font-size: 15px; }
   .detail-name { font-size: 28px; }
 
   .page-banner { padding: 36px 0 72px; }
+  .page-banner.banner-compact { padding-bottom: 36px; }
   .page-banner p { font-size: 16px; }
   .panel { padding: 22px 18px; }
 }
