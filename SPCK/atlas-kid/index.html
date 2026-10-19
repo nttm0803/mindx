@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atlas Kid – Khám phá thế giới, từng quốc gia một</title>
+  <meta name="description" content="Tra cứu thủ đô, dân số, ngôn ngữ, tiền tệ của hơn 240 quốc gia và lập sổ tay hành trình của riêng bạn.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
+</head>
+<body>
+  <!-- ==================== HEADER (đầu trang) – BẮT ĐẦU ====================
+       Header giống nhau ở cả 5 trang: sửa ở đây thì nhớ sửa cả 4 trang còn lại.
+       Ô #authArea (nút Đăng nhập/Đăng ký hoặc menu tài khoản) do js/storage.js tự điền. -->
+  <header class="site-header">
+    <nav class="navbar" aria-label="Điều hướng chính">
+      <div class="container header-inner">
+        <a class="navbar-brand brand" href="index.html"><span class="brand-logo" aria-hidden="true">🌍</span>Atlas Kid</a>
+        <ul class="navbar-nav main-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Khám phá</a></li>
+          <li class="nav-item"><a class="nav-link" href="wishlist.html">Sổ tay hành trình</a></li>
+        </ul>
+        <div id="authArea" class="auth-area"></div>
+      </div>
+    </nav>
+  </header>
+  <!-- ==================== HEADER – KẾT THÚC ==================== -->
+
+  <!-- ==================== NỘI DUNG CHÍNH (main) – BẮT ĐẦU ==================== -->
+  <main>
+    <!-- HERO: lời chào, ô tìm kiếm, chip châu lục, quả địa cầu -->
+    <section class="hero">
+      <div class="container">
+        <div id="pageAlert"></div>
+        <div class="hero-grid">
+          <div>
+            <h1>Cùng khám phá thế giới, từng quốc gia một!</h1>
+            <p class="hero-lead">Tra cứu thủ đô, dân số, ngôn ngữ, tiền tệ của hơn 240 quốc gia. Thích nơi nào, lưu ngay vào sổ tay hành trình của riêng bạn.</p>
+
+            <form class="search-pill" id="searchForm" role="search">
+              <span aria-hidden="true">🔍</span>
+              <label class="visually-hidden" for="searchInput">Tìm quốc gia theo tên hoặc thủ đô</label>
+              <input type="search" id="searchInput" placeholder="Thử gõ: Japan, Paris, Brazil…" autocomplete="off">
+              <button class="btn btn-sun" type="submit">Tìm ngay</button>
+            </form>
+
+            <div class="region-chips" role="group" aria-label="Lọc theo châu lục">
+              <button type="button" class="region-chip" data-region="Asia" aria-pressed="false" style="--dot:#FF6B6B;--soft:#FFE0E0"><span class="dot"></span>Châu Á</button>
+              <button type="button" class="region-chip" data-region="Europe" aria-pressed="false" style="--dot:#3A86FF;--soft:#DCEBFF"><span class="dot"></span>Châu Âu</button>
+              <button type="button" class="region-chip" data-region="Africa" aria-pressed="false" style="--dot:#FFC93C;--soft:#FFF1C2"><span class="dot"></span>Châu Phi</button>
+              <button type="button" class="region-chip" data-region="Americas" aria-pressed="false" style="--dot:#2EC4A6;--soft:#D3F5EC"><span class="dot"></span>Châu Mỹ</button>
+              <button type="button" class="region-chip" data-region="Oceania" aria-pressed="false" style="--dot:#8A6FF0;--soft:#E6E0FF"><span class="dot"></span>Châu Đại Dương</button>
+            </div>
+          </div>
+
+          <div class="globe-wrap">
+            <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Quả địa cầu">
+              <circle cx="200" cy="205" r="150" fill="#1B4FA8" opacity=".25"/>
+              <circle cx="200" cy="200" r="150" fill="#2F6FE0"/>
+              <g fill="#5FE0C4">
+                <path d="M112 128c26-34 74-30 86-6 10 22-12 38-30 48-22 12-42 10-54-8-10-14-10-24-2-34z"/>
+                <path d="M218 98c38-16 74 6 76 30 2 22-22 30-44 28-20-2-40-22-32-58z"/>
+                <path d="M232 196c34-14 60 8 58 34-2 28-28 50-50 42-22-10-34-52-8-76z"/>
+                <path d="M118 214c26-14 48 4 44 30-4 24-20 46-34 42-22-8-28-56-10-72z"/>
+              </g>
+              <g fill="#FFC93C"><circle cx="150" cy="150" r="5"/><circle cx="262" cy="130" r="5"/><circle cx="260" cy="236" r="5"/></g>
+              <ellipse cx="150" cy="110" rx="46" ry="16" fill="#fff" opacity=".22" transform="rotate(-28 150 110)"/>
+              <ellipse cx="200" cy="200" rx="188" ry="58" fill="none" stroke="#FFC93C" stroke-width="6"
+                       stroke-dasharray="2 15" stroke-linecap="round" transform="rotate(-18 200 200)"/>
+              <g transform="translate(352 140) rotate(-30)">
+                <path d="M0 0l30 8-30 8 4-8z" fill="#fff"/><path d="M6 8l-10-12 6 0 10 10z" fill="#FFC93C"/>
+              </g>
+              <g fill="#fff">
+                <ellipse cx="62" cy="80" rx="34" ry="14"/><ellipse cx="86" cy="70" rx="22" ry="14"/>
+                <ellipse cx="338" cy="300" rx="36" ry="14"/><ellipse cx="316" cy="290" rx="22" ry="13"/>
+              </g>
+            </svg>
+            <!-- Huy hiệu cờ: home.js gắn ảnh cờ sau khi tải dữ liệu API -->
+            <img class="hero-flag flag-vn" data-code="VNM" alt="" hidden>
+            <img class="hero-flag flag-jp" data-code="JPN" alt="" hidden>
+            <img class="hero-flag flag-fr" data-code="FRA" alt="" hidden>
+            <img class="hero-flag flag-br" data-code="BRA" alt="" hidden>
+            <span class="bubble bubble-hi" aria-hidden="true">Xin chào! 👋</span>
+            <span class="bubble bubble-count" aria-hidden="true">+240 quốc gia</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DANH SÁCH QUỐC GIA -->
+    <section class="section" id="countries" aria-labelledby="listTitle">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title" id="listTitle">Danh sách quốc gia</h2>
+            <p class="section-sub">Chạm vào một thẻ để xem đầy đủ thông tin.</p>
+          </div>
+          <label class="sort-pill">
+            <span>Sắp xếp:</span>
+            <select id="sortSelect">
+              <option value="name">Tên A → Z</option>
+              <option value="population">Dân số đông nhất</option>
+              <option value="area">Diện tích lớn nhất</option>
+            </select>
+          </label>
+        </div>
+        <p class="count-text" id="countText" aria-live="polite"></p>
+        <div class="status-box" id="listStatus" hidden></div>
+        <div class="country-grid" id="countryGrid"></div>
+        <div class="more-wrap">
+          <button class="btn btn-blue" id="moreBtn" type="button" hidden>Xem thêm quốc gia</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CÁCH DÙNG SỔ TAY -->
+    <section class="section" aria-labelledby="stepsTitle">
+      <div class="container">
+        <h2 class="section-title" id="stepsTitle">Sổ tay hành trình hoạt động thế nào?</h2>
+        <p class="section-sub">Ba bước đơn giản, dùng được ngay sau khi đăng ký.</p>
+        <div class="steps-grid">
+          <article class="step-card bg-blue-soft">
+            <div class="step-icon" aria-hidden="true">🔍</div>
+            <span class="step-num" aria-hidden="true">1</span>
+            <h3>Tìm quốc gia</h3>
+            <p>Gõ tên hoặc lọc theo châu lục để tìm nơi bạn tò mò.</p>
+          </article>
+          <article class="step-card bg-sun-soft">
+            <div class="step-icon" aria-hidden="true">📝</div>
+            <span class="step-num" aria-hidden="true">2</span>
+            <h3>Lưu vào sổ tay</h3>
+            <p>Thêm ngày dự định và ghi chú: bạn muốn ăn gì, xem gì ở đó?</p>
+          </article>
+          <article class="step-card bg-mint-soft">
+            <div class="step-icon" aria-hidden="true">🏁</div>
+            <span class="step-num" aria-hidden="true">3</span>
+            <h3>Đánh dấu "Đã đến"</h3>
+            <p>Khi hoàn thành chuyến đi, đổi trạng thái để thu thập đủ tem.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- ==================== NỘI DUNG CHÍNH – KẾT THÚC ==================== -->
+
+  <!-- ==================== FOOTER (chân trang) – BẮT ĐẦU ====================
+       Footer giống nhau ở cả 5 trang: sửa ở đây thì nhớ sửa cả 4 trang còn lại. -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand">🌍 Atlas Kid</p>
+          <p class="mb-0">Công cụ tra cứu quốc gia và lập sổ tay hành trình dành cho học sinh yêu địa lý, thích khám phá thế giới.</p>
+        </div>
+        <nav aria-labelledby="footerPages">
+          <h2 class="footer-title" id="footerPages">Trang web</h2>
+          <ul class="footer-links">
+            <li><a href="index.html">Khám phá quốc gia</a></li>
+            <li><a href="wishlist.html">Sổ tay hành trình</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2 class="footer-title">Nguồn dữ liệu</h2>
+          <ul class="footer-links">
+            <li>REST Countries API</li>
+            <li><a href="https://restcountries.com" target="_blank" rel="noopener">restcountries.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-copy">© 2026 Atlas Kid – Sản phẩm học tập môn Tin học.</p>
+    </div>
+  </footer>
+  <!-- ==================== FOOTER – KẾT THÚC ==================== -->
+
+  <!-- HỘP THOẠI CHI TIẾT QUỐC GIA (nội dung do home.js điền) -->
+  <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailTitle" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content detail-modal">
+        <button type="button" class="close-x" data-bs-dismiss="modal" aria-label="Đóng">✕</button>
+        <div class="detail-grid">
+          <section class="detail-info" id="detailInfo"></section>
+          <section class="detail-action" id="detailAction"></section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>
