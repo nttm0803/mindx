@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký - ShopTeen</title>
+    <!-- Font Be Vietnam Pro (Bài 7): hiển thị dấu tiếng Việt đẹp hơn Arial -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Giống trang đăng nhập: có mật khẩu → method="post", chưa có server nên bấm Đăng ký sẽ báo "Cannot POST" -->
+    <form class="hop-dang-nhap" action="" method="post">
+        <h1>Đăng ký</h1>
+
+        <!-- type="text": ô nhập chữ thường. autocomplete="name": trình duyệt gợi ý tên đã lưu -->
+        <label for="ho-ten">Họ và tên</label>
+        <input type="text" id="ho-ten" name="ho_ten" placeholder="Nguyễn Văn An"
+               autocomplete="name" autofocus required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="ban@gmail.com"
+               autocomplete="email" required>
+
+        <!-- autocomplete="new-password": báo trình duyệt đây là mật khẩu MỚI → có thể gợi ý mật khẩu mạnh -->
+        <label for="mat-khau">Mật khẩu</label>
+        <input type="password" id="mat-khau" name="mat_khau" placeholder="Ít nhất 6 ký tự"
+               minlength="6" autocomplete="new-password" required>
+
+        <!-- HTML chưa tự kiểm tra được 2 ô mật khẩu có giống nhau không – việc đó cần JavaScript (học sau) -->
+        <label for="nhap-lai-mat-khau">Nhập lại mật khẩu</label>
+        <input type="password" id="nhap-lai-mat-khau" name="nhap_lai_mat_khau" placeholder="Gõ lại mật khẩu ở trên"
+               minlength="6" autocomplete="new-password" required>
+
+        <div class="hang-phu">
+            <!-- required trên checkbox: chưa tích "đồng ý" thì trình duyệt không cho gửi form -->
+            <label class="nhan-checkbox">
+                <input type="checkbox" name="dong_y" value="co" required> Tôi đồng ý với <a href="#">điều khoản</a>
+            </label>
+        </div>
+
+        <!-- Nút chính DUY NHẤT của form (Bài 7: mỗi khu vực chỉ 1 nút chính) -->
+        <button type="submit" class="nut-dang-nhap">Tạo tài khoản</button>
+
+        <p class="chuyen-trang">Đã có tài khoản? <a href="index.html">Đăng nhập</a></p>
+    </form>
+
+    <p class="ve-bai"><a href="../index.html#dang-nhap">⬅ Về Bài 8</a></p>
+</body>
+</html>

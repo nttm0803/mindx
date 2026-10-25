@@ -1,0 +1,272 @@
+/* =========================================================
+   BÀI 8 – FORM VÀ INPUT
+   ========================================================= */
+
+/* ---------- KHUNG TRANG ---------- */
+body {
+    background-color: #EBFBEE;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #212529;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.trang {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2 { color: #2B8A3E; }
+h3     { color: #5F3DC4; }
+
+.muc-luc {
+    background-color: white;
+    padding: 12px;
+    border: 2px dashed #2B8A3E;
+}
+
+.phan {
+    background-color: white;
+    border: 2px solid #B2F2BB;
+    padding: 10px 25px 25px 25px;
+    margin-top: 30px;
+}
+
+pre {
+    background-color: #1E1E2E;
+    color: #A6E3A1;
+    font-family: Consolas, monospace;
+    padding: 15px;
+    font-size: 14px;
+    overflow-x: auto;
+}
+
+code {
+    background-color: #F1F3F5;
+    font-family: Consolas, monospace;
+    padding: 2px 6px;
+    color: #C92A2A;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+}
+th, td {
+    border: 1px solid #ADB5BD;
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+}
+th { background-color: #D3F9D8; }
+
+.ghi-chu {
+    background-color: #FFF8E1;
+    border-left: 6px solid #FFC107;
+    padding: 10px 15px;
+    margin: 15px 0;
+}
+
+.luu-y {
+    background-color: #FFE3E3;
+    border-left: 6px solid #E03131;
+    padding: 10px 15px;
+    margin: 15px 0;
+}
+
+.khu-demo {
+    background-color: #F8F9FA;
+    border: 2px dashed #ADB5BD;
+    padding: 10px 15px;
+    margin: 10px 0;
+}
+
+.bai-tap {
+    background-color: #F3F0FF;
+    border: 2px solid #9775FA;
+    padding: 10px 20px;
+    margin-top: 15px;
+}
+
+.cuoi-trang {
+    text-align: center;
+    font-size: 20px;
+}
+
+/* ---------- KHỐI SO SÁNH 2 CỘT (Flexbox – Bài 5) ---------- */
+.hang-so-sanh {
+    display: flex;
+    gap: 16px;
+    margin: 10px 0;
+}
+.o-so-sanh {
+    flex: 1;
+    border: 2px dashed #ADB5BD;
+    padding: 10px 15px;
+}
+.nhan { font-weight: 700; color: #5F3DC4; margin: 4px 0; }
+
+/* ---------- NÚT (giống Bài 7: nút chính / nút chữ) ---------- */
+.hang-nut {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+}
+.nut {
+    display: inline-block;
+    padding: 10px 22px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;            /* con trỏ hình bàn tay khi rê vào nút */
+}
+.nut-chinh {
+    background-color: #F76707;
+    color: white;
+    border: 2px solid #F76707;
+}
+.nut-chu {
+    background-color: transparent;
+    color: #6C757D;
+    border: 2px solid transparent;
+}
+
+/* =========================================================
+   Ô NHẬP TRONG CÁC KHU DEMO
+   ========================================================= */
+
+/* Selector thuộc tính: input[type="..."] chọn ô theo kiểu */
+.khu-demo input[type="text"],
+.khu-demo input[type="email"],
+.khu-demo input[type="tel"],
+.khu-demo input[type="number"],
+.khu-demo select,
+.khu-demo textarea {
+    padding: 8px 10px;
+    font-size: 16px;
+    border: 1px solid #CED4DA;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+}
+.khu-demo textarea {
+    width: 100%;
+    box-sizing: border-box;     /* width 100% không bị tràn vì padding */
+}
+
+/* ⭐ NGOÀI BÀI HỌC: :focus – ô đang được gõ vào sẽ có viền xanh */
+.khu-demo input:focus,
+.khu-demo select:focus,
+.khu-demo textarea:focus {
+    border-color: #2B8A3E;
+    outline: 3px solid #B2F2BB;
+}
+
+/* Form kiểm tra dữ liệu: mỗi label nằm 1 dòng, ô nhập rộng hết khung */
+.form-kiem-tra label {
+    display: block;
+    font-weight: 700;
+    margin: 12px 0 4px 0;
+}
+.form-kiem-tra input {
+    width: 100%;
+    max-width: 360px;
+    box-sizing: border-box;
+}
+
+/* ⭐ NGOÀI BÀI HỌC: :user-invalid – viền đỏ khi người dùng nhập sai (sau khi đã gõ hoặc bấm gửi) */
+.form-kiem-tra input:user-invalid {
+    border-color: #E03131;
+    background-color: #FFF5F5;
+}
+
+/* fieldset + legend */
+fieldset {
+    border: 2px solid #B2F2BB;
+    border-radius: 8px;
+    padding: 10px 15px 15px 15px;
+}
+legend {
+    font-weight: 700;
+    color: #2B8A3E;
+    padding: 0 6px;
+}
+fieldset label {
+    display: block;
+    margin: 8px 0 4px 0;
+}
+
+/* ---------- LƯỚI CÁC KIỂU INPUT (mục 2.1, 2.2) ---------- */
+.luoi-demo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 10px 0;
+}
+.o-demo {
+    flex: 1;
+    min-width: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background-color: #F8F9FA;
+    border: 2px dashed #ADB5BD;
+    padding: 10px 12px;
+}
+.o-demo code { align-self: flex-start; }
+.o-demo span { font-size: 14px; color: #6C757D; }
+.o-demo input {
+    padding: 6px 8px;
+    font-size: 16px;
+    border: 1px solid #CED4DA;
+    border-radius: 6px;
+}
+.o-demo input[type="color"] { height: 40px; padding: 2px; }   /* ô màu cần cao hơn để dễ bấm */
+
+/* ---------- SƠ ĐỒ TRANG THANH TOÁN (mục 4.1) ---------- */
+.so-do-thanh-toan {
+    max-width: 420px;
+    background-color: #F8F9FA;
+    padding: 12px;
+    margin: 10px 0;
+}
+.khoi-sd {
+    background-color: white;
+    border: 2px solid #B2F2BB;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+.khoi-sd small { font-weight: 400; color: #6C757D; }
+.khoi-don { border-color: #FFC078; }
+.khoi-nut {
+    background-color: #F76707;
+    border-color: #F76707;
+    color: white;
+    text-align: center;
+}
+
+/* =========================================================
+   PHẦN 5: ÔN TẬP
+   ========================================================= */
+.cau-hoi {
+    border: 2px solid #D3F9D8;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+}
+.cau-hoi summary { font-weight: 700; }
+.cau-hoi p { margin: 8px 0 0 0; color: #2B8A3E; }
+
+/* =========================================================
+   RESPONSIVE (Bài 5): điện thoại xếp các khối thành cột
+   ========================================================= */
+@media (max-width: 768px) {
+    .hang-so-sanh {
+        flex-direction: column;
+    }
+    .phan { padding: 10px 15px 20px 15px; }
+    table { font-size: 14px; display: block; overflow-x: auto; }   /* bảng rộng thì cuộn ngang */
+}

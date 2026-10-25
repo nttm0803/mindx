@@ -1,0 +1,149 @@
+/* =========================================================
+   DỰ ÁN: FORM ĐĂNG NHẬP ĐƠN GIẢN
+   ========================================================= */
+
+/* Bước 1: căn hộp form ra GIỮA màn hình bằng Flexbox (Bài 5) */
+body {
+    margin: 0;
+    padding: 24px 16px;
+    /* chừa lề để trên điện thoại hộp form không dính sát mép màn hình */
+    box-sizing: border-box;
+    min-height: 100vh;
+    /* body cao ít nhất bằng màn hình */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* giữa theo chiều dọc */
+    align-items: center;
+    /* giữa theo chiều ngang */
+    background-color: #E7F5FF;
+    font-family: "Be Vietnam Pro", Arial, sans-serif;
+    /* Bài 7: font hỗ trợ tiếng Việt; mất mạng thì tự lùi về Arial */
+    color: #212529;
+    line-height: 1.5;
+}
+
+/* Bước 2: hộp form */
+.hop-dang-nhap {
+    width: 100%;
+    max-width: 400px;
+    /* màn hình to: rộng tối đa 400px; điện thoại: co lại */
+    box-sizing: border-box;
+    background-color: white;
+    padding: 40px 36px;
+    /* padding rộng → nội dung có "khoảng thở", không sát viền hộp */
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề: to, đậm, màu thương hiệu, căn giữa → là thứ mắt nhìn thấy đầu tiên (Bài 7: phân cấp) */
+h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    /* chữ to thì kéo các ký tự lại gần nhau một chút cho gọn */
+    text-align: center;
+    color: #1971C2;
+    margin: 0 0 28px 0;
+}
+
+/* ⭐ NGOÀI BÀI HỌC: ::after – thêm 1 gạch cam nhỏ dưới tiêu đề mà không cần viết thêm thẻ HTML */
+h1::after {
+    content: "";
+    display: block;
+    width: 48px;
+    height: 4px;
+    margin: 12px auto 0 auto;
+    /* auto 2 bên → gạch nằm giữa */
+    background-color: #F76707;
+    border-radius: 2px;
+}
+
+/* Bước 3: label nằm 1 dòng riêng, ô nhập rộng hết hộp */
+label {
+    display: block;
+    font-weight: 700;
+    margin: 20px 0 8px 0;
+    /* trên 20px: tách khỏi ô phía trên; dưới 8px: dính gần ô của chính nó */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    box-sizing: border-box;
+    /* để padding không làm ô tràn khỏi hộp (Bài 3: box model) */
+    padding: 12px 14px;
+    font-family: inherit;
+    /* ô nhập và nút KHÔNG tự lấy font của body → phải bảo chúng "thừa kế" */
+    font-size: 16px;
+    /* ≥ 16px: điện thoại không tự phóng to khi bấm vào */
+    border: 1px solid #CED4DA;
+    border-radius: 8px;
+}
+
+/* ⭐ NGOÀI BÀI HỌC: :focus – ô đang gõ có viền xanh, người dùng biết mình đang ở ô nào */
+input:focus {
+    border-color: #1971C2;
+    outline: 3px solid #A5D8FF;
+}
+
+/* Bước 4: dòng "Ghi nhớ – Quên mật khẩu?" chia 2 đầu */
+.hang-phu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.nhan-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* ô tích và chữ cách nhau 8px, thẳng hàng giữa */
+    font-weight: 400;
+    margin: 0;
+    cursor: pointer;
+}
+
+.nhan-checkbox input {
+    margin: 0;
+}
+
+a {
+    color: #1971C2;
+    text-decoration: none;
+}
+
+/* Bước 5: nút chính – rộng hết hộp, màu nhấn, nổi nhất trong form */
+.nut-dang-nhap {
+    width: 100%;
+    margin-top: 28px;
+    padding: 14px;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 700;
+    color: white;
+    background-color: #F76707;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* ⭐ NGOÀI BÀI HỌC: :hover */
+.nut-dang-nhap:hover {
+    background-color: #D9480F;
+}
+
+.chuyen-trang {
+    text-align: center;
+    margin: 24px 0 0 0;
+    font-size: 14px;
+    color: #6C757D;
+}
+
+.ve-bai {
+    margin: 24px 0 0 0;
+    font-size: 14px;
+}
