@@ -14,7 +14,8 @@
 </head>
 <body>
   <!-- ==================== HEADER (đầu trang) – BẮT ĐẦU ====================
-       Header giống nhau ở cả 5 trang: sửa ở đây thì nhớ sửa cả 4 trang còn lại.
+       Header giống nhau ở index, wishlist, profile: sửa ở đây thì nhớ sửa cả 2 trang còn lại
+       (login, register không có header/footer).
        Ô #authArea (nút Đăng nhập/Đăng ký hoặc menu tài khoản) do js/storage.js tự điền. -->
   <header class="site-header">
     <nav class="navbar" aria-label="Điều hướng chính">
@@ -22,7 +23,7 @@
         <a class="navbar-brand brand" href="index.html"><span class="brand-logo" aria-hidden="true">🌍</span>Atlas Kid</a>
         <ul class="navbar-nav main-nav">
           <li class="nav-item"><a class="nav-link" href="index.html">Khám phá</a></li>
-          <li class="nav-item"><a class="nav-link" href="wishlist.html">Sổ tay hành trình</a></li>
+          <li class="nav-item needs-login"><a class="nav-link" href="wishlist.html">Sổ tay hành trình</a></li>
         </ul>
         <div id="authArea" class="auth-area"></div>
       </div>
@@ -148,7 +149,8 @@
   <!-- ==================== NỘI DUNG CHÍNH – KẾT THÚC ==================== -->
 
   <!-- ==================== FOOTER (chân trang) – BẮT ĐẦU ====================
-       Footer giống nhau ở cả 5 trang: sửa ở đây thì nhớ sửa cả 4 trang còn lại. -->
+       Footer giống nhau ở index, wishlist, profile: sửa ở đây thì nhớ sửa cả 2 trang còn lại
+       (login, register không có header/footer). -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -160,7 +162,7 @@
           <h2 class="footer-title" id="footerPages">Trang web</h2>
           <ul class="footer-links">
             <li><a href="index.html">Khám phá quốc gia</a></li>
-            <li><a href="wishlist.html">Sổ tay hành trình</a></li>
+            <li class="needs-login"><a href="wishlist.html">Sổ tay hành trình</a></li>
           </ul>
         </nav>
         <div>

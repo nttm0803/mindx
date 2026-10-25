@@ -69,7 +69,8 @@ atlas-kid/
 Mỗi trang nạp script theo thứ tự: `bootstrap.bundle` → `storage.js` → file riêng của trang.
 
 Header và footer được viết sẵn trong từng file HTML, có ghi chú `HEADER – BẮT ĐẦU / KẾT THÚC` và
-`FOOTER – BẮT ĐẦU / KẾT THÚC`. Cả 5 trang dùng chung một mẫu, nên sửa ở một trang thì nhớ sửa cả 4 trang còn lại.
+`FOOTER – BẮT ĐẦU / KẾT THÚC`. Ba trang `index`, `wishlist`, `profile` dùng chung một mẫu, nên sửa ở một trang thì nhớ sửa cả 2 trang còn lại.
+Trang đăng nhập và đăng ký không có header/footer: logo trong khối giới thiệu dùng để quay về trang chủ.
 
 ## Dữ liệu lưu ở đâu?
 
@@ -89,7 +90,7 @@ Session Storage, mỗi lần mở trình duyệt chỉ tốn 3 lượt gọi.
 
 | Tiêu chí | Ở đâu |
 |---|---|
-| Header, body, footer | Cả 5 trang có `<header>`, `<main>`, `<footer>` viết sẵn trong HTML |
+| Header, body, footer | `index`, `wishlist`, `profile` có `<header>`, `<main>`, `<footer>` viết sẵn trong HTML; `login`, `register` chỉ có `<main>` toàn màn hình |
 | Đáp ứng đa thiết bị | `@media` trong `custom.css` (900px, 760px, 700px) |
 | Dữ liệu từ API ngoài | `fetchCountries()` trong `storage.js`, dùng ở trang chủ, hộp thoại, form sổ tay |
 | CSS Grid | lưới quốc gia, lưới yêu thích, ô số liệu ở hồ sơ, footer, bố cục hồ sơ, ô thông tin hộp thoại, trang đăng nhập/đăng ký, 3 bước "Cách dùng" |

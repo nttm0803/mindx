@@ -45,7 +45,7 @@ Nhóm tư duy máy tính (6 tiêu chí):
 
 | # | Tiêu chí | Cách đáp ứng |
 |---|---|---|
-| 1 | Đủ header, body, footer cho mỗi trang | Mọi trang HTML đều có `<header>`, `<main>`, `<footer>` viết **tĩnh** trong file (không chèn bằng JS) |
+| 1 | Đủ header, body, footer cho mỗi trang | `index.html`, `wishlist.html`, `profile.html` có `<header>`, `<main>`, `<footer>` viết **tĩnh** trong file (không chèn bằng JS). `login.html` và `register.html` cố ý chỉ có `<main>` toàn màn hình (quyết định thiết kế, chấp nhận rủi ro ở tiêu chí này) |
 | 2 | Bố cục đáp ứng đa thiết bị | Responsive cho **tất cả** trang, kiểm tra ở 390px, 768px, 1440px |
 | 3 | Dùng dữ liệu từ API ngoài | `fetch` restcountries.com, hiển thị lên trang chủ và hộp thoại chi tiết |
 | 4 | Tận dụng **CSS Grid** | Tự viết `display:grid` cho: lưới quốc gia, lưới yêu thích, ô số liệu ở hồ sơ, footer, bố cục hồ sơ, ô thông tin trong hộp thoại, bố cục trang đăng nhập/đăng ký, 3 bước "Cách dùng" |
@@ -86,7 +86,7 @@ Thứ tự nạp script trên mỗi trang: `bootstrap.bundle` → `storage.js` �
 ```css
 :root{
   --ink:#1F2A44;        /* chữ chính, footer */
-  --blue:#2F6FE0;       /* nút phụ, liên kết, khung auth */
+  --blue:#2F6FE0;       /* nút phụ, liên kết */
   --blue-dk:#1B4FA8;
   --blue-soft:#DCEBFF;
   --sun:#FFC93C;        /* nút chính (chữ màu --ink) */
@@ -144,21 +144,25 @@ Ghi đè biến Bootstrap tương ứng (`--bs-body-bg`, `--bs-body-color`, `--b
 Bootstrap navbar, nền trắng, viền dưới 2px `--line`, nội dung nằm trong container tối đa 1200px.
 
 - Trái: logo tròn nền `--sun` chứa 🌍 + chữ "Atlas Nhí" (Baloo 2, 800, 27px).
-- Giữa: 2 liên kết dạng viên thuốc: **Khám phá** (`index.html`), **Sổ tay hành trình** (`wishlist.html`). Trang hiện tại có nền `--blue-soft` và chữ `#1F5FC4` (`aria-current="page"`).
+- Giữa: 2 liên kết dạng viên thuốc: **Khám phá** (`index.html`), **Sổ tay hành trình** (`wishlist.html`, **chỉ hiện khi đã đăng nhập**). Trang hiện tại có nền `--blue-soft` và chữ `#1F5FC4` (`aria-current="page"`).
 - Phải (`<div id="authArea">`, do `storage.js` điền):
   - **Khách**: nút viền "Đăng nhập" (`login.html`) + nút vàng "Đăng ký" (`register.html`).
   - **Đã đăng nhập**: Bootstrap dropdown dạng chip: avatar emoji trong vòng tròn nền `--sun-soft` + họ tên + ▾. Menu: `👤 Hồ sơ của tôi` (`profile.html`, mục đầu nền `--blue-soft`), `📒 Sổ tay hành trình`, đường kẻ, `🚪 Đăng xuất` (chữ `#B3302F`). Bấm Đăng xuất: xoá `currentUser`, chuyển về `index.html`.
+- Các link tới `wishlist.html` ở header và footer có class `needs-login`; `renderHeaderAuth()` đặt `hidden` cho chúng khi chưa đăng nhập.
 - Mobile (≤700px): logo và khu vực tài khoản cùng một hàng, nav xuống hàng dưới; ẩn nút "Đăng nhập" dạng viền để tiết kiệm chỗ (chỉ còn "Đăng ký") hoặc dùng navbar-toggler của Bootstrap, miễn không vỡ bố cục.
+- **`login.html` và `register.html` không có header** (cũng không có footer): logo "🌍 Atlas Kid" (class `brand auth-brand`, liên kết `index.html`) đặt ở đầu khối giới thiệu bên trái để quay về trang chủ. `renderHeaderAuth()` bỏ qua khi không có `#authArea`.
 
 ### 6.2 Footer (`<footer>`, viết tĩnh)
 
 CSS Grid 3 cột `2fr 1fr 1fr` (1 cột trên mobile):
 
 1. "🌍 Atlas Nhí" + mô tả: "Công cụ tra cứu quốc gia và lập sổ tay hành trình dành cho học sinh yêu địa lý, thích khám phá thế giới."
-2. "Trang web": Khám phá quốc gia, Sổ tay hành trình, Đăng nhập, Đăng ký (liên kết thật).
+2. "Trang web": Khám phá quốc gia, Sổ tay hành trình (chỉ hiện khi đã đăng nhập), Đăng nhập, Đăng ký (liên kết thật).
 3. "Nguồn dữ liệu": liên kết `https://restcountries.com` (mở tab mới, `rel="noopener"`).
 
 Dòng cuối: "© 2026 Atlas Nhí – Sản phẩm cuối khóa."
+
+`login.html` và `register.html` không có footer (xem mục 6.1).
 
 ### 6.3 Thông báo
 
@@ -191,7 +195,7 @@ Phiên: key `currentUser` = email của người đang đăng nhập (chuỗi).
 
 ### 7.2 Trang đăng ký (`register.html`) – ảnh `05`, `09`
 
-Bố cục CSS Grid 2 cột (1 cột trên mobile): trái là panel nền `--blue` chữ trắng (tiêu đề "Tạo sổ tay hành trình của riêng bạn", 3 ý có emoji: 🌏 Lưu bao nhiêu quốc gia tuỳ thích / 📝 Viết ghi chú cho từng điểm đến / 👤 Cập nhật hồ sơ bất cứ lúc nào, hàng 5 cờ tròn); phải là thẻ form trắng.
+Trang không có header/footer. Bố cục CSS Grid 2 cột (1 cột trên mobile), nền `--blue-soft` phủ kín màn hình (`min-height:100vh`); nội dung hai cột thẳng hàng với khung 1200px của header/footer (biến `--edge`). Trái là phần giới thiệu chữ `--ink`, ô emoji nền trắng (tiêu đề "Tạo sổ tay hành trình của riêng bạn", 3 ý có emoji: 🌏 Lưu bao nhiêu quốc gia tuỳ thích / 📝 Viết ghi chú cho từng điểm đến / 👤 Cập nhật hồ sơ bất cứ lúc nào, hàng 5 cờ tròn); phải là thẻ form trắng.
 
 Trường và validation (kiểm tra khi submit, hiện lỗi ngay dưới từng ô, xoá lỗi khi người dùng sửa). Cả 6 trường đều bắt buộc: nhãn có dấu `*` màu đỏ (`#D93025`, `aria-hidden="true"`) và ô nhập có thuộc tính `required` (form vẫn để `novalidate`, lỗi do JS hiển thị):
 
@@ -469,7 +473,7 @@ TAGS                                // hằng số bảng 5.3
 - [ ] Hồ sơ: sửa thông tin hiện thông báo thành công và cập nhật header; đổi mật khẩu đúng/sai; xoá tài khoản cần gõ đúng email, xoá xong không đăng nhập lại được bằng tài khoản đó và key `trips_<email>` biến mất.
 - [ ] Hai tài khoản khác nhau có sổ tay riêng; tải lại trang vẫn giữ dữ liệu và phiên.
 - [ ] Truy cập `wishlist.html` / `profile.html` khi chưa đăng nhập: bị chuyển tới `login.html?next=...`.
-- [ ] Mọi trang đúng ở 390px, 768px, 1440px, không cuộn ngang; cả 5 trang có header, main, footer.
+- [ ] Mọi trang đúng ở 390px, 768px, 1440px, không cuộn ngang; 3 trang chính có header, main, footer; trang đăng nhập/đăng ký có logo về trang chủ.
 - [ ] Không có lỗi trong Console; dữ liệu nhập từ người dùng luôn qua `escapeHtml` khi chèn vào HTML.
 
 ## 14. Ảnh thiết kế (thư mục `design/`)

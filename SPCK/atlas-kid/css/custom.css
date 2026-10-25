@@ -9,7 +9,7 @@
 /* ---------- 1. Biến màu ---------- */
 :root {
   --ink: #1F2A44;        /* chữ chính, footer */
-  --blue: #2F6FE0;       /* nút phụ, liên kết, khung auth */
+  --blue: #2F6FE0;       /* nút phụ, liên kết */
   --blue-dk: #1B4FA8;
   --blue-soft: #DCEBFF;
   --sun: #FFC93C;        /* nút chính (chữ màu --ink) */
@@ -779,22 +779,25 @@ fieldset legend.form-label { font-size: 15px; }
 .tag-option:has(input:focus-visible) { outline: 3px solid var(--blue); outline-offset: 2px; }
 
 /* ---------- 8. Đăng nhập / Đăng ký ---------- */
+
 .auth-layout {
+  /* Khoảng từ mép màn hình tới mép khung nội dung 1200px, để chữ thẳng hàng với logo và footer */
+  --edge: max(24px, calc((100vw - 1200px) / 2));
   display: grid;
   grid-template-columns: 1fr 1fr;
+  min-height: 100vh;               /* trang không có header/footer: nền phủ kín màn hình */
+  background: var(--blue-soft);
 }
+.auth-brand { margin-bottom: 40px; align-self: flex-start; text-decoration: none; }   /* logo = đường về trang chủ */
 .auth-panel {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 72px 64px;
-  background: var(--blue);
-  color: #fff;
+  padding: 72px 64px 72px var(--edge);
 }
 .auth-panel h1 {
   max-width: 480px;
   margin-bottom: 24px;
-  color: #fff;
   font-size: clamp(32px, 3.6vw, 46px);
 }
 .auth-points { list-style: none; padding: 0; margin: 0 0 28px; }
@@ -809,8 +812,9 @@ fieldset legend.form-label { font-size: 15px; }
   flex: none;
   width: 38px;
   height: 38px;
-  border-radius: 10px;
-  background: rgb(255 255 255 / .2);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 3px 0 rgb(31 42 68 / .08);
   display: grid;
   place-items: center;
 }
@@ -827,7 +831,7 @@ fieldset legend.form-label { font-size: 15px; }
 .auth-side {
   display: grid;
   place-items: center;
-  padding: 48px 24px;
+  padding: 48px var(--edge) 48px 48px;
 }
 .auth-card { width: 100%; max-width: 440px; padding: 32px 36px; }
 .auth-card.wide { max-width: 580px; }
@@ -1073,6 +1077,9 @@ fieldset legend.form-label { font-size: 15px; }
   .auth-layout { grid-template-columns: 1fr; }
   .globe-wrap { max-width: 380px; }
   .auth-panel { padding: 40px 24px; }
+  .auth-side { padding: 40px 24px; }
+  .auth-layout { align-content: center; }   /* không giãn 2 hàng khi trang cao hơn nội dung */
+  .auth-brand { margin-bottom: 24px; }
 }
 
 @media (max-width: 760px) {

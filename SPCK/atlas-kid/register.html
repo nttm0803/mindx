@@ -13,26 +13,12 @@
   <link href="css/custom.css" rel="stylesheet">
 </head>
 <body>
-  <!-- ==================== HEADER (đầu trang) – BẮT ĐẦU ====================
-       Header giống nhau ở cả 5 trang: sửa ở đây thì nhớ sửa cả 4 trang còn lại.
-       Ô #authArea (nút Đăng nhập/Đăng ký hoặc menu tài khoản) do js/storage.js tự điền. -->
-  <header class="site-header">
-    <nav class="navbar" aria-label="Điều hướng chính">
-      <div class="container header-inner">
-        <a class="navbar-brand brand" href="index.html"><span class="brand-logo" aria-hidden="true">🌍</span>Atlas Kid</a>
-        <ul class="navbar-nav main-nav">
-          <li class="nav-item"><a class="nav-link" href="index.html">Khám phá</a></li>
-          <li class="nav-item"><a class="nav-link" href="wishlist.html">Sổ tay hành trình</a></li>
-        </ul>
-        <div id="authArea" class="auth-area"></div>
-      </div>
-    </nav>
-  </header>
-  <!-- ==================== HEADER – KẾT THÚC ==================== -->
+  <!-- Trang đăng nhập / đăng ký không có header và footer: logo trong khối giới thiệu dùng để về trang chủ -->
 
   <!-- ==================== NỘI DUNG CHÍNH (main) – BẮT ĐẦU ==================== -->
   <main class="auth-layout">
     <section class="auth-panel">
+      <a class="brand auth-brand" href="index.html"><span class="brand-logo" aria-hidden="true">🌍</span>Atlas Kid</a>
       <h1>Tạo sổ tay hành trình của riêng bạn</h1>
       <ul class="auth-points">
         <li><span class="point-icon" aria-hidden="true">🌏</span>Lưu bao nhiêu quốc gia tuỳ thích</li>
@@ -94,35 +80,6 @@
     </section>
   </main>
   <!-- ==================== NỘI DUNG CHÍNH – KẾT THÚC ==================== -->
-
-  <!-- ==================== FOOTER (chân trang) – BẮT ĐẦU ====================
-       Footer giống nhau ở cả 5 trang: sửa ở đây thì nhớ sửa cả 4 trang còn lại. -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <p class="footer-brand">🌍 Atlas Kid</p>
-          <p class="mb-0">Công cụ tra cứu quốc gia và lập sổ tay hành trình dành cho học sinh yêu địa lý, thích khám phá thế giới.</p>
-        </div>
-        <nav aria-labelledby="footerPages">
-          <h2 class="footer-title" id="footerPages">Trang web</h2>
-          <ul class="footer-links">
-            <li><a href="index.html">Khám phá quốc gia</a></li>
-            <li><a href="wishlist.html">Sổ tay hành trình</a></li>
-          </ul>
-        </nav>
-        <div>
-          <h2 class="footer-title">Nguồn dữ liệu</h2>
-          <ul class="footer-links">
-            <li>REST Countries API</li>
-            <li><a href="https://restcountries.com" target="_blank" rel="noopener">restcountries.com</a></li>
-          </ul>
-        </div>
-      </div>
-      <p class="footer-copy">© 2026 Atlas Kid – Sản phẩm cuối khóa.</p>
-    </div>
-  </footer>
-  <!-- ==================== FOOTER – KẾT THÚC ==================== -->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/storage.js"></script>

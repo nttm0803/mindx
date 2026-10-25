@@ -342,6 +342,11 @@ function renderHeaderAuth() {
 
   const area = document.getElementById('authArea');
   const user = getCurrentUser();
+
+  // Link "Sổ tay hành trình" (header, footer) chỉ hiện khi đã đăng nhập
+  document.querySelectorAll('.needs-login').forEach(el => { el.hidden = !user; });
+
+  if (!area) return; // header bản gọn (đăng nhập / đăng ký) không có ô này
   if (!user) {
     area.innerHTML = `
       <a class="btn btn-outline-ink btn-sm-pill hide-mobile" href="login.html">Đăng nhập</a>
