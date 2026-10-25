@@ -26,9 +26,12 @@ khoa-hoc-web/
 ├── bai-05-display-responsive-flexbox/
 │   └── index.html + style.css         display, media queries, flexbox, thực hành ShopTeen
 ├── bai-06-framework-bootstrap/
-│   ├── index.html + style.css         Framework, Bootstrap (cần Internet), Web Design, Color Theory, Dog Social phần 1
-│   └── du-an-dog-social/              index.html = hướng dẫn 6 bước thực hành; buoc-1..6 = từng khối; hoan-chinh.html = bản đầy đủ
-└── website-gioi-thieu-ca-nhan/        Website tổng hợp cả khóa
+│   └── index.html + style.css         Framework, Bootstrap (cần Internet), Web Design, Color Theory, giới thiệu Dog Social phần 1
+├── bai-07-typography-phan-cap-ui/
+│   └── index.html + style.css         Typography & chọn font (Google Fonts), phân cấp, quản lý attention, thực hành thẻ sự kiện, ôn tập
+├── website-gioi-thieu-ca-nhan/        Website tổng hợp Bài 2 → 5
+└── du-an-dog-social/                  Dự án Bootstrap (Bài 6): index.html = hướng dẫn 6 bước (CSS: huong-dan.css);
+                                       buoc-1..6 = từng khối; hoan-chinh.html = bản đầy đủ; style.css = CSS của Dog Social
 ```
 
 ## Gợi ý dạy
@@ -36,4 +39,5 @@ khoa-hoc-web/
 - Bài 2 cố ý không có CSS – để học sinh cảm nhận "web thô" trước khi học CSS ở Bài 3.
 - Ký hiệu `⭐ NGOÀI BÀI HỌC` trong code = kiến thức mở rộng, không bắt buộc. Có thể dùng làm phần "bonus" cho học sinh khá.
 - Bài 5: nhấn F12 → Ctrl + Shift + M để học sinh xem trang trên giao diện điện thoại.
+- Bài 7 dùng Google Fonts (cần Internet) cho các ví dụ phông chữ; mục 4 có thẻ "Trước khi sửa" cố ý thiết kế sai để học sinh tìm lỗi.
 - Website tổng hợp dùng Google Fonts nên cần Internet để hiện đúng phông (không có mạng vẫn chạy bằng phông dự phòng).

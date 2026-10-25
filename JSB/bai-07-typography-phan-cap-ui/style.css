@@ -1,0 +1,447 @@
+/* =========================================================
+   BÀI 7 – TYPOGRAPHY, PHÂN CẤP BỐ CỤC, QUẢN LÝ ATTENTION
+   ========================================================= */
+
+/* ---------- KHUNG TRANG ---------- */
+body {
+    background-color: #E7F5FF;
+    /* Chính trang tài liệu này cũng áp dụng bài học: 1 phông sans-serif dễ đọc + phông dự phòng */
+    font-family: 'Be Vietnam Pro', Arial, sans-serif;
+    font-size: 16px;
+    color: #212529;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.trang {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2 { color: #1864AB; }
+h3     { color: #5F3DC4; }
+
+.muc-luc {
+    background-color: white;
+    padding: 12px;
+    border: 2px dashed #1864AB;
+}
+
+.phan {
+    background-color: white;
+    border: 2px solid #A5D8FF;
+    padding: 10px 25px 25px 25px;
+    margin-top: 30px;
+}
+
+pre {
+    background-color: #1E1E2E;
+    color: #A6E3A1;
+    font-family: 'Roboto Mono', Consolas, monospace;   /* code → phông monospace */
+    padding: 15px;
+    font-size: 14px;
+    overflow-x: auto;
+}
+
+code {
+    background-color: #F1F3F5;
+    font-family: 'Roboto Mono', Consolas, monospace;
+    padding: 2px 6px;
+    color: #C92A2A;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+}
+th, td {
+    border: 1px solid #ADB5BD;
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+}
+th { background-color: #D0EBFF; }
+
+.ghi-chu {
+    background-color: #FFF8E1;
+    border-left: 6px solid #FFC107;
+    padding: 10px 15px;
+    margin: 15px 0;
+}
+
+.luu-y {
+    background-color: #FFE3E3;
+    border-left: 6px solid #E03131;
+    padding: 10px 15px;
+    margin: 15px 0;
+}
+
+.khu-demo {
+    background-color: #F8F9FA;
+    border: 2px dashed #ADB5BD;
+    padding: 10px 15px;
+    margin: 10px 0;
+}
+
+.bai-tap {
+    background-color: #F3F0FF;
+    border: 2px solid #9775FA;
+    padding: 10px 20px;
+    margin-top: 15px;
+}
+
+.cuoi-trang {
+    text-align: center;
+    font-size: 20px;
+}
+
+/* ---------- KHỐI SO SÁNH TRƯỚC / SAU (Flexbox – Bài 5) ---------- */
+.hang-so-sanh {
+    display: flex;
+    gap: 16px;
+    margin: 10px 0;
+}
+.o-so-sanh {
+    flex: 1;
+    border: 2px dashed #ADB5BD;
+    padding: 10px 15px;
+}
+
+.nhan       { font-weight: 700; color: #5F3DC4; margin: 4px 0; }
+.nhan-sai   { color: #C92A2A; }
+.nhan-dung  { color: #2B8A3E; }
+
+/* =========================================================
+   PHẦN 1: TYPOGRAPHY
+   ========================================================= */
+
+/* 5 nhóm phông – mỗi phông đều có phông dự phòng cùng nhóm */
+.font-serif    { font-family: 'Lora', 'Times New Roman', serif; }
+.font-sans     { font-family: 'Be Vietnam Pro', Arial, sans-serif; }
+.font-display  { font-family: 'Baloo 2', 'Arial Black', sans-serif; font-weight: 800; }
+.font-viet-tay { font-family: 'Patrick Hand', 'Comic Sans MS', cursive; }
+.font-mono     { font-family: 'Roboto Mono', Consolas, monospace; }
+
+.hang-giong-noi {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+}
+.hang-giong-noi p {
+    font-size: 30px;
+    margin: 5px;
+}
+
+.cot-vd { font-size: 18px; }
+
+/* font-weight */
+.w-300 { font-weight: 300; }
+.w-400 { font-weight: 400; }
+.w-700 { font-weight: 700; }
+.w-900 { font-weight: 900; }
+
+/* line-height */
+.lh-chat   { line-height: 1; }
+.lh-thoang { line-height: 1.7; }
+
+/* Nhãn nhỏ IN HOA phía trên tiêu đề */
+.nhan-nho {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #1C7ED6;
+    margin: 0 0 4px 0;
+}
+
+/* Cặp phông */
+.hang-cap-font {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.the-cap-font {
+    flex: 1;
+    min-width: 220px;
+    border: 2px solid #D0EBFF;
+    padding: 12px 15px;
+}
+.tieu-de-cap {
+    font-size: 26px;
+    color: #212529;
+    margin: 0 0 6px 0;
+    line-height: 1.2;
+}
+
+.thang-co-chu p { margin: 4px 0; line-height: 1.3; }
+
+/* =========================================================
+   PHẦN 2: PHÂN CẤP
+   ========================================================= */
+
+/* Thẻ KHÔNG phân cấp: cùng cỡ, cùng màu, cùng độ đậm */
+.the-phang {
+    border: 1px solid #CED4DA;
+    padding: 15px;
+}
+.the-phang p { margin: 6px 0; }
+
+/* Thẻ CÓ phân cấp */
+.the-phan-cap {
+    border: 1px solid #CED4DA;
+    padding: 20px;
+}
+.pc-ngay {                         /* 2. phụ: nhỏ, xám, nằm TRÊN tiêu đề */
+    font-size: 13px;
+    color: #6C757D;
+    margin: 0;
+}
+.pc-tieu-de {                      /* 1. quan trọng nhất: to, đậm */
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin: 4px 0 10px 0;
+}
+.pc-mo-ta {                        /* 3. nội dung: cỡ thường */
+    color: #495057;
+    margin: 0 0 16px 0;
+}
+
+/* Kích thước */
+.kt-16 { font-size: 16px; margin: 4px 0; }
+.kt-18 { font-size: 18px; margin: 4px 0; }
+.kt-36 { font-size: 36px; margin: 4px 0; line-height: 1.2; }
+
+/* Sơ đồ chữ F */
+.so-do-f {
+    background-color: #F8F9FA;
+    padding: 12px;
+}
+.f-dong {
+    background-color: #FF922B;
+    height: 14px;
+    margin-bottom: 10px;
+}
+.f-dai  { width: 100%; }
+.f-vua  { width: 70%; }
+.f-ngan { width: 25%; }
+
+/* Sơ đồ chữ Z */
+.so-do-z {
+    background-color: #F8F9FA;
+    padding: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.z-diem {
+    background-color: #339AF0;
+    color: white;
+    font-weight: 700;
+    padding: 4px 10px;
+    width: 40%;
+    text-align: center;
+}
+.z-cheo {
+    width: 100%;
+    text-align: center;
+    font-size: 26px;
+    color: #FF922B;
+}
+.z-nut { background-color: #F76707; }
+
+/* Quy tắc gần gũi */
+.kc-deu { margin: 12px 0; }
+.nhom-sp { margin-bottom: 22px; }
+.nhom-sp p { margin: 0; }
+.gia { font-weight: 700; color: #E8590C; }
+
+/* Chấm tròn tương phản */
+.hang-o-tron {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    width: 220px;
+}
+.o-tron {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #A5D8FF;
+}
+.o-tron-nhan { background-color: #F76707; }
+
+/* =========================================================
+   PHẦN 3: ATTENTION – NÚT BẤM
+   ========================================================= */
+.hang-nut {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.nut {
+    display: inline-block;
+    padding: 10px 22px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 6px;
+}
+.nut-chinh {
+    background-color: #F76707;
+    color: white;
+    border: 2px solid #F76707;
+}
+.nut-phu {
+    background-color: white;
+    color: #1971C2;
+    border: 2px solid #1971C2;
+}
+.nut-chu {
+    background-color: transparent;
+    color: #6C757D;
+    border: 2px solid transparent;
+}
+
+/* ⭐ NGOÀI BÀI HỌC: :hover – đổi màu khi rê chuột (phản hồi cho người dùng) */
+.nut-chinh:hover { background-color: #D9480F; border-color: #D9480F; }
+.nut-phu:hover   { background-color: #E7F5FF; }
+.nut-chu:hover   { color: #212529; }
+
+/* Bảng giá – hiệu ứng Von Restorff */
+.bang-gia {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 10px 0;
+}
+.goi {
+    flex: 1;
+    text-align: center;
+    border: 2px solid #DEE2E6;
+    padding: 15px;
+}
+.goi-noi-bat {
+    border: 3px solid #F76707;
+    background-color: #FFF4E6;
+    padding: 30px 15px;       /* cao hơn 2 gói bên cạnh */
+}
+.ten-goi { font-weight: 700; color: #495057; margin: 0; }
+.gia-goi { font-size: 32px; font-weight: 900; margin: 4px 0; }
+.nhan-goi {
+    background-color: #F76707;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 2px 8px;
+    display: inline-block;
+    margin: 0 0 8px 0;
+}
+
+/* Thông báo theo ý nghĩa màu */
+.thong-bao {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-left: 6px solid;
+}
+.tb-thanh-cong { background-color: #EBFBEE; border-color: #2F9E44; color: #2B8A3E; }
+.tb-loi        { background-color: #FFF5F5; border-color: #E03131; color: #C92A2A; }
+
+/* Banner "mọi thứ đều hét" – CỐ Ý thiết kế sai */
+.banner-on-ao {
+    background-color: #FFEC99;
+    padding: 12px;
+    text-align: center;
+}
+.bo-1 { font-family: 'Patrick Hand', cursive; font-size: 30px; color: #E03131; font-weight: 700; margin: 0; }
+.bo-2 { font-family: 'Baloo 2', sans-serif; font-size: 30px; color: #7048E8; font-weight: 800; margin: 0; }
+.bo-3 { font-family: 'Lora', serif; font-size: 28px; color: #2F9E44; font-weight: 700; margin: 0 0 10px 0; }
+.bo-nut-1 { background-color: #E03131; color: white; }
+.bo-nut-2 { background-color: #7048E8; color: white; }
+.bo-nut-3 { background-color: #2F9E44; color: white; }
+.banner-on-ao .hang-nut { justify-content: center; }
+
+/* Banner gọn – 1 thông điệp, 1 nút chính */
+.banner-gon {
+    background-color: #E7F5FF;
+    padding: 20px;
+}
+.bg-tieu-de {
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin: 0 0 8px 0;
+}
+.bg-mo-ta { color: #495057; margin: 0 0 14px 0; }
+
+/* =========================================================
+   PHẦN 4: THỰC HÀNH
+   ========================================================= */
+
+/* Thẻ sự kiện LỖI – CỐ Ý thiết kế sai để học sinh tìm lỗi */
+.su-kien-loi {
+    background-color: #FFFFFF;
+    border: 1px solid #CED4DA;
+    padding: 5px;
+    text-align: center;
+}
+.skl-1 { font-family: 'Lora', serif; font-size: 26px; font-weight: 700; color: #E03131; margin: 0; }
+.skl-2 { font-family: 'Baloo 2', sans-serif; font-size: 17px; margin: 0; }
+.skl-3 { font-family: 'Patrick Hand', cursive; font-size: 13px; color: #CED4DA; line-height: 1; margin: 2px 0; }
+.skl-nut {
+    background-color: #E03131;
+    color: white;
+    padding: 4px 10px;
+}
+.su-kien-loi .hang-nut { justify-content: center; gap: 2px; }
+
+/* Thẻ sự kiện TỐT */
+.su-kien-tot {
+    border: 1px solid #CED4DA;
+    padding: 22px;
+}
+.skt-tieu-de {
+    font-family: 'Baloo 2', 'Arial Black', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0 0 8px 0;
+}
+.skt-mo-ta {
+    color: #495057;
+    line-height: 1.6;
+    margin: 0 0 16px 0;
+}
+
+details { margin-top: 10px; }
+summary { cursor: pointer; }
+
+/* =========================================================
+   PHẦN 5: ÔN TẬP
+   ========================================================= */
+.cau-hoi {
+    border: 2px solid #D0EBFF;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+}
+.cau-hoi summary { font-weight: 700; }
+.cau-hoi p { margin: 8px 0 0 0; color: #2B8A3E; }
+
+/* =========================================================
+   RESPONSIVE (Bài 5): điện thoại xếp các khối so sánh thành cột
+   ========================================================= */
+@media (max-width: 768px) {
+    .hang-so-sanh,
+    .bang-gia {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .phan { padding: 10px 15px 20px 15px; }
+    table { font-size: 14px; display: block; overflow-x: auto; }   /* bảng rộng thì cuộn ngang */
+    .hang-giong-noi p { font-size: 24px; }
+}

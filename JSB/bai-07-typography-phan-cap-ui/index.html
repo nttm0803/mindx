@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 7 - Typography, Phân cấp, Attention</title>
+    <!-- Google Fonts: tải 5 phông dùng làm ví dụ (cần Internet).
+         Không có mạng thì trình duyệt dùng phông dự phòng ghi sau dấu phẩy trong font-family. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;700;900&family=Lora:wght@400;700&family=Baloo+2:wght@600;800&family=Patrick+Hand&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="trang">
+        <p><a href="../index.html">⬅ Về trang chủ khóa học</a></p>
+        <h1>🔤 Bài 7: Typography, Phân cấp bố cục và Quản lý "Attention"</h1>
+        <p>
+            Ở Bài 6 em đã học chọn <b>màu</b>. Bài này học 2 "vũ khí" còn lại của người thiết kế:
+            <b>chữ</b> (typography) và <b>cách sắp xếp</b> (phân cấp) – để người xem nhìn đúng chỗ em muốn họ nhìn.
+        </p>
+
+        <p class="muc-luc">
+            <a href="#typography">1. Typography &amp; chọn font</a> |
+            <a href="#phan-cap">2. Phân cấp: kích thước, vị trí, màu sắc</a> |
+            <a href="#attention">3. Quản lý Attention</a> |
+            <a href="#thuc-hanh">4. Thực hành</a> |
+            <a href="#on-tap">5. Ôn tập</a>
+        </p>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 1: TYPOGRAPHY                                 -->
+        <!-- ================================================= -->
+        <div class="phan" id="typography">
+            <h2>1. Giới thiệu về Typography và cách chọn Font chữ</h2>
+
+            <h3>1.1. Typography là gì?</h3>
+            <p>
+                <b>Typography</b> (nghệ thuật trình bày chữ) là cách chọn <b>phông chữ</b>, <b>cỡ chữ</b>, <b>độ đậm</b>,
+                <b>khoảng cách</b> để chữ vừa <b>dễ đọc</b> vừa <b>đúng cảm xúc</b>.
+            </p>
+            <p>🧠 <b>Dễ hiểu:</b> Phông chữ giống như <b>giọng nói</b> của trang web. Cùng một câu "Chào em!" –
+               thầy giáo nói khác, bạn thân nói khác, MC nói khác. Chữ cũng vậy:</p>
+            <div class="khu-demo hang-giong-noi">
+                <p class="font-serif">Chào em!</p>
+                <p class="font-sans">Chào em!</p>
+                <p class="font-display">Chào em!</p>
+                <p class="font-viet-tay">Chào em!</p>
+                <p class="font-mono">Chào em!</p>
+            </div>
+            <p class="ghi-chu">💡 Web có khoảng <b>90% là chữ</b>. Chữ xấu, khó đọc thì màu đẹp mấy người xem cũng bỏ đi.</p>
+
+            <h3>1.2. Các nhóm phông chữ</h3>
+            <table>
+                <tr><th>Nhóm</th><th>Đặc điểm</th><th>Cảm giác</th><th>Dùng cho</th><th>Ví dụ</th></tr>
+                <tr>
+                    <td><b>Serif</b> (có chân)</td>
+                    <td>Nét chữ có "chân" nhỏ ở đầu nét</td>
+                    <td>Cổ điển, trang trọng, tin cậy</td>
+                    <td>Báo, sách, trang văn học, tiêu đề sang trọng</td>
+                    <td class="font-serif cot-vd">Lora, Times New Roman</td>
+                </tr>
+                <tr>
+                    <td><b>Sans-serif</b> (không chân)</td>
+                    <td>Nét chữ trơn, gọn</td>
+                    <td>Hiện đại, rõ ràng, thân thiện</td>
+                    <td><b>Nội dung chính</b> trên web, app (dễ đọc trên màn hình)</td>
+                    <td class="font-sans cot-vd">Be Vietnam Pro, Arial</td>
+                </tr>
+                <tr>
+                    <td><b>Display</b> (trang trí)</td>
+                    <td>Dáng đặc biệt, đậm, tròn, cá tính</td>
+                    <td>Vui nhộn, gây chú ý</td>
+                    <td><b>Chỉ</b> tiêu đề lớn, logo, banner</td>
+                    <td class="font-display cot-vd">Baloo 2</td>
+                </tr>
+                <tr>
+                    <td><b>Handwriting</b> (viết tay)</td>
+                    <td>Giống chữ viết bằng bút</td>
+                    <td>Gần gũi, dễ thương</td>
+                    <td>Lời nhắn, chữ ký, điểm nhấn nhỏ</td>
+                    <td class="font-viet-tay cot-vd">Patrick Hand</td>
+                </tr>
+                <tr>
+                    <td><b>Monospace</b> (đều ô)</td>
+                    <td>Mọi chữ rộng bằng nhau</td>
+                    <td>Kỹ thuật, "dân code"</td>
+                    <td>Hiển thị code</td>
+                    <td class="font-mono cot-vd">Roboto Mono, Consolas</td>
+                </tr>
+            </table>
+
+            <h3>1.3. Các thuộc tính CSS cho chữ</h3>
+            <table>
+                <tr><th>Thuộc tính</th><th>Tác dụng</th><th>Giá trị hay dùng</th></tr>
+                <tr><td><code>font-family</code></td><td>Chọn phông</td><td><code>'Be Vietnam Pro', Arial, sans-serif</code></td></tr>
+                <tr><td><code>font-size</code></td><td>Cỡ chữ</td><td>Nội dung <code>16px</code>–<code>18px</code></td></tr>
+                <tr><td><code>font-weight</code></td><td>Độ đậm</td><td><code>300</code> mảnh, <code>400</code> thường, <code>700</code> đậm, <code>900</code> rất đậm</td></tr>
+                <tr><td><code>line-height</code></td><td>Khoảng cách giữa các dòng</td><td><code>1.5</code>–<code>1.7</code> cho đoạn văn</td></tr>
+                <tr><td><code>letter-spacing</code></td><td>Khoảng cách giữa các chữ cái</td><td><code>1px</code>–<code>2px</code> cho chữ IN HOA nhỏ</td></tr>
+                <tr><td><code>text-transform</code></td><td>Đổi kiểu hoa/thường</td><td><code>uppercase</code> (IN HOA)</td></tr>
+                <tr><td><code>text-align</code></td><td>Căn lề</td><td><code>left</code> cho đoạn dài, <code>center</code> cho tiêu đề ngắn</td></tr>
+            </table>
+
+            <h4>🧪 Xem tận mắt: font-weight</h4>
+            <div class="khu-demo font-sans">
+                <p class="w-300">300 – Mảnh: Học lập trình thật vui</p>
+                <p class="w-400">400 – Thường: Học lập trình thật vui</p>
+                <p class="w-700">700 – Đậm: Học lập trình thật vui</p>
+                <p class="w-900">900 – Rất đậm: Học lập trình thật vui</p>
+            </div>
+
+            <h4>🧪 Xem tận mắt: line-height</h4>
+            <div class="hang-so-sanh">
+                <div class="o-so-sanh">
+                    <p class="nhan nhan-sai">❌ line-height: 1 – dòng dính chùm</p>
+                    <p class="lh-chat">Lập trình web giúp em tự tạo ra trang giới thiệu bản thân, blog, cửa hàng online. Chỉ cần HTML và CSS là em đã làm được rất nhiều thứ thú vị.</p>
+                </div>
+                <div class="o-so-sanh">
+                    <p class="nhan nhan-dung">✅ line-height: 1.7 – dễ đọc</p>
+                    <p class="lh-thoang">Lập trình web giúp em tự tạo ra trang giới thiệu bản thân, blog, cửa hàng online. Chỉ cần HTML và CSS là em đã làm được rất nhiều thứ thú vị.</p>
+                </div>
+            </div>
+
+            <h4>🧪 Xem tận mắt: letter-spacing + text-transform</h4>
+            <div class="khu-demo">
+                <p class="nhan-nho">Khóa học mới</p>
+                <p>↑ Dòng chữ nhỏ IN HOA, giãn chữ – hay đặt <b>phía trên tiêu đề</b> để giới thiệu chủ đề.</p>
+            </div>
+<pre>
+.nhan-nho {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;   /* chữ IN HOA, không cần gõ lại nội dung */
+    letter-spacing: 2px;         /* giãn chữ cho dễ đọc khi chữ nhỏ */
+    color: #1C7ED6;
+}
+</pre>
+
+            <h3>1.4. Font dự phòng (font stack)</h3>
+            <p>Nếu máy người xem <b>không có</b> phông em chọn, trình duyệt sẽ thử phông tiếp theo trong danh sách:</p>
+<pre>
+body {
+    /*            phông chính        dự phòng 1   nhóm chung (luôn có) */
+    font-family: 'Be Vietnam Pro',   Arial,       sans-serif;
+}
+</pre>
+            <ul>
+                <li>Tên phông có <b>dấu cách</b> → đặt trong dấu nháy: <code>'Be Vietnam Pro'</code>.</li>
+                <li>Luôn kết thúc bằng tên nhóm: <code>serif</code>, <code>sans-serif</code> hoặc <code>monospace</code>.</li>
+            </ul>
+
+            <h3>1.5. Dùng Google Fonts trong 3 bước</h3>
+            <ol>
+                <li>Vào <a href="https://fonts.google.com" target="_blank">fonts.google.com</a>, gõ <b>"Tiếng Việt"</b> vào ô xem trước để kiểm tra phông có hiện đủ dấu không.
+                    Ở bộ lọc <b>Language</b>, chọn <b>Vietnamese</b>.</li>
+                <li>Chọn phông → nhấn <b>Get font</b> → <b>Get embed code</b> → chọn các độ đậm cần dùng (ví dụ 400, 700) → copy đoạn <code>&lt;link&gt;</code>.</li>
+                <li>Dán vào <code>&lt;head&gt;</code> <b>trước</b> file <code>style.css</code>, rồi dùng tên phông trong CSS.</li>
+            </ol>
+<pre>
+&lt;head&gt;
+    &lt;link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700&amp;display=swap" rel="stylesheet"&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+
+/* style.css */
+body { font-family: 'Be Vietnam Pro', Arial, sans-serif; }
+</pre>
+            <p class="ghi-chu">⚠ Phông không hỗ trợ tiếng Việt sẽ làm chữ có dấu bị "lệch phông": chữ <b>ộ, ữ, ằ</b> hiện bằng phông khác, trông rất lỗi. Luôn thử với câu có nhiều dấu: <i>"Trường học, người bạn, những ước mơ"</i>.</p>
+
+            <h4>Phông Google Fonts hỗ trợ tiếng Việt tốt</h4>
+            <table>
+                <tr><th>Nhóm</th><th>Gợi ý</th></tr>
+                <tr><td>Sans-serif (nội dung)</td><td>Be Vietnam Pro, Roboto, Montserrat, Nunito, Inter</td></tr>
+                <tr><td>Serif (trang trọng)</td><td>Lora, Playfair Display, Noto Serif</td></tr>
+                <tr><td>Display (tiêu đề vui)</td><td>Baloo 2, Lobster, Pacifico</td></tr>
+                <tr><td>Viết tay</td><td>Patrick Hand, Dancing Script</td></tr>
+            </table>
+
+            <h3>1.6. Cách chọn font chữ – 5 quy tắc</h3>
+            <ol>
+                <li><b>Chọn theo cảm xúc:</b> trang muốn người xem thấy gì? Nghiêm túc → serif/sans-serif gọn. Vui nhộn → display tròn đậm.</li>
+                <li><b>Dễ đọc trước, đẹp sau:</b> đoạn văn dài luôn dùng sans-serif (hoặc serif) rõ ràng, <b>không</b> dùng phông trang trí.</li>
+                <li><b>Tối đa 2 phông:</b> 1 phông cho tiêu đề + 1 phông cho nội dung. Muốn khác biệt hơn thì đổi <b>cỡ và độ đậm</b>, không thêm phông.</li>
+                <li><b>Phải có tiếng Việt:</b> kiểm tra trên Google Fonts như ở mục 1.5.</li>
+                <li><b>Cỡ chữ đủ lớn:</b> nội dung ít nhất <b>16px</b>, chữ phụ không nhỏ hơn 13px.</li>
+            </ol>
+
+            <h4>Cặp phông "ăn ý" (tiêu đề + nội dung)</h4>
+            <div class="hang-cap-font">
+                <div class="the-cap-font">
+                    <p class="nhan-nho">Trang trọng</p>
+                    <h4 class="font-serif tieu-de-cap">Câu chuyện của tôi</h4>
+                    <p class="font-sans">Lora (tiêu đề) + Be Vietnam Pro (nội dung). Hợp blog, trang giới thiệu.</p>
+                </div>
+                <div class="the-cap-font">
+                    <p class="nhan-nho">Vui nhộn</p>
+                    <h4 class="font-display tieu-de-cap">Dog Social 🐶</h4>
+                    <p class="font-sans">Baloo 2 (tiêu đề) + Be Vietnam Pro (nội dung). Hợp web thú cưng, trẻ em, game.</p>
+                </div>
+                <div class="the-cap-font">
+                    <p class="nhan-nho">Hiện đại</p>
+                    <h4 class="font-sans w-900 tieu-de-cap">Ra mắt sản phẩm</h4>
+                    <p class="font-sans w-300">Be Vietnam Pro 900 + Be Vietnam Pro 300. Chỉ 1 phông, đổi độ đậm!</p>
+                </div>
+            </div>
+
+            <h3>1.7. Thang cỡ chữ (type scale)</h3>
+            <p>Đừng chọn cỡ chữ "tùy hứng" (17px, 23px, 29px…). Hãy chọn <b>trước</b> một bộ cỡ và dùng lại cho cả trang:</p>
+            <div class="khu-demo font-sans thang-co-chu">
+                <p style="font-size: 40px;"><b>40px</b> – Tiêu đề trang (h1)</p>
+                <p style="font-size: 28px;"><b>28px</b> – Tiêu đề phần (h2)</p>
+                <p style="font-size: 22px;"><b>22px</b> – Tiêu đề nhỏ (h3)</p>
+                <p style="font-size: 16px;"><b>16px</b> – Nội dung (p)</p>
+                <p style="font-size: 13px;"><b>13px</b> – Chú thích, ngày tháng</p>
+            </div>
+            <p class="ghi-chu">ℹ Phần này dùng inline style để em dễ nhìn cỡ chữ ngay trong HTML. Khi làm dự án thật, hãy viết vào file CSS nhé.</p>
+
+            <div class="luu-y">
+                ⚠ <b>Lỗi typography hay gặp:</b>
+                <ul>
+                    <li>Dùng 4–5 phông khác nhau trên 1 trang → rối như "tờ rơi quảng cáo".</li>
+                    <li>Cả đoạn văn dài viết IN HOA hoặc dùng phông viết tay → rất mỏi mắt.</li>
+                    <li>Chữ xám nhạt trên nền trắng, chữ quá nhỏ (12px trở xuống) → khó đọc.</li>
+                    <li>Căn giữa (<code>center</code>) cả đoạn văn dài → mắt khó tìm đầu dòng.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 2: PHÂN CẤP (VISUAL HIERARCHY)                -->
+        <!-- ================================================= -->
+        <div class="phan" id="phan-cap">
+            <h2>2. Quy tắc phân cấp trong bố cục: Kích thước, Vị trí &amp; Màu sắc</h2>
+
+            <h3>2.1. Phân cấp (Visual hierarchy) là gì?</h3>
+            <p>
+                <b>Phân cấp</b> là sắp xếp để người xem biết <b>cái gì quan trọng nhất</b>, cái gì xem sau.
+                Thiết kế tốt sẽ "chỉ đường" cho mắt: <b>nhìn 1 → nhìn 2 → nhìn 3</b>.
+            </p>
+            <p>🧠 <b>Dễ hiểu:</b> Trang báo luôn có <b>tít lớn</b> ở trên cùng, rồi đến tít nhỏ, rồi mới đến bài viết.
+               Không ai in tất cả bằng cùng 1 cỡ chữ cả!</p>
+
+            <h4>🧪 So sánh: không phân cấp và có phân cấp</h4>
+            <div class="hang-so-sanh">
+                <div class="o-so-sanh">
+                    <p class="nhan nhan-sai">❌ Mọi thứ bằng nhau – không biết đọc gì trước</p>
+                    <div class="the-phang">
+                        <p>Hội chợ Khoa học 2026</p>
+                        <p>Thứ Bảy, 15/11 · Nhà thi đấu trường</p>
+                        <p>Hơn 40 dự án robot, game và ứng dụng do học sinh tự làm.</p>
+                        <p>Đăng ký tham gia</p>
+                    </div>
+                </div>
+                <div class="o-so-sanh">
+                    <p class="nhan nhan-dung">✅ Có phân cấp – mắt đi theo thứ tự 1 → 4</p>
+                    <div class="the-phan-cap">
+                        <p class="pc-ngay">Thứ Bảy, 15/11 · Nhà thi đấu trường</p>
+                        <p class="pc-tieu-de">Hội chợ Khoa học 2026</p>
+                        <p class="pc-mo-ta">Hơn 40 dự án robot, game và ứng dụng do học sinh tự làm.</p>
+                        <a href="#" class="nut nut-chinh">Đăng ký tham gia</a>
+                    </div>
+                </div>
+            </div>
+            <p>Cả 2 thẻ có <b>cùng nội dung</b>. Thẻ bên phải chỉ đổi 3 thứ: <b>kích thước</b>, <b>vị trí</b>, <b>màu sắc</b>. Cùng xem từng thứ nhé.</p>
+
+            <h3>2.2. Kích thước – To hơn = quan trọng hơn</h3>
+            <ul>
+                <li>Mắt luôn nhìn vào thứ <b>to nhất</b> trước tiên.</li>
+                <li>Tiêu đề chính nên to <b>gấp 2–3 lần</b> chữ nội dung. Chênh lệch ít quá (18px và 16px) thì mắt không thấy khác.</li>
+                <li>Ngoài cỡ chữ, <b>độ đậm</b> (<code>font-weight</code>) cũng làm chữ "to" hơn trong mắt người xem.</li>
+                <li>Ảnh và nút bấm quan trọng cũng nên lớn hơn các thứ xung quanh.</li>
+            </ul>
+            <div class="hang-so-sanh">
+                <div class="o-so-sanh">
+                    <p class="nhan nhan-sai">❌ Chênh lệch quá ít</p>
+                    <p class="kt-18"><b>Tiêu đề 18px</b></p>
+                    <p class="kt-16">Nội dung 16px. Tiêu đề và nội dung gần như giống nhau.</p>
+                </div>
+                <div class="o-so-sanh">
+                    <p class="nhan nhan-dung">✅ Chênh lệch rõ ràng</p>
+                    <p class="kt-36"><b>Tiêu đề 36px</b></p>
+                    <p class="kt-16">Nội dung 16px. Nhìn là biết đâu là tiêu đề.</p>
+                </div>
+            </div>
+
+            <h3>2.3. Vị trí – Trên và trái được nhìn trước</h3>
+            <p>Người Việt đọc từ <b>trái sang phải, trên xuống dưới</b>, nên mắt thường đi theo 2 đường:</p>
+            <div class="hang-so-sanh">
+                <div class="o-so-sanh">
+                    <p class="nhan">Đường chữ F – trang nhiều chữ (blog, tin tức, kết quả tìm kiếm)</p>
+                    <div class="so-do-f">
+                        <div class="f-dong f-dai"></div>
+                        <div class="f-dong f-vua"></div>
+                        <div class="f-dong f-ngan"></div>
+                        <div class="f-dong f-ngan"></div>
+                    </div>
+                    <p>→ Đặt thông tin quan trọng ở <b>đầu dòng</b> và <b>đầu trang</b>.</p>
+                </div>
+                <div class="o-so-sanh">
+                    <p class="nhan">Đường chữ Z – trang ít chữ (trang chủ, quảng cáo)</p>
+                    <div class="so-do-z">
+                        <span class="z-diem">1 Logo</span><span class="z-diem">2 Menu</span>
+                        <span class="z-cheo">↙</span>
+                        <span class="z-diem">3 Nội dung</span><span class="z-diem z-nut">4 Nút</span>
+                    </div>
+                    <p>→ Nút bấm đặt ở <b>cuối đường Z</b>, nơi mắt dừng lại.</p>
+                </div>
+            </div>
+            <ul>
+                <li><b>Trên cùng</b> và <b>bên trái</b> là vị trí "vàng" – đặt logo, tiêu đề, thông tin chính.</li>
+                <li><b>Ở giữa</b> và <b>bị khoảng trắng bao quanh</b> → rất nổi bật (hay dùng cho nút đăng ký, ô tìm kiếm).</li>
+                <li><b>Gần nhau = liên quan nhau</b> (quy tắc gần gũi): ảnh, tên, giá của 1 sản phẩm phải nằm sát nhau; giữa các sản phẩm để khoảng cách lớn hơn.</li>
+            </ul>
+            <div class="hang-so-sanh">
+                <div class="o-so-sanh">
+                    <p class="nhan nhan-sai">❌ Khoảng cách đều nhau – không rõ tên nào đi với giá nào</p>
+                    <div class="khu-demo">
+                        <p class="kc-deu">🎒 Balo đi học</p><p class="kc-deu">250.000đ</p>
+                        <p class="kc-deu">🎧 Tai nghe</p><p class="kc-deu">390.000đ</p>
+                    </div>
+                </div>
+                <div class="o-so-sanh">
+                    <p class="nhan nhan-dung">✅ Nhóm gần nhau – rõ ràng từng sản phẩm</p>
+                    <div class="khu-demo">
+                        <div class="nhom-sp"><p>🎒 Balo đi học</p><p class="gia">250.000đ</p></div>
+                        <div class="nhom-sp"><p>🎧 Tai nghe</p><p class="gia">390.000đ</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>2.4. Màu sắc – Đậm, sáng, tương phản thì nổi</h3>
+            <ul>
+                <li>Mắt bị hút vào chỗ <b>khác biệt</b> nhất: 1 nút cam giữa trang xanh, 1 chữ đậm giữa đoạn văn.</li>
+                <li><b>Nội dung chính:</b> màu đậm (gần đen, ví dụ <code>#212529</code>). <b>Thông tin phụ</b> (ngày, chú thích): màu xám vừa (<code>#6C757D</code>).</li>
+                <li>Màu <b>nhấn</b> (10% trong quy tắc 60-30-10 ở Bài 6) chỉ dành cho thứ quan trọng nhất.</li>
+                <li><b>Ý nghĩa màu quen thuộc:</b> đỏ = lỗi/nguy hiểm, xanh lá = thành công, vàng = cảnh báo. Đừng dùng ngược!</li>
+            </ul>
+            <div class="khu-demo">
+                <div class="hang-o-tron">
+                    <span class="o-tron"></span><span class="o-tron"></span><span class="o-tron"></span>
+                    <span class="o-tron"></span><span class="o-tron o-tron-nhan"></span><span class="o-tron"></span>
+                    <span class="o-tron"></span><span class="o-tron"></span><span class="o-tron"></span>
+                </div>
+                <p>👀 Em nhìn thấy chấm nào <b>đầu tiên</b>? Đó chính là sức mạnh của màu sắc tương phản.</p>
+            </div>
+
+            <h3>2.5. Mẹo kiểm tra: "Nheo mắt"</h3>
+            <p class="ghi-chu">
+                😑 Nheo mắt lại (hoặc lùi xa màn hình) cho mọi thứ mờ đi. Thứ em <b>vẫn còn thấy rõ</b> chính là thứ nổi nhất.
+                Nếu đó <b>không phải</b> thứ quan trọng nhất → cần chỉnh lại kích thước, vị trí hoặc màu.
+            </p>
+
+            <h3>📋 Tóm tắt phân cấp</h3>
+            <table>
+                <tr><th>Công cụ</th><th>Muốn NỔI hơn</th><th>Muốn CHÌM hơn</th><th>CSS</th></tr>
+                <tr><td>Kích thước</td><td>To, đậm</td><td>Nhỏ, mảnh</td><td><code>font-size</code>, <code>font-weight</code>, <code>width</code></td></tr>
+                <tr><td>Vị trí</td><td>Trên cùng, bên trái, ở giữa, nhiều khoảng trắng xung quanh</td><td>Phía dưới, góc, sát các thứ khác</td><td><code>margin</code>, <code>padding</code>, flexbox</td></tr>
+                <tr><td>Màu sắc</td><td>Màu nhấn, đậm, tương phản với nền</td><td>Xám, nhạt, gần màu nền</td><td><code>color</code>, <code>background-color</code></td></tr>
+            </table>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 3: QUẢN LÝ ATTENTION                          -->
+        <!-- ================================================= -->
+        <div class="phan" id="attention">
+            <h2>3. Quản lý "ATTENTION" với thiết kế giao diện người dùng (UI) hiệu quả</h2>
+
+            <h3>3.1. Attention – sự chú ý – là thứ có hạn</h3>
+            <p>
+                Người xem chỉ mất <b>vài giây</b> để quyết định ở lại hay rời trang. Sự chú ý giống như
+                <b>tiền tiêu vặt</b> 💰: có hạn, mỗi thứ nổi bật trên trang sẽ "tiêu" một ít.
+            </p>
+            <p>🧠 <b>Dễ hiểu:</b> Nếu cả lớp cùng giơ tay hét "Em! Em!" thì thầy cô không nghe được ai.
+               Nếu mọi thứ trên trang đều to, đỏ, đậm → <b>không có gì nổi bật cả</b>.</p>
+
+            <h3>3.2. Quy tắc 1: Mỗi màn hình có 1 mục tiêu chính</h3>
+            <p>Trước khi thiết kế, tự hỏi: <b>"Mình muốn người xem LÀM GÌ ở trang này?"</b> (đăng ký, mua hàng, đọc bài…).
+               Hành động đó gọi là <b>CTA</b> (Call To Action – lời kêu gọi hành động), và nó phải là thứ nổi nhất.</p>
+
+            <h3>3.3. Quy tắc 2: Phân loại nút bấm theo mức độ quan trọng</h3>
+            <div class="khu-demo hang-nut">
+                <a href="#" class="nut nut-chinh">Đăng ký ngay</a>
+                <a href="#" class="nut nut-phu">Xem chi tiết</a>
+                <a href="#" class="nut nut-chu">Để sau</a>
+            </div>
+            <table>
+                <tr><th>Loại nút</th><th>Kiểu dáng</th><th>Số lượng</th><th>Ví dụ</th></tr>
+                <tr><td><b>Nút chính</b> (primary)</td><td>Nền màu nhấn đậm, chữ trắng</td><td><b>Chỉ 1</b> trên mỗi khu vực</td><td>Đăng ký, Mua ngay, Gửi</td></tr>
+                <tr><td><b>Nút phụ</b> (secondary)</td><td>Chỉ có viền, nền trắng</td><td>Vài nút</td><td>Xem chi tiết, Quay lại</td></tr>
+                <tr><td><b>Nút chữ</b> (text link)</td><td>Chỉ có chữ, không viền</td><td>Tùy ý</td><td>Để sau, Hủy, Bỏ qua</td></tr>
+            </table>
+<pre>
+.nut-chinh { background-color: #F76707; color: white; border: 2px solid #F76707; }
+.nut-phu   { background-color: white;   color: #1971C2; border: 2px solid #1971C2; }
+.nut-chu   { background-color: transparent; color: #6C757D; border: 2px solid transparent; }
+</pre>
+
+            <h3>3.4. Quy tắc 3: Làm nổi bằng sự khác biệt (hiệu ứng Von Restorff)</h3>
+            <p>Thứ <b>khác hẳn</b> những thứ xung quanh sẽ được nhớ và chú ý nhất. Ví dụ bảng giá: gói muốn bán nhất được làm khác đi.</p>
+            <div class="bang-gia">
+                <div class="goi">
+                    <p class="ten-goi">Cơ bản</p>
+                    <p class="gia-goi">0đ</p>
+                    <p>5 bài học</p>
+                    <a href="#" class="nut nut-phu">Chọn</a>
+                </div>
+                <div class="goi goi-noi-bat">
+                    <p class="nhan-goi">⭐ Phổ biến nhất</p>
+                    <p class="ten-goi">Học sinh</p>
+                    <p class="gia-goi">99k</p>
+                    <p>Toàn bộ khóa học</p>
+                    <a href="#" class="nut nut-chinh">Chọn</a>
+                </div>
+                <div class="goi">
+                    <p class="ten-goi">Lớp học</p>
+                    <p class="gia-goi">499k</p>
+                    <p>30 học sinh</p>
+                    <a href="#" class="nut nut-phu">Chọn</a>
+                </div>
+            </div>
+            <p>Gói giữa khác biệt nhờ: <b>viền màu nhấn</b>, <b>nhãn "Phổ biến nhất"</b>, <b>nút chính</b> (2 gói kia là nút phụ) – kết hợp cả kích thước, vị trí (ở giữa) và màu sắc.</p>
+
+            <h3>3.5. Quy tắc 4: Giảm "nhiễu"</h3>
+            <ul>
+                <li>Bỏ bớt thứ không cần thiết: mỗi thứ thêm vào đều "cướp" một ít sự chú ý.</li>
+                <li>Dùng <b>khoảng trắng</b> (<code>padding</code>, <code>margin</code>) để tách các khu vực – trang thoáng thì mắt dễ tìm thứ quan trọng.</li>
+                <li>Không dùng chữ nhấp nháy, quá nhiều popup, quá nhiều màu chói, quá nhiều chữ IN HOA.</li>
+            </ul>
+
+            <h3>3.6. Quy tắc 5: Dẫn hướng mắt nhìn</h3>
+            <ul>
+                <li><b>Mũi tên, đường kẻ</b> chỉ về nút bấm.</li>
+                <li>Ảnh người/thú cưng <b>nhìn về phía</b> nội dung → người xem cũng nhìn theo.</li>
+                <li><b>Đánh số bước</b> (1, 2, 3) cho quy trình nhiều bước.</li>
+                <li><b>Phản hồi khi tương tác:</b> nút đổi màu khi rê chuột (<code>:hover</code>), thông báo xanh khi gửi thành công, đỏ khi có lỗi.</li>
+            </ul>
+            <div class="khu-demo">
+                <div class="thong-bao tb-thanh-cong">✅ Đăng ký thành công! Hẹn gặp em ở hội chợ.</div>
+                <div class="thong-bao tb-loi">❌ Em chưa nhập email.</div>
+                <a href="#" class="nut nut-chinh">Rê chuột vào tôi</a>
+            </div>
+
+            <h4>🧪 So sánh: tranh giành chú ý và tập trung chú ý</h4>
+            <div class="hang-so-sanh">
+                <div class="o-so-sanh">
+                    <p class="nhan nhan-sai">❌ Mọi thứ đều "hét"</p>
+                    <div class="banner-on-ao">
+                        <p class="bo-1">🔥 KHUYẾN MÃI SỐC!!! 🔥</p>
+                        <p class="bo-2">GIẢM 50% TẤT CẢ</p>
+                        <p class="bo-3">CHỈ HÔM NAY!!!</p>
+                        <div class="hang-nut">
+                            <a href="#" class="nut bo-nut-1">MUA NGAY</a>
+                            <a href="#" class="nut bo-nut-2">XEM THÊM</a>
+                            <a href="#" class="nut bo-nut-3">CHIA SẺ</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="o-so-sanh">
+                    <p class="nhan nhan-dung">✅ 1 thông điệp, 1 hành động</p>
+                    <div class="banner-gon">
+                        <p class="nhan-nho">Chỉ hôm nay</p>
+                        <p class="bg-tieu-de">Giảm 50% tất cả sản phẩm</p>
+                        <p class="bg-mo-ta">Áp dụng cho balo, tai nghe, sổ tay và đồng hồ.</p>
+                        <div class="hang-nut">
+                            <a href="#" class="nut nut-chinh">Mua ngay</a>
+                            <a href="#" class="nut nut-chu">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ghi-chu">
+                ✅ <b>Checklist "Attention" trước khi nộp bài:</b>
+                <ol>
+                    <li>Trang này muốn người xem làm gì? Thứ đó có nổi nhất không? (thử nheo mắt)</li>
+                    <li>Mỗi khu vực chỉ có <b>1 nút chính</b>?</li>
+                    <li>Màu nhấn chỉ dùng cho thứ quan trọng (khoảng 10%)?</li>
+                    <li>Có đủ khoảng trắng giữa các khu vực?</li>
+                    <li>Tối đa 2 phông, chữ nội dung ≥ 16px, đọc rõ trên điện thoại?</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 4: THỰC HÀNH                                  -->
+        <!-- ================================================= -->
+        <div class="phan" id="thuc-hanh">
+            <h2>4. Thực hành: "Cứu" một thẻ sự kiện</h2>
+            <p>Thẻ dưới đây đang mắc <b>đủ mọi lỗi</b>. Em hãy tìm lỗi, rồi viết lại CSS cho thẻ (tạo file mới hoặc sửa trong Inspect – F12).</p>
+
+            <div class="hang-so-sanh">
+                <div class="o-so-sanh">
+                    <p class="nhan nhan-sai">❌ Trước khi sửa</p>
+                    <div class="su-kien-loi">
+                        <p class="skl-1">ngày 20/11</p>
+                        <p class="skl-2">Đêm nhạc Tri ân Thầy Cô</p>
+                        <p class="skl-3">Cùng hát những bài hát về mái trường, thầy cô và tuổi học trò. Vào cửa miễn phí cho học sinh toàn trường.</p>
+                        <div class="hang-nut">
+                            <a href="#" class="nut skl-nut">Hủy</a>
+                            <a href="#" class="nut skl-nut">Đăng ký</a>
+                            <a href="#" class="nut skl-nut">Chia sẻ</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="o-so-sanh">
+                    <p class="nhan nhan-dung">✅ Sau khi sửa (gợi ý)</p>
+                    <div class="su-kien-tot">
+                        <p class="nhan-nho">Thứ Năm · 20/11 · 19:00</p>
+                        <p class="skt-tieu-de">Đêm nhạc Tri ân Thầy Cô</p>
+                        <p class="skt-mo-ta">Cùng hát những bài hát về mái trường, thầy cô và tuổi học trò. Vào cửa miễn phí cho học sinh toàn trường.</p>
+                        <div class="hang-nut">
+                            <a href="#" class="nut nut-chinh">Đăng ký</a>
+                            <a href="#" class="nut nut-phu">Chia sẻ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bai-tap">
+                <h4>📝 Nhiệm vụ</h4>
+                <ol>
+                    <li>Liệt kê ít nhất <b>5 lỗi</b> của thẻ "Trước khi sửa" (gợi ý: phông chữ, cỡ chữ, màu chữ, căn lề, nút bấm…).</li>
+                    <li>Chọn <b>1 cặp phông</b> từ Google Fonts có hỗ trợ tiếng Việt và gắn vào trang.</li>
+                    <li>Làm tiêu đề to nhất, ngày giờ nhỏ và nằm trên tiêu đề, mô tả dễ đọc (<code>line-height</code> 1.6).</li>
+                    <li>Chỉ giữ <b>1 nút chính</b> "Đăng ký". "Chia sẻ" là nút phụ. Nút "Hủy" có cần không?</li>
+                    <li>Kiểm tra bằng mẹo "nheo mắt" và checklist ở mục 3.6.</li>
+                </ol>
+                <details>
+                    <summary><b>👀 Xem đáp án các lỗi</b></summary>
+                    <ul>
+                        <li>Dùng phông viết tay cho đoạn văn và 3 phông khác nhau trong 1 thẻ.</li>
+                        <li>Tiêu đề nhỏ hơn cả ngày tháng → phân cấp bị ngược.</li>
+                        <li>Mô tả chữ xám nhạt, nhỏ, dòng dính nhau, căn giữa → khó đọc.</li>
+                        <li>3 nút giống hệt nhau, đều màu đỏ → không biết bấm nút nào; đỏ còn mang nghĩa "lỗi/nguy hiểm".</li>
+                        <li>Nút "Hủy" đứng đầu, ở vị trí được nhìn trước → dễ bấm nhầm.</li>
+                        <li>Không có khoảng trắng, thiếu giờ diễn ra sự kiện.</li>
+                    </ul>
+                </details>
+            </div>
+
+            <div class="bai-tap">
+                <h4>🏠 Bài tập về nhà</h4>
+                <p>Áp dụng vào dự án <b>Dog Social</b> (Bài 6) hoặc website giới thiệu cá nhân của em:</p>
+                <ul>
+                    <li>Chọn 1 cặp phông (tiêu đề + nội dung) hợp với cảm xúc của trang, gắn bằng Google Fonts.</li>
+                    <li>Đặt thang cỡ chữ cho h1, h2, h3, p và dùng thống nhất.</li>
+                    <li>Mỗi khu vực chỉ có 1 nút chính dùng màu nhấn.</li>
+                    <li>Chụp màn hình <b>trước</b> và <b>sau</b> khi sửa để so sánh với bạn.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 5: ÔN TẬP                                     -->
+        <!-- ================================================= -->
+        <div class="phan" id="on-tap">
+            <h2>5. Câu hỏi ôn tập</h2>
+            <!-- ⭐ NGOÀI BÀI HỌC: thẻ <details> + <summary> tạo khối bấm để mở/đóng, không cần JavaScript -->
+            <details class="cau-hoi">
+                <summary>1. Phông chữ nhóm nào nên dùng cho đoạn văn dài trên web?</summary>
+                <p>Sans-serif (ví dụ Be Vietnam Pro, Roboto, Arial) – nét trơn, dễ đọc trên màn hình. Serif cũng được cho trang kiểu đọc sách. Không dùng phông display hay viết tay.</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>2. Một trang web nên dùng tối đa bao nhiêu phông chữ?</summary>
+                <p>Tối đa 2 phông: 1 cho tiêu đề, 1 cho nội dung. Muốn tạo khác biệt thì đổi cỡ chữ và độ đậm.</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>3. Vì sao font-family luôn kết thúc bằng sans-serif hoặc serif?</summary>
+                <p>Đó là phông dự phòng cuối cùng, máy nào cũng có. Nếu không tải được phông chính, trang vẫn hiện đúng nhóm phông.</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>4. Kể tên 3 công cụ tạo phân cấp trong bố cục.</summary>
+                <p>Kích thước (to/đậm hơn), vị trí (trên, trái, giữa, nhiều khoảng trắng), màu sắc (màu nhấn, tương phản với nền).</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>5. Trang chủ ít chữ thường được mắt đọc theo đường nào? Nên đặt nút bấm ở đâu?</summary>
+                <p>Đường chữ Z. Nút bấm đặt ở cuối đường Z (phía dưới, bên phải hoặc ngay dưới nội dung chính).</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>6. CTA là gì? Mỗi khu vực nên có bao nhiêu nút chính?</summary>
+                <p>CTA (Call To Action) là hành động em muốn người xem làm, ví dụ "Đăng ký". Mỗi khu vực chỉ nên có 1 nút chính.</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>7. Tại sao không nên làm mọi thứ trên trang đều to, đậm, màu đỏ?</summary>
+                <p>Vì sự chú ý có hạn. Khi mọi thứ cùng nổi, không thứ gì nổi bật, người xem bị rối và không biết nhìn đâu.</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>8. Mẹo "nheo mắt" dùng để làm gì?</summary>
+                <p>Để kiểm tra thứ nổi nhất trên trang. Nheo mắt cho mờ đi, thứ còn thấy rõ phải là thứ quan trọng nhất (thường là tiêu đề hoặc nút chính).</p>
+            </details>
+        </div>
+
+        <p class="cuoi-trang"><a href="../index.html">⬅ Về trang chủ khóa học</a></p>
+    </div>
+</body>
+</html>
