@@ -29,6 +29,10 @@ khoa-hoc-web/
 │   └── index.html + style.css         Framework, Bootstrap (cần Internet), Web Design, Color Theory, giới thiệu Dog Social phần 1
 ├── bai-07-typography-phan-cap-ui/
 │   └── index.html + style.css         Typography & chọn font (Google Fonts), phân cấp, quản lý attention, thực hành thẻ sự kiện, ôn tập
+├── bai-08-form-input/
+│   ├── index.html + style.css         Thẻ form (action, method GET/POST), các kiểu input, label, select, textarea, validation, fieldset, ôn tập
+│   ├── du-an-dang-nhap/               Thực hành 1: form đăng nhập
+│   └── du-an-thanh-toan/              Thực hành 2: trang thanh toán ShopTeen (1 cột, đơn giản)
 ├── website-gioi-thieu-ca-nhan/        Website tổng hợp Bài 2 → 5
 └── du-an-dog-social/                  Dự án Bootstrap (Bài 6): index.html = hướng dẫn 6 bước (CSS: huong-dan.css);
                                        buoc-1..6 = từng khối; hoan-chinh.html = bản đầy đủ; style.css = CSS của Dog Social
@@ -40,4 +44,5 @@ khoa-hoc-web/
 - Ký hiệu `⭐ NGOÀI BÀI HỌC` trong code = kiến thức mở rộng, không bắt buộc. Có thể dùng làm phần "bonus" cho học sinh khá.
 - Bài 5: nhấn F12 → Ctrl + Shift + M để học sinh xem trang trên giao diện điện thoại.
 - Bài 7 dùng Google Fonts (cần Internet) cho các ví dụ phông chữ; mục 4 có thẻ "Trước khi sửa" cố ý thiết kế sai để học sinh tìm lỗi.
+- Bài 8: các form demo trong bài giảng dùng `method="get"` để học sinh bấm Gửi rồi xem dữ liệu trên thanh địa chỉ. Hai dự án dùng `method="post"` (đúng cho mật khẩu/thanh toán); vì chưa có server, Live Server sẽ báo "Cannot POST" khi gửi thành công – đây là điều bình thường, có thể dùng để giải thích vai trò của server.
 - Website tổng hợp dùng Google Fonts nên cần Internet để hiện đúng phông (không có mạng vẫn chạy bằng phông dự phòng).

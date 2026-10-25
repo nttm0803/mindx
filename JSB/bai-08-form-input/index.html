@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 8 - Form và Input</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="trang">
+        <p><a href="../index.html">⬅ Về trang chủ khóa học</a></p>
+        <h1>📝 Bài 8: Form – Biểu mẫu nhập liệu</h1>
+        <p>
+            Đến giờ trang web của em mới chỉ để <b>xem</b>. Bài này em sẽ làm cho trang web biết <b>hỏi và nhận câu trả lời</b>
+            từ người dùng: đăng nhập, đăng ký, tìm kiếm, đặt hàng… Tất cả đều dùng <b>form</b>.
+        </p>
+
+        <p class="muc-luc">
+            <a href="#the-form">1. Thẻ form, thuộc tính &amp; phương thức</a> |
+            <a href="#input">2. Các dạng điều khiển nhập liệu</a> |
+            <a href="#dang-nhap">3. Mẫu đăng nhập</a> |
+            <a href="#thanh-toan">4. Biểu mẫu thanh toán Marketplace</a> |
+            <a href="#on-tap">5. Ôn tập</a>
+        </p>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 1: THẺ FORM                                   -->
+        <!-- ================================================= -->
+        <div class="phan" id="the-form">
+            <h2>1. Giới thiệu thẻ &lt;form&gt; và các thuộc tính, phương thức đi kèm</h2>
+
+            <h3>1.1. Form là gì?</h3>
+            <p>
+                <b>Form</b> (biểu mẫu) là một khu vực trên trang web chứa các <b>ô nhập liệu</b> và <b>nút gửi</b>.
+                Khi người dùng bấm gửi, trình duyệt sẽ <b>gom tất cả dữ liệu</b> trong form lại và gửi đến <b>máy chủ</b> (server) để xử lý.
+            </p>
+            <p>🧠 <b>Dễ hiểu:</b> Form giống như <b>tờ phiếu đăng ký</b> ở trường. Mỗi dòng trên phiếu là một ô để điền
+               (họ tên, lớp, ngày sinh…). Điền xong em <b>nộp phiếu</b> cho thầy cô – thầy cô chính là "server".</p>
+
+            <table>
+                <tr><th>Tờ phiếu giấy</th><th>Form trên web</th></tr>
+                <tr><td>Cả tờ phiếu</td><td><code>&lt;form&gt;</code></td></tr>
+                <tr><td>Chữ in sẵn "Họ tên:"</td><td><code>&lt;label&gt;</code></td></tr>
+                <tr><td>Dòng kẻ chấm để viết</td><td><code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, <code>&lt;select&gt;</code></td></tr>
+                <tr><td>Ô vuông để đánh dấu ☐</td><td><code>&lt;input type="checkbox"&gt;</code></td></tr>
+                <tr><td>Hành động nộp phiếu</td><td><code>&lt;button type="submit"&gt;</code></td></tr>
+                <tr><td>Thầy cô nhận phiếu</td><td>Server (địa chỉ ghi ở <code>action</code>)</td></tr>
+            </table>
+
+            <h3>1.2. Cấu trúc một form</h3>
+<pre>
+&lt;form action="/dang-ky" method="post"&gt;          &lt;!-- 1. Khung form: gửi đi đâu, gửi bằng cách nào --&gt;
+
+    &lt;label for="ho-ten"&gt;Họ tên:&lt;/label&gt;          &lt;!-- 2. Nhãn: cho người dùng biết cần nhập gì --&gt;
+    &lt;input type="text" id="ho-ten" name="ho_ten"&gt;  &lt;!-- 3. Ô nhập: name là "tên biến" khi gửi đi --&gt;
+
+    &lt;button type="submit"&gt;Gửi&lt;/button&gt;           &lt;!-- 4. Nút gửi --&gt;
+
+&lt;/form&gt;
+</pre>
+            <div class="khu-demo">
+                <form action="" method="get">
+                    <label for="demo-ho-ten">Họ tên:</label>
+                    <input type="text" id="demo-ho-ten" name="ho_ten" placeholder="Nguyễn Văn An">
+                    <button type="submit">Gửi</button>
+                </form>
+                <p>👀 Gõ tên rồi bấm <b>Gửi</b>, sau đó nhìn lên <b>thanh địa chỉ</b> của trình duyệt: em sẽ thấy <code>?ho_ten=...</code> – đó chính là dữ liệu form vừa gửi đi!</p>
+            </div>
+
+            <h3>1.3. Các thuộc tính của thẻ &lt;form&gt;</h3>
+            <table>
+                <tr><th>Thuộc tính</th><th>Ý nghĩa</th><th>Ví dụ</th></tr>
+                <tr><td><code>action</code></td><td><b>Gửi đến đâu</b> – địa chỉ trang/server nhận dữ liệu. Bỏ trống = gửi về chính trang hiện tại.</td><td><code>action="/dang-nhap"</code></td></tr>
+                <tr><td><code>method</code></td><td><b>Gửi bằng cách nào</b> – <code>get</code> hoặc <code>post</code> (xem mục 1.4). Mặc định là <code>get</code>.</td><td><code>method="post"</code></td></tr>
+                <tr><td><code>name</code></td><td>Đặt tên cho form (khi trang có nhiều form)</td><td><code>name="form-dang-nhap"</code></td></tr>
+                <tr><td><code>target</code></td><td>Mở kết quả ở đâu. <code>_blank</code> = tab mới (giống thẻ <code>&lt;a&gt;</code>)</td><td><code>target="_blank"</code></td></tr>
+                <tr><td><code>autocomplete</code></td><td>Cho phép trình duyệt <b>gợi ý</b> dữ liệu đã nhập trước đây</td><td><code>autocomplete="off"</code></td></tr>
+                <tr><td><code>novalidate</code></td><td><b>Tắt</b> kiểm tra dữ liệu tự động của trình duyệt (xem mục 2.4)</td><td><code>&lt;form novalidate&gt;</code></td></tr>
+                <tr><td><code>enctype</code></td><td>Kiểu "đóng gói" dữ liệu. <b>Bắt buộc</b> <code>multipart/form-data</code> khi form có gửi file</td><td><code>enctype="multipart/form-data"</code></td></tr>
+            </table>
+
+            <h3>1.4. Hai phương thức gửi: GET và POST</h3>
+            <p>🧠 <b>Dễ hiểu:</b> <b>GET</b> giống gửi <b>bưu thiếp</b> – nội dung viết ngay bên ngoài, ai cầm cũng đọc được.
+               <b>POST</b> giống gửi <b>thư dán kín phong bì</b> – nội dung nằm bên trong.</p>
+            <div class="hang-so-sanh">
+                <div class="o-so-sanh">
+                    <p class="nhan">📮 method="get"</p>
+                    <ul>
+                        <li>Dữ liệu <b>hiện trên thanh địa chỉ</b>:<br><code>tim-kiem?tu_khoa=balo</code></li>
+                        <li>Có thể <b>lưu bookmark</b>, gửi link cho bạn.</li>
+                        <li>Giới hạn độ dài, không gửi được file.</li>
+                        <li>✅ Dùng cho: <b>tìm kiếm</b>, lọc sản phẩm.</li>
+                    </ul>
+                </div>
+                <div class="o-so-sanh">
+                    <p class="nhan">✉ method="post"</p>
+                    <ul>
+                        <li>Dữ liệu nằm <b>trong thân yêu cầu</b>, không hiện trên địa chỉ.</li>
+                        <li>Không giới hạn độ dài, gửi được file.</li>
+                        <li>Không bookmark được kết quả.</li>
+                        <li>✅ Dùng cho: <b>đăng nhập</b>, đăng ký, <b>thanh toán</b>, tải ảnh lên.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="luu-y">
+                ⚠ <b>Không bao giờ</b> dùng <code>get</code> cho form có <b>mật khẩu</b> hoặc thông tin thẻ ngân hàng – mật khẩu sẽ hiện trên thanh địa chỉ
+                và bị lưu lại trong lịch sử trình duyệt!<br>
+                (Lưu ý: POST chỉ "giấu" khỏi thanh địa chỉ, chưa phải là mã hóa. Web thật còn cần <b>HTTPS</b> 🔒 để bảo vệ dữ liệu.)
+            </div>
+
+            <h3>1.5. Dữ liệu được gửi đi như thế nào?</h3>
+            <p>Mỗi ô nhập gửi đi một cặp <b><code>name=value</code></b> (tên = giá trị người dùng nhập). Nhiều ô nối với nhau bằng dấu <code>&amp;</code>:</p>
+<pre>
+&lt;input name="tai_khoan"&gt;   ← người dùng gõ: an123
+&lt;input name="lop"&gt;         ← người dùng gõ: 8A
+
+Dữ liệu gửi đi:  tai_khoan=an123&amp;lop=8A
+</pre>
+            <p class="ghi-chu">💡 Ô nào <b>không có <code>name</code></b> thì <b>không được gửi đi</b>! Đây là lỗi hay gặp nhất khi mới học form.
+               <code>id</code> dùng cho <code>label</code> và CSS, còn <code>name</code> dùng khi gửi dữ liệu.</p>
+
+            <h3>1.6. Thẻ &lt;label&gt; – nhãn cho ô nhập</h3>
+            <p>Thuộc tính <code>for</code> của label phải <b>trùng</b> với <code>id</code> của ô nhập. Khi đó:</p>
+            <ul>
+                <li>Bấm vào chữ "Email" cũng đưa con trỏ vào ô nhập (dễ bấm hơn trên điện thoại).</li>
+                <li>Phần mềm đọc màn hình cho người khiếm thị đọc được ô này để nhập gì.</li>
+            </ul>
+<pre>
+&lt;!-- Cách 1: for trùng id (hay dùng nhất) --&gt;
+&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input type="email" id="email" name="email"&gt;
+
+&lt;!-- Cách 2: bọc ô nhập bên trong label (hay dùng cho checkbox, radio) --&gt;
+&lt;label&gt;&lt;input type="checkbox" name="nho"&gt; Ghi nhớ đăng nhập&lt;/label&gt;
+</pre>
+            <div class="khu-demo">
+                <label for="demo-email">Email</label>
+                <input type="email" id="demo-email" name="email">
+                <p>👆 Thử bấm vào chữ <b>"Email"</b> – con trỏ tự nhảy vào ô.</p>
+            </div>
+
+            <h3>1.7. Các nút trong form</h3>
+            <table>
+                <tr><th>Code</th><th>Tác dụng</th></tr>
+                <tr><td><code>&lt;button type="submit"&gt;Gửi&lt;/button&gt;</code></td><td><b>Gửi</b> form đi (đây là kiểu mặc định của button trong form)</td></tr>
+                <tr><td><code>&lt;button type="reset"&gt;Xóa hết&lt;/button&gt;</code></td><td><b>Xóa</b> mọi thứ đã nhập, đưa form về ban đầu</td></tr>
+                <tr><td><code>&lt;button type="button"&gt;...&lt;/button&gt;</code></td><td><b>Không làm gì</b> – sau này dùng với JavaScript</td></tr>
+                <tr><td><code>&lt;input type="submit" value="Gửi"&gt;</code></td><td>Cách viết cũ của nút gửi, vẫn gặp nhiều</td></tr>
+            </table>
+            <p class="ghi-chu">💡 Nhấn phím <b>Enter</b> trong một ô nhập cũng gửi form – giống bấm nút submit.</p>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 2: CÁC DẠNG ĐIỀU KHIỂN NHẬP LIỆU                -->
+        <!-- ================================================= -->
+        <div class="phan" id="input">
+            <h2>2. Các dạng điều khiển nhập liệu với thẻ &lt;input&gt;</h2>
+            <p>
+                <code>&lt;input&gt;</code> là thẻ <b>không có thẻ đóng</b> (giống <code>&lt;img&gt;</code>).
+                Chỉ cần đổi thuộc tính <b><code>type</code></b> là được một kiểu ô nhập khác hẳn.
+            </p>
+
+            <h3>2.1. Nhóm nhập chữ</h3>
+            <div class="luoi-demo">
+                <div class="o-demo">
+                    <code>type="text"</code>
+                    <input type="text" placeholder="Chữ bình thường">
+                    <span>Họ tên, địa chỉ…</span>
+                </div>
+                <div class="o-demo">
+                    <code>type="password"</code>
+                    <input type="password" value="matkhau123">
+                    <span>Chữ bị che bằng dấu •</span>
+                </div>
+                <div class="o-demo">
+                    <code>type="email"</code>
+                    <input type="email" placeholder="ban@gmail.com">
+                    <span>Phải có @ mới gửi được</span>
+                </div>
+                <div class="o-demo">
+                    <code>type="tel"</code>
+                    <input type="tel" placeholder="0912 345 678">
+                    <span>Điện thoại hiện bàn phím số</span>
+                </div>
+                <div class="o-demo">
+                    <code>type="url"</code>
+                    <input type="url" placeholder="https://...">
+                    <span>Địa chỉ trang web</span>
+                </div>
+                <div class="o-demo">
+                    <code>type="search"</code>
+                    <input type="search" placeholder="Tìm kiếm...">
+                    <span>Ô tìm kiếm, có nút ✕ xóa nhanh</span>
+                </div>
+            </div>
+
+            <h3>2.2. Nhóm số, ngày giờ, màu</h3>
+            <div class="luoi-demo">
+                <div class="o-demo">
+                    <code>type="number"</code>
+                    <input type="number" min="1" max="10" value="1">
+                    <span>Chỉ nhập số, có nút ▲▼</span>
+                </div>
+                <div class="o-demo">
+                    <code>type="range"</code>
+                    <input type="range" min="0" max="100" value="70">
+                    <span>Thanh kéo (âm lượng, độ sáng)</span>
+                </div>
+                <div class="o-demo">
+                    <code>type="date"</code>
+                    <input type="date">
+                    <span>Chọn ngày bằng lịch</span>
+                </div>
+                <div class="o-demo">
+                    <code>type="time"</code>
+                    <input type="time">
+                    <span>Chọn giờ</span>
+                </div>
+                <div class="o-demo">
+                    <code>type="color"</code>
+                    <input type="color" value="#F76707">
+                    <span>Bảng chọn màu</span>
+                </div>
+                <div class="o-demo">
+                    <code>type="file"</code>
+                    <input type="file" accept="image/*">
+                    <span>Tải file lên (ảnh đại diện)</span>
+                </div>
+            </div>
+
+            <h3>2.3. Nhóm lựa chọn: checkbox, radio, select</h3>
+            <div class="hang-so-sanh">
+                <div class="o-so-sanh">
+                    <p class="nhan">☑ checkbox – chọn <b>nhiều</b></p>
+                    <p>Em thích môn nào?</p>
+                    <label><input type="checkbox" name="mon" value="toan" checked> Toán</label><br>
+                    <label><input type="checkbox" name="mon" value="tin" checked> Tin học</label><br>
+                    <label><input type="checkbox" name="mon" value="van"> Văn</label>
+                </div>
+                <div class="o-so-sanh">
+                    <p class="nhan">🔘 radio – chọn <b>đúng 1</b></p>
+                    <p>Em học lớp mấy?</p>
+                    <label><input type="radio" name="khoi" value="8" checked> Lớp 8</label><br>
+                    <label><input type="radio" name="khoi" value="9"> Lớp 9</label><br>
+                    <label><input type="radio" name="khoi" value="10"> Lớp 10</label>
+                </div>
+            </div>
+<pre>
+&lt;!-- Các radio CÙNG name = cùng 1 nhóm → chỉ chọn được 1 --&gt;
+&lt;label&gt;&lt;input type="radio" name="khoi" value="8" checked&gt; Lớp 8&lt;/label&gt;
+&lt;label&gt;&lt;input type="radio" name="khoi" value="9"&gt; Lớp 9&lt;/label&gt;
+&lt;!--                                       ↑ value = dữ liệu gửi đi (khoi=9)
+                                           checked = được chọn sẵn --&gt;
+</pre>
+            <div class="luu-y">⚠ Radio <b>quên đặt cùng <code>name</code></b> → bấm chọn được tất cả, không bỏ chọn được. Radio và checkbox luôn cần <code>value</code>, nếu không sẽ gửi đi chữ <code>on</code>.</div>
+
+            <h4>Danh sách thả xuống: &lt;select&gt; + &lt;option&gt;</h4>
+            <p>Dùng khi có <b>nhiều lựa chọn</b> (tỉnh thành, quốc gia…) – gọn hơn rất nhiều radio.</p>
+            <div class="khu-demo">
+                <label for="demo-tinh">Tỉnh/Thành phố:</label>
+                <select id="demo-tinh" name="tinh">
+                    <option value="">-- Chọn tỉnh --</option>
+                    <option value="hn">Hà Nội</option>
+                    <option value="hcm" selected>TP. Hồ Chí Minh</option>
+                    <option value="dn">Đà Nẵng</option>
+                </select>
+            </div>
+<pre>
+&lt;select id="tinh" name="tinh"&gt;
+    &lt;option value=""&gt;-- Chọn tỉnh --&lt;/option&gt;
+    &lt;option value="hn"&gt;Hà Nội&lt;/option&gt;
+    &lt;option value="hcm" selected&gt;TP. Hồ Chí Minh&lt;/option&gt;   &lt;!-- selected = chọn sẵn --&gt;
+&lt;/select&gt;
+</pre>
+
+            <h4>Ô nhập nhiều dòng: &lt;textarea&gt;</h4>
+            <div class="khu-demo">
+                <label for="demo-loi-nhan">Lời nhắn:</label><br>
+                <textarea id="demo-loi-nhan" name="loi_nhan" rows="3" placeholder="Viết lời nhắn cho người bán..."></textarea>
+            </div>
+<pre>
+&lt;textarea id="loi-nhan" name="loi_nhan" rows="3"&gt;&lt;/textarea&gt;   &lt;!-- CÓ thẻ đóng, rows = số dòng hiện --&gt;
+</pre>
+
+            <h3>2.4. Các thuộc tính dùng chung cho ô nhập</h3>
+            <table>
+                <tr><th>Thuộc tính</th><th>Tác dụng</th><th>Ví dụ</th></tr>
+                <tr><td><code>name</code></td><td>Tên dữ liệu khi gửi đi (<b>bắt buộc</b> để gửi được)</td><td><code>name="email"</code></td></tr>
+                <tr><td><code>id</code></td><td>Để nối với <code>&lt;label for&gt;</code> và CSS</td><td><code>id="email"</code></td></tr>
+                <tr><td><code>value</code></td><td>Giá trị có sẵn / giá trị gửi đi (radio, checkbox)</td><td><code>value="8A"</code></td></tr>
+                <tr><td><code>placeholder</code></td><td>Chữ gợi ý mờ, mất khi bắt đầu gõ</td><td><code>placeholder="Nhập email"</code></td></tr>
+                <tr><td><code>required</code></td><td><b>Bắt buộc</b> nhập mới gửi được</td><td><code>&lt;input required&gt;</code></td></tr>
+                <tr><td><code>disabled</code></td><td>Khóa ô: mờ đi, không nhập được, <b>không gửi đi</b></td><td><code>&lt;input disabled&gt;</code></td></tr>
+                <tr><td><code>readonly</code></td><td>Chỉ đọc: không sửa được nhưng <b>vẫn gửi đi</b></td><td><code>&lt;input readonly&gt;</code></td></tr>
+                <tr><td><code>checked</code> / <code>selected</code></td><td>Chọn sẵn (checkbox, radio / option)</td><td><code>&lt;option selected&gt;</code></td></tr>
+                <tr><td><code>minlength</code> / <code>maxlength</code></td><td>Số ký tự ít nhất / nhiều nhất</td><td><code>minlength="6"</code></td></tr>
+                <tr><td><code>min</code> / <code>max</code> / <code>step</code></td><td>Giá trị nhỏ nhất / lớn nhất / bước nhảy (số, ngày)</td><td><code>min="1" max="10"</code></td></tr>
+                <tr><td><code>pattern</code></td><td>Mẫu ký tự phải khớp (biểu thức chính quy)</td><td><code>pattern="[0-9]{10}"</code> = đúng 10 chữ số</td></tr>
+                <tr><td><code>autofocus</code></td><td>Tự đặt con trỏ vào ô khi mở trang</td><td><code>&lt;input autofocus&gt;</code></td></tr>
+                <tr><td><code>autocomplete</code></td><td>Gợi ý trình duyệt nên điền gì</td><td><code>autocomplete="email"</code></td></tr>
+            </table>
+
+            <h4>🧪 Thử ngay: trình duyệt tự kiểm tra dữ liệu (validation)</h4>
+            <p>Bấm <b>Gửi</b> khi để trống, nhập email sai, hoặc số điện thoại không đủ 10 số – trình duyệt sẽ báo lỗi và <b>không cho gửi</b>:</p>
+            <div class="khu-demo">
+                <form action="" method="get" class="form-kiem-tra">
+                    <label for="kt-email">Email (bắt buộc)</label>
+                    <input type="email" id="kt-email" name="email" required>
+
+                    <label for="kt-sdt">Số điện thoại (10 chữ số)</label>
+                    <input type="tel" id="kt-sdt" name="sdt" pattern="[0-9]{10}" placeholder="0912345678" required>
+
+                    <label for="kt-tuoi">Tuổi (từ 10 đến 18)</label>
+                    <input type="number" id="kt-tuoi" name="tuoi" min="10" max="18">
+
+                    <div class="hang-nut">
+                        <button type="submit" class="nut nut-chinh">Gửi</button>
+                        <button type="reset" class="nut nut-chu">Xóa hết</button>
+                    </div>
+                </form>
+            </div>
+            <p class="ghi-chu">💡 Kiểm tra trên trình duyệt giúp người dùng sửa lỗi nhanh, nhưng người xấu vẫn có thể bỏ qua.
+               Web thật <b>luôn phải kiểm tra lại ở server</b>.</p>
+
+            <h3>2.5. Nhóm các ô liên quan: &lt;fieldset&gt; + &lt;legend&gt;</h3>
+            <p>Form dài nên chia thành từng nhóm (giống chia mục trên phiếu giấy). <code>&lt;fieldset&gt;</code> vẽ khung, <code>&lt;legend&gt;</code> là tiêu đề nhóm.</p>
+            <div class="khu-demo">
+                <fieldset>
+                    <legend>Thông tin liên hệ</legend>
+                    <label for="fs-ten">Họ tên</label>
+                    <input type="text" id="fs-ten" name="ten">
+                    <label for="fs-sdt">Số điện thoại</label>
+                    <input type="tel" id="fs-sdt" name="sdt">
+                </fieldset>
+            </div>
+<pre>
+&lt;fieldset&gt;
+    &lt;legend&gt;Thông tin liên hệ&lt;/legend&gt;
+    ... các label + input ...
+&lt;/fieldset&gt;
+</pre>
+
+            <h3>📋 Tóm tắt: dùng ô nào khi nào?</h3>
+            <table>
+                <tr><th>Em cần người dùng…</th><th>Dùng</th></tr>
+                <tr><td>Gõ 1 dòng chữ</td><td><code>text</code>, <code>email</code>, <code>tel</code>, <code>password</code>, <code>url</code>, <code>search</code></td></tr>
+                <tr><td>Gõ đoạn văn dài</td><td><code>&lt;textarea&gt;</code></td></tr>
+                <tr><td>Nhập số / chọn khoảng</td><td><code>number</code> / <code>range</code></td></tr>
+                <tr><td>Chọn ngày, giờ, màu</td><td><code>date</code>, <code>time</code>, <code>color</code></td></tr>
+                <tr><td>Chọn đúng 1 trong vài lựa chọn (2–5)</td><td><code>radio</code></td></tr>
+                <tr><td>Chọn đúng 1 trong nhiều lựa chọn</td><td><code>&lt;select&gt;</code></td></tr>
+                <tr><td>Chọn nhiều / bật–tắt 1 điều</td><td><code>checkbox</code></td></tr>
+                <tr><td>Tải file lên</td><td><code>file</code> (form cần <code>method="post"</code> + <code>enctype="multipart/form-data"</code>)</td></tr>
+            </table>
+
+            <h3>2.6. Trang trí form bằng CSS</h3>
+<pre>
+/* Selector thuộc tính (attribute selector): chọn input theo type */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 16px;            /* ≥ 16px để điện thoại không tự phóng to */
+    border: 1px solid #CED4DA;
+    border-radius: 6px;
+    box-sizing: border-box;     /* để width 100% không bị tràn vì padding (Bài 3: box model) */
+}
+
+/* ⭐ NGOÀI BÀI HỌC: :focus – khi đang gõ vào ô */
+input:focus {
+    border-color: #1971C2;
+    outline: 3px solid #A5D8FF;
+}
+
+label {
+    display: block;             /* label nằm 1 dòng riêng, ô nhập ở dòng dưới */
+    font-weight: 700;
+    margin: 12px 0 4px 0;
+}
+</pre>
+            <div class="luu-y">
+                ⚠ <b>Lỗi form hay gặp:</b>
+                <ul>
+                    <li>Quên <code>name</code> → dữ liệu không được gửi đi.</li>
+                    <li><code>label for</code> không trùng <code>id</code> → bấm vào nhãn không có tác dụng.</li>
+                    <li>Chỉ dùng <code>placeholder</code> thay cho <code>label</code> → gõ chữ vào là mất gợi ý, người dùng quên ô này để nhập gì.</li>
+                    <li>Radio không cùng <code>name</code>; dùng <code>method="get"</code> cho mật khẩu.</li>
+                    <li>Dùng <code>type="text"</code> cho mọi thứ → mất bàn phím số, mất kiểm tra email tự động.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 3: MẪU ĐĂNG NHẬP                              -->
+        <!-- ================================================= -->
+        <div class="phan" id="dang-nhap">
+            <h2>3. Thực hành 1: Tạo một mẫu đăng nhập đơn giản</h2>
+            <p>👉 Mở bản hoàn chỉnh: <a href="du-an-dang-nhap/index.html" target="_blank"><b>du-an-dang-nhap/index.html</b></a> (mở code song song để đối chiếu).</p>
+
+            <h3>3.1. Phân tích: form đăng nhập cần gì?</h3>
+            <table>
+                <tr><th>Thành phần</th><th>Thẻ / thuộc tính</th></tr>
+                <tr><td>Khung form</td><td><code>&lt;form action="..." method="post"&gt;</code> (có mật khẩu → POST)</td></tr>
+                <tr><td>Email</td><td><code>type="email"</code>, <code>required</code>, <code>autocomplete="email"</code></td></tr>
+                <tr><td>Mật khẩu</td><td><code>type="password"</code>, <code>required</code>, <code>minlength="6"</code></td></tr>
+                <tr><td>Ghi nhớ đăng nhập</td><td><code>type="checkbox"</code> bọc trong <code>label</code></td></tr>
+                <tr><td>Nút Đăng nhập</td><td><code>&lt;button type="submit"&gt;</code> – <b>nút chính</b> duy nhất (Bài 7)</td></tr>
+                <tr><td>Quên mật khẩu? / Đăng ký</td><td>Thẻ <code>&lt;a&gt;</code> – dạng <b>nút chữ</b>, không tranh chú ý</td></tr>
+            </table>
+
+            <h3>3.2. Bước 1 – Viết HTML</h3>
+<pre>
+&lt;form class="hop-dang-nhap" action="" method="post"&gt;
+    &lt;h1&gt;Đăng nhập&lt;/h1&gt;
+
+    &lt;label for="email"&gt;Email&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" placeholder="ban@gmail.com"
+           autocomplete="email" required&gt;
+
+    &lt;label for="mat-khau"&gt;Mật khẩu&lt;/label&gt;
+    &lt;input type="password" id="mat-khau" name="mat_khau" minlength="6"
+           autocomplete="current-password" required&gt;
+
+    &lt;div class="hang-phu"&gt;
+        &lt;label class="nhan-checkbox"&gt;&lt;input type="checkbox" name="ghi_nho"&gt; Ghi nhớ&lt;/label&gt;
+        &lt;a href="#"&gt;Quên mật khẩu?&lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;button type="submit" class="nut-dang-nhap"&gt;Đăng nhập&lt;/button&gt;
+
+    &lt;p class="chuyen-trang"&gt;Chưa có tài khoản? &lt;a href="#"&gt;Đăng ký&lt;/a&gt;&lt;/p&gt;
+&lt;/form&gt;
+</pre>
+
+            <h3>3.3. Bước 2 – Trang trí bằng CSS</h3>
+            <ol>
+                <li>Căn form ra <b>giữa màn hình</b> bằng Flexbox trên <code>body</code> (Bài 5).</li>
+                <li>Hộp form: nền trắng, <code>max-width: 360px</code>, <code>padding</code>, bo góc, đổ bóng.</li>
+                <li><code>label</code> → <code>display: block</code>; ô nhập <code>width: 100%</code> + <code>box-sizing: border-box</code>.</li>
+                <li>Nút đăng nhập rộng hết hộp, màu nhấn, chữ trắng – thứ nổi nhất trong form.</li>
+                <li>Dòng "Ghi nhớ – Quên mật khẩu?" dùng <code>display: flex; justify-content: space-between</code>.</li>
+            </ol>
+
+            <h3>3.4. Bước 3 – Kiểm tra</h3>
+            <ul>
+                <li>Bấm Đăng nhập khi để trống → trình duyệt có báo lỗi không?</li>
+                <li>Mật khẩu 3 ký tự → có bị chặn không?</li>
+                <li>Bấm vào chữ "Email", "Ghi nhớ" → con trỏ/ô chọn có hoạt động không?</li>
+                <li>F12 → Ctrl + Shift + M: form trên điện thoại có bị tràn không?</li>
+            </ul>
+
+            <div class="bai-tap">
+                <h4>📝 Thử thách</h4>
+                <ul>
+                    <li>Làm thêm trang <b>Đăng ký</b>: họ tên, email, mật khẩu, nhập lại mật khẩu, ngày sinh, giới tính (radio), checkbox "Tôi đồng ý với điều khoản" (bắt buộc).</li>
+                    <li>Nối 2 trang với nhau bằng link "Đăng ký" / "Đăng nhập".</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 4: BIỂU MẪU THANH TOÁN                          -->
+        <!-- ================================================= -->
+        <div class="phan" id="thanh-toan">
+            <h2>4. Thực hành 2: Tạo biểu mẫu thanh toán trên Marketplace</h2>
+            <p>👉 Mở bản hoàn chỉnh: <a href="du-an-thanh-toan/index.html" target="_blank"><b>du-an-thanh-toan/index.html</b></a> – trang thanh toán của cửa hàng <b>ShopTeen</b> (Bài 5).</p>
+
+            <h3>4.1. Phân tích một trang thanh toán</h3>
+            <p>Trang thanh toán có nhiều ô, nên chia thành từng nhóm cho người mua dễ điền. Form của mình gồm 5 khối, xếp từ trên xuống:</p>
+            <div class="so-do-thanh-toan">
+                <div class="khoi-sd khoi-don">🛒 Tóm tắt đơn hàng<br><small>chỉ là chữ: sản phẩm, giá, tổng tiền</small></div>
+                <div class="khoi-sd">① Thông tin người nhận<br><small>họ tên, số điện thoại, tỉnh, địa chỉ</small></div>
+                <div class="khoi-sd">② Phương thức thanh toán<br><small>radio: khi nhận hàng / chuyển khoản / thẻ</small></div>
+                <div class="khoi-sd">☑ Đồng ý điều khoản<br><small>checkbox bắt buộc</small></div>
+                <div class="khoi-sd khoi-nut">Đặt hàng</div>
+            </div>
+
+            <h3>4.2. Chọn đúng ô nhập cho từng thông tin</h3>
+            <table>
+                <tr><th>Thông tin</th><th>Ô nhập</th><th>Thuộc tính quan trọng</th></tr>
+                <tr><td>Họ tên người nhận</td><td><code>text</code></td><td><code>required</code></td></tr>
+                <tr><td>Số điện thoại</td><td><code>tel</code></td><td><code>pattern="[0-9]{10}"</code> (đúng 10 chữ số)</td></tr>
+                <tr><td>Tỉnh/Thành phố</td><td><code>&lt;select&gt;</code></td><td>option đầu <code>value=""</code> + <code>required</code> → bắt buộc chọn</td></tr>
+                <tr><td>Địa chỉ</td><td><code>&lt;textarea&gt;</code></td><td><code>rows="2"</code>, <code>required</code></td></tr>
+                <tr><td>Thanh toán</td><td><code>radio</code> cùng <code>name="thanh_toan"</code></td><td>1 cái <code>checked</code> sẵn</td></tr>
+                <tr><td>Đồng ý điều khoản</td><td><code>checkbox</code></td><td><code>required</code> → chưa tích thì không đặt hàng được</td></tr>
+            </table>
+
+            <h3>4.3. Đoạn code mẫu: nhóm phương thức thanh toán</h3>
+<pre>
+&lt;fieldset&gt;
+    &lt;legend&gt;2. Phương thức thanh toán&lt;/legend&gt;
+    &lt;label class="lua-chon"&gt;&lt;input type="radio" name="thanh_toan" value="cod" checked&gt; 💵 Thanh toán khi nhận hàng&lt;/label&gt;
+    &lt;label class="lua-chon"&gt;&lt;input type="radio" name="thanh_toan" value="chuyen_khoan"&gt; 🏦 Chuyển khoản ngân hàng&lt;/label&gt;
+    &lt;label class="lua-chon"&gt;&lt;input type="radio" name="thanh_toan" value="the"&gt; 💳 Thẻ ATM&lt;/label&gt;
+&lt;/fieldset&gt;
+</pre>
+            <p>Ô radio được bọc trong <code>label</code> → bấm vào chữ cũng chọn được (dễ bấm trên điện thoại).</p>
+
+            <h3>4.4. Trang trí</h3>
+            <p>Dùng lại cách làm của form đăng nhập: hộp trắng ở giữa màn hình, <code>label</code> nằm 1 dòng riêng, ô nhập rộng 100%.
+               Riêng dòng "tên sản phẩm … giá" dùng Flexbox để đẩy giá sang phải:</p>
+<pre>
+.don-hang p {
+    display: flex;
+    justify-content: space-between;   /* tên bên trái, giá bên phải */
+}
+</pre>
+            <p class="ghi-chu">💡 Áp dụng Bài 7: nút <b>"Đặt hàng"</b> là nút chính <b>duy nhất</b>, to, màu nhấn, nằm cuối form – nơi người mua điền xong và dừng lại.</p>
+
+            <div class="bai-tap">
+                <h4>📝 Nhiệm vụ</h4>
+                <ol>
+                    <li>Tự viết HTML cho các khối ở mục 4.1 (2 nhóm dùng <code>fieldset</code> + <code>legend</code>).</li>
+                    <li>Đặt <code>name</code> cho <b>mọi</b> ô nhập. Bấm "Đặt hàng" với <code>method="get"</code> để kiểm tra trên thanh địa chỉ xem đã gửi đủ dữ liệu chưa, xong đổi lại <code>post</code>.</li>
+                    <li>Thêm kiểm tra: số điện thoại đúng 10 số, bắt buộc chọn tỉnh, bắt buộc tích "đồng ý điều khoản".</li>
+                    <li><b>Nâng cao:</b> thêm ô Email (<code>email</code>), Ghi chú cho người bán (<code>textarea</code>), Ngày nhận hàng (<code>date</code>).</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 5: ÔN TẬP                                     -->
+        <!-- ================================================= -->
+        <div class="phan" id="on-tap">
+            <h2>5. Câu hỏi ôn tập</h2>
+            <!-- ⭐ NGOÀI BÀI HỌC: thẻ <details> + <summary> tạo khối bấm để mở/đóng, không cần JavaScript -->
+            <details class="cau-hoi">
+                <summary>1. Hai thuộc tính quan trọng nhất của thẻ &lt;form&gt; là gì?</summary>
+                <p><code>action</code> – gửi dữ liệu đến đâu; <code>method</code> – gửi bằng cách nào (get hoặc post).</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>2. GET và POST khác nhau thế nào? Form đăng nhập dùng cái nào?</summary>
+                <p>GET đưa dữ liệu lên thanh địa chỉ (dùng cho tìm kiếm). POST gửi dữ liệu trong thân yêu cầu, không hiện trên địa chỉ, gửi được file. Form đăng nhập dùng POST.</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>3. Ô nhập không có thuộc tính name thì sao?</summary>
+                <p>Dữ liệu của ô đó không được gửi đi. <code>name</code> là "tên biến" của dữ liệu, còn <code>id</code> chỉ dùng cho label và CSS.</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>4. Làm sao để bấm vào chữ nhãn thì con trỏ nhảy vào ô nhập?</summary>
+                <p>Cho <code>&lt;label for="x"&gt;</code> trùng với <code>&lt;input id="x"&gt;</code>, hoặc bọc ô nhập bên trong thẻ label.</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>5. Checkbox và radio khác nhau thế nào? Làm sao để các radio thành 1 nhóm?</summary>
+                <p>Checkbox chọn được nhiều, radio chỉ chọn 1. Các radio cùng nhóm phải có cùng <code>name</code>.</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>6. Kể 4 thuộc tính giúp trình duyệt kiểm tra dữ liệu trước khi gửi.</summary>
+                <p><code>required</code>, <code>minlength</code>/<code>maxlength</code>, <code>min</code>/<code>max</code>, <code>pattern</code>. Ngoài ra <code>type="email"</code>, <code>type="url"</code> cũng tự kiểm tra định dạng.</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>7. disabled và readonly khác nhau ở điểm nào?</summary>
+                <p>Cả hai đều không sửa được, nhưng ô <code>disabled</code> không được gửi đi, còn ô <code>readonly</code> vẫn được gửi.</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>8. Khi nào dùng select thay cho radio?</summary>
+                <p>Khi có nhiều lựa chọn (khoảng trên 5, ví dụ tỉnh thành) – select gọn hơn. Ít lựa chọn (2–5) thì radio giúp người dùng thấy hết ngay.</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>9. Form có ô tải ảnh lên cần thêm những gì?</summary>
+                <p><code>&lt;input type="file"&gt;</code>, form dùng <code>method="post"</code> và <code>enctype="multipart/form-data"</code>.</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>10. Thẻ fieldset và legend dùng để làm gì?</summary>
+                <p>Nhóm các ô liên quan thành một khối có khung (fieldset) và tiêu đề nhóm (legend) – giúp form dài dễ đọc hơn.</p>
+            </details>
+        </div>
+
+        <p class="cuoi-trang"><a href="../index.html">⬅ Về trang chủ khóa học</a></p>
+    </div>
+</body>
+</html>

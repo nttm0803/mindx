@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - ShopTeen</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- method="post": form có mật khẩu → KHÔNG dùng get (mật khẩu sẽ hiện trên thanh địa chỉ).
+         action="": chưa có server thật. Khi bấm Đăng nhập với Live Server, trình duyệt có thể báo
+         "Cannot POST" – đúng như mong đợi, vì trang web tĩnh không biết nhận dữ liệu.
+         Muốn xem dữ liệu gửi đi thế nào, tạm đổi thành method="get" rồi nhìn thanh địa chỉ. -->
+    <form class="hop-dang-nhap" action="" method="post">
+        <p class="logo">🛍 ShopTeen</p>
+        <h1>Đăng nhập</h1>
+        <p class="mo-ta">Chào mừng em quay lại!</p>
+
+        <!-- for="email" trùng id="email" → bấm chữ "Email" là con trỏ nhảy vào ô -->
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="ban@gmail.com"
+               autocomplete="email" autofocus required>
+
+        <!-- minlength="6": mật khẩu ngắn hơn 6 ký tự thì trình duyệt không cho gửi -->
+        <label for="mat-khau">Mật khẩu</label>
+        <input type="password" id="mat-khau" name="mat_khau" placeholder="Ít nhất 6 ký tự"
+               minlength="6" autocomplete="current-password" required>
+
+        <div class="hang-phu">
+            <!-- Checkbox bọc trong label → bấm chữ "Ghi nhớ đăng nhập" cũng tích được -->
+            <label class="nhan-checkbox">
+                <input type="checkbox" name="ghi_nho" value="co"> Ghi nhớ đăng nhập
+            </label>
+            <a href="#">Quên mật khẩu?</a>
+        </div>
+
+        <!-- Nút chính DUY NHẤT của form (Bài 7: mỗi khu vực chỉ 1 nút chính) -->
+        <button type="submit" class="nut-dang-nhap">Đăng nhập</button>
+
+        <p class="chuyen-trang">Chưa có tài khoản? <a href="#">Đăng ký ngay</a></p>
+    </form>
+
+    <p class="ve-bai"><a href="../index.html#dang-nhap">⬅ Về Bài 8</a></p>
+</body>
+</html>

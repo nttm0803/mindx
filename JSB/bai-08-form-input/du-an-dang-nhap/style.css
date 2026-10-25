@@ -1,0 +1,108 @@
+/* =========================================================
+   DỰ ÁN: FORM ĐĂNG NHẬP ĐƠN GIẢN
+   ========================================================= */
+
+/* Bước 1: căn hộp form ra GIỮA màn hình bằng Flexbox (Bài 5) */
+body {
+    margin: 0;
+    min-height: 100vh;               /* body cao ít nhất bằng màn hình */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;         /* giữa theo chiều dọc */
+    align-items: center;             /* giữa theo chiều ngang */
+    background-color: #E7F5FF;
+    font-family: Arial, sans-serif;
+    color: #212529;
+}
+
+/* Bước 2: hộp form */
+.hop-dang-nhap {
+    width: 100%;
+    max-width: 360px;                /* màn hình to: rộng tối đa 360px; điện thoại: co lại */
+    box-sizing: border-box;
+    background-color: white;
+    padding: 32px 28px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    margin: 0;
+    font-weight: 700;
+    color: #1971C2;
+}
+h1 {
+    font-size: 28px;
+    margin: 8px 0 4px 0;
+}
+.mo-ta {
+    margin: 0 0 16px 0;
+    color: #6C757D;
+}
+
+/* Bước 3: label nằm 1 dòng riêng, ô nhập rộng hết hộp */
+label {
+    display: block;
+    font-weight: 700;
+    margin: 14px 0 6px 0;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    box-sizing: border-box;          /* để padding không làm ô tràn khỏi hộp (Bài 3: box model) */
+    padding: 12px;
+    font-size: 16px;                 /* ≥ 16px: điện thoại không tự phóng to khi bấm vào */
+    border: 1px solid #CED4DA;
+    border-radius: 8px;
+}
+
+/* ⭐ NGOÀI BÀI HỌC: :focus – ô đang gõ có viền xanh, người dùng biết mình đang ở ô nào */
+input:focus {
+    border-color: #1971C2;
+    outline: 3px solid #A5D8FF;
+}
+
+/* Bước 4: dòng "Ghi nhớ – Quên mật khẩu?" chia 2 đầu */
+.hang-phu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    font-size: 14px;
+}
+.nhan-checkbox {
+    display: inline;                 /* label này nằm cùng dòng, không xuống dòng như label khác */
+    font-weight: 400;
+    margin: 0;
+}
+
+a {
+    color: #1971C2;
+    text-decoration: none;
+}
+
+/* Bước 5: nút chính – rộng hết hộp, màu nhấn, nổi nhất trong form */
+.nut-dang-nhap {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    font-size: 17px;
+    font-weight: 700;
+    color: white;
+    background-color: #F76707;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+/* ⭐ NGOÀI BÀI HỌC: :hover */
+.nut-dang-nhap:hover { background-color: #D9480F; }
+
+.chuyen-trang {
+    text-align: center;
+    margin: 18px 0 0 0;
+    font-size: 14px;
+    color: #6C757D;
+}
+
+.ve-bai { font-size: 14px; }

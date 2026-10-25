@@ -1,0 +1,115 @@
+/* =========================================================
+   DỰ ÁN: BIỂU MẪU THANH TOÁN – SHOPTEEN MARKETPLACE
+   ========================================================= */
+
+/* Căn hộp form ra giữa màn hình (giống form đăng nhập) */
+body {
+    margin: 0;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F1F3F5;
+    font-family: Arial, sans-serif;
+    color: #212529;
+}
+
+.hop-thanh-toan {
+    width: 100%;
+    max-width: 440px;
+    box-sizing: border-box;
+    background-color: white;
+    padding: 24px 28px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    margin: 0;
+    font-weight: 700;
+    color: #F76707;
+}
+h1 { margin: 4px 0 16px 0; }
+
+/* ---------- TÓM TẮT ĐƠN HÀNG ---------- */
+.don-hang {
+    background-color: #FFF4E6;
+    border-radius: 8px;
+    padding: 4px 16px;
+}
+.don-hang p {
+    display: flex;
+    justify-content: space-between;   /* tên sản phẩm bên trái, giá bên phải */
+}
+.don-hang .tong {
+    border-top: 1px solid #FFC078;
+    padding-top: 10px;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+/* ---------- NHÓM Ô (fieldset + legend) ---------- */
+fieldset {
+    border: 1px solid #DEE2E6;
+    border-radius: 8px;
+    padding: 8px 16px 16px 16px;
+    margin: 16px 0 0 0;
+}
+legend {
+    font-weight: 700;
+    color: #1971C2;
+    padding: 0 6px;
+}
+
+/* label nằm 1 dòng riêng, ô nhập rộng hết hộp */
+label {
+    display: block;
+    font-weight: 700;
+    margin: 12px 0 6px 0;
+}
+
+input[type="text"],
+input[type="tel"],
+select,
+textarea {
+    width: 100%;
+    box-sizing: border-box;          /* để padding không làm ô tràn khỏi hộp (Bài 3: box model) */
+    padding: 10px 12px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    border: 1px solid #CED4DA;
+    border-radius: 8px;
+}
+
+/* ⭐ NGOÀI BÀI HỌC: :focus – ô đang gõ có viền xanh */
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #1971C2;
+    outline: 3px solid #A5D8FF;
+}
+
+/* Radio, checkbox: chữ thường, nằm cùng dòng với ô chọn */
+.lua-chon {
+    font-weight: 400;
+    margin: 10px 0 0 0;
+    cursor: pointer;
+}
+
+/* Nút chính – rộng hết hộp, màu nhấn */
+.nut-dat-hang {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    background-color: #F76707;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+/* ⭐ NGOÀI BÀI HỌC: :hover */
+.nut-dat-hang:hover { background-color: #D9480F; }
+
+.ve-bai { font-size: 14px; }
