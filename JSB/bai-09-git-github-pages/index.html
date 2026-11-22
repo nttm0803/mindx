@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 9 - Git, GitHub và Deploy website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="trang">
+        <p><a href="../index.html">⬅ Về trang chủ khóa học</a></p>
+        <h1>🚀 Bài 9: Git, GitHub và đưa website lên mạng</h1>
+        <p>
+            Đến giờ website của em mới chỉ chạy trên <b>máy của em</b> (Live Server, địa chỉ <code>127.0.0.1</code>).
+            Bạn bè, bố mẹ, thầy cô <b>không mở được</b>. Bài này em sẽ học cách <b>lưu code bằng Git</b>,
+            <b>đưa code lên GitHub</b> và <b>deploy</b> (xuất bản) website để ai cũng mở được bằng một đường link, hoàn toàn miễn phí.
+        </p>
+
+        <p class="muc-luc">
+            <a href="#git-la-gi">1. Git và GitHub là gì?</a> |
+            <a href="#cai-dat">2. Chuẩn bị</a> |
+            <a href="#lenh-co-ban">3. Các lệnh Git cơ bản</a> |
+            <a href="#day-len-github">4. Đẩy code lên GitHub</a> |
+            <a href="#deploy">5. Deploy bằng GitHub Pages</a> |
+            <a href="#cap-nhat">6. Sửa web &amp; cập nhật</a> |
+            <a href="#loi">7. Lỗi hay gặp</a> |
+            <a href="#on-tap">8. Ôn tập</a>
+        </p>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 1: GIT VÀ GITHUB LÀ GÌ                        -->
+        <!-- ================================================= -->
+        <div class="phan" id="git-la-gi">
+            <h2>1. Git và GitHub là gì?</h2>
+
+            <h3>1.1. Vấn đề khi chưa có Git</h3>
+            <p>Em đã bao giờ có một thư mục như thế này chưa?</p>
+            <div class="man-hinh">📁 du-an-cuoi-khoa
+   📄 index.html
+   📄 index-ban-cu.html
+   📄 index-sua-lan-2.html
+   📄 index-FINAL.html
+   📄 index-FINAL-that-su.html   😵</div>
+            <p>
+                Lưu nhiều bản như vậy rất rối, và nếu <b>máy hỏng</b> thì mất hết. <b>Git</b> sinh ra để giải quyết chuyện này.
+            </p>
+
+            <h3>1.2. Định nghĩa</h3>
+            <div class="hang-so-sanh">
+                <div class="o-so-sanh">
+                    <p class="nhan">🗂 Git</p>
+                    <ul>
+                        <li>Là <b>phần mềm</b> cài trên máy tính.</li>
+                        <li>Giúp <b>lưu lại lịch sử</b> thay đổi của code: mỗi lần lưu gọi là một <b>commit</b>.</li>
+                        <li>Có thể <b>quay lại</b> bất kỳ phiên bản nào trước đó.</li>
+                        <li>Chạy được cả khi <b>không có Internet</b>.</li>
+                    </ul>
+                </div>
+                <div class="o-so-sanh">
+                    <p class="nhan">🐙 GitHub</p>
+                    <ul>
+                        <li>Là <b>trang web</b> (github.com) lưu code trên mạng.</li>
+                        <li>Giống <b>Google Drive dành cho code</b>.</li>
+                        <li>Mỗi dự án trên GitHub là một <b>repository</b> (gọi tắt là <b>repo</b>).</li>
+                        <li>Có tính năng <b>GitHub Pages</b>: biến repo thành website miễn phí.</li>
+                    </ul>
+                </div>
+            </div>
+            <p>🧠 <b>Dễ hiểu:</b> Git giống <b>cuốn album ảnh</b> em giữ ở nhà – mỗi commit là một tấm ảnh chụp lại dự án ở thời điểm đó.
+               GitHub giống <b>trang mạng xã hội</b> nơi em đăng album lên để cất giữ an toàn và chia sẻ cho người khác xem.</p>
+
+            <h3>1.3. Code đi qua 4 "ngăn"</h3>
+            <div class="so-do-git">
+                <div class="ngan">
+                    <b>📁 Thư mục làm việc</b>
+                    <small>Nơi em sửa code bằng VS Code</small>
+                </div>
+                <div class="mui-ten"><span>→</span>git add</div>
+                <div class="ngan">
+                    <b>📦 Khu chuẩn bị</b>
+                    <small>(staging) Chọn file sẽ được lưu</small>
+                </div>
+                <div class="mui-ten"><span>→</span>git commit</div>
+                <div class="ngan">
+                    <b>📚 Kho trên máy</b>
+                    <small>(local repo) Lịch sử các commit</small>
+                </div>
+                <div class="mui-ten"><span>→</span>git push</div>
+                <div class="ngan ngan-github">
+                    <b>☁ GitHub</b>
+                    <small>(remote repo) Kho trên mạng</small>
+                </div>
+            </div>
+            <p>🧠 <b>Dễ hiểu – gửi bưu phẩm:</b> <code>git add</code> = bỏ đồ vào hộp. <code>git commit</code> = dán kín hộp và ghi nhãn "trong hộp có gì".
+               <code>git push</code> = mang hộp ra bưu điện gửi đi.</p>
+
+            <h3>1.4. Deploy là gì?</h3>
+            <p>
+                <b>Deploy</b> (triển khai / xuất bản) là đưa website từ máy của em lên một <b>máy chủ trên Internet</b>,
+                để có một <b>đường link</b> mà ai cũng mở được. Trong bài này, máy chủ đó chính là <b>GitHub Pages</b>.
+            </p>
+            <table>
+                <tr><th></th><th>Live Server (trước giờ)</th><th>GitHub Pages (bài này)</th></tr>
+                <tr><td>Địa chỉ</td><td><code>http://127.0.0.1:5500/index.html</code></td><td><code>https://ten-cua-em.github.io/ten-repo/</code></td></tr>
+                <tr><td>Ai xem được?</td><td>Chỉ máy của em</td><td><b>Tất cả mọi người</b> có link, cả trên điện thoại</td></tr>
+                <tr><td>Tắt máy thì sao?</td><td>Web không mở được nữa</td><td>Web vẫn chạy bình thường</td></tr>
+            </table>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 2: CHUẨN BỊ                                   -->
+        <!-- ================================================= -->
+        <div class="phan" id="cai-dat">
+            <h2>2. Chuẩn bị (chỉ làm 1 lần)</h2>
+
+            <h3>2.1. Tạo tài khoản GitHub</h3>
+            <div class="buoc"><span class="so">1</span> Vào <a href="https://github.com/signup" target="_blank">github.com/signup</a>, nhập <b>email</b>, <b>mật khẩu</b> và <b>username</b>.</div>
+            <div class="buoc"><span class="so">2</span> Mở email để <b>xác nhận tài khoản</b> (nhập mã GitHub gửi về).</div>
+            <div class="ghi-chu">
+                💡 <b>Username rất quan trọng</b> vì nó nằm trong link website của em: <code>https://<b>username</b>.github.io/...</code><br>
+                Nên chọn tên <b>ngắn, viết thường, không dấu</b>, ví dụ <code>nguyenvanan</code>, <code>an-nguyen-2011</code>.
+                Tránh tên kiểu <code>xXxSieuNhanxXx</code> – sau này em sẽ dùng GitHub để nộp hồ sơ đấy!
+            </div>
+
+            <h3>2.2. Cài Git</h3>
+            <div class="buoc"><span class="so">1</span> Vào <a href="https://git-scm.com/downloads" target="_blank">git-scm.com/downloads</a> → chọn <b>Windows</b> → tải bản <b>64-bit Git for Windows Setup</b>.</div>
+            <div class="buoc"><span class="so">2</span> Mở file vừa tải, bấm <b>Next</b> liên tục (giữ cài đặt mặc định) → <b>Install</b>.</div>
+            <div class="buoc"><span class="so">3</span> <b>Tắt hẳn VS Code rồi mở lại</b> để VS Code nhận ra Git.</div>
+            <div class="buoc"><span class="so">4</span> Trong VS Code, mở Terminal bằng <kbd>Ctrl</kbd> + <kbd>`</kbd> (phím dưới phím Esc), gõ lệnh sau để kiểm tra:</div>
+<pre>
+git --version
+<span class="ghi-chu-lenh"># Kết quả đúng: git version 2.xx.x.windows.x</span>
+</pre>
+            <div class="ghi-chu">💡 Máy Mac: mở Terminal, gõ <code>git --version</code>. Nếu chưa có, máy sẽ tự hỏi cài đặt – bấm <b>Install</b>.</div>
+
+            <h3>2.3. Khai báo tên và email cho Git</h3>
+            <p>Mỗi commit sẽ ghi lại <b>ai</b> là người lưu. Em khai báo một lần duy nhất (thay bằng thông tin của em, dùng <b>email đã đăng ký GitHub</b>):</p>
+<pre>
+git config --global user.name "Nguyen Van An"
+git config --global user.email "an@example.com"
+
+<span class="ghi-chu-lenh"># Kiểm tra lại:</span>
+git config --global --list
+</pre>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 3: CÁC LỆNH GIT CƠ BẢN                         -->
+        <!-- ================================================= -->
+        <div class="phan" id="lenh-co-ban">
+            <h2>3. Các lệnh Git cơ bản</h2>
+
+            <h3>3.1. Mở đúng thư mục dự án</h3>
+            <p>
+                Trong VS Code chọn <b>File → Open Folder</b> → chọn thư mục dự án (ví dụ <code>tiem-banh-may</code>).
+                Mở Terminal (<kbd>Ctrl</kbd> + <kbd>`</kbd>), Terminal sẽ tự đứng ở đúng thư mục đó.
+            </p>
+            <div class="luu-y">
+                ⚠ Mở <b>đúng thư mục chứa <code>index.html</code></b> của dự án, không mở thư mục cha (như <code>Desktop</code> hay <code>Documents</code>).
+                Nếu không, Git sẽ "theo dõi" cả trăm file không liên quan!
+            </div>
+
+            <h3>3.2. Bảng lệnh</h3>
+            <table>
+                <tr><th>Lệnh</th><th>Ý nghĩa</th><th>Khi nào dùng?</th></tr>
+                <tr><td><code>git init</code></td><td>Biến thư mục thành <b>kho Git</b> (tạo thư mục ẩn <code>.git</code>)</td><td>1 lần duy nhất, lúc bắt đầu dự án</td></tr>
+                <tr><td><code>git status</code></td><td>Xem <b>tình trạng</b>: file nào mới, file nào đã sửa</td><td>Bất cứ lúc nào – lệnh "hỏi thăm" an toàn nhất</td></tr>
+                <tr><td><code>git add .</code></td><td>Đưa <b>tất cả</b> file thay đổi vào khu chuẩn bị (dấu <code>.</code> = tất cả)</td><td>Trước mỗi lần commit</td></tr>
+                <tr><td><code>git commit -m "..."</code></td><td><b>Lưu</b> một phiên bản kèm lời nhắn mô tả</td><td>Mỗi khi làm xong một phần</td></tr>
+                <tr><td><code>git log --oneline</code></td><td>Xem <b>lịch sử</b> các commit</td><td>Khi muốn xem đã lưu những gì</td></tr>
+                <tr><td><code>git remote add origin &lt;link&gt;</code></td><td>Nối kho trên máy với repo trên GitHub</td><td>1 lần duy nhất</td></tr>
+                <tr><td><code>git push</code></td><td><b>Đẩy</b> các commit lên GitHub</td><td>Sau khi commit</td></tr>
+            </table>
+
+            <h3>3.3. Thực hành: commit đầu tiên</h3>
+<pre>
+git init
+<span class="ghi-chu-lenh"># Initialized empty Git repository in .../tiem-banh-may/.git/</span>
+
+git status
+<span class="ghi-chu-lenh"># Untracked files: index.html  style.css  images/ ...   (chữ màu ĐỎ = chưa add)</span>
+
+git add .
+git status
+<span class="ghi-chu-lenh"># Changes to be committed: ...                          (chữ màu XANH = đã add, sẵn sàng commit)</span>
+
+git commit -m "Tao trang chu tiem banh"
+<span class="ghi-chu-lenh"># [master (root-commit) a1b2c3d] Tao trang chu tiem banh</span>
+
+git log --oneline
+<span class="ghi-chu-lenh"># a1b2c3d Tao trang chu tiem banh</span>
+</pre>
+
+            <h3>3.4. Viết lời nhắn commit sao cho tốt?</h3>
+            <div class="hang-so-sanh">
+                <div class="o-so-sanh">
+                    <p class="nhan">❌ Chưa tốt</p>
+                    <ul>
+                        <li><code>"sua"</code></li>
+                        <li><code>"abc"</code></li>
+                        <li><code>"update"</code></li>
+                    </ul>
+                    <p>→ Một tuần sau em sẽ không nhớ mình đã sửa gì.</p>
+                </div>
+                <div class="o-so-sanh">
+                    <p class="nhan">✅ Tốt</p>
+                    <ul>
+                        <li><code>"Them trang dat banh"</code></li>
+                        <li><code>"Sua menu bi lech tren dien thoai"</code></li>
+                        <li><code>"Doi mau nut thanh mau hong"</code></li>
+                    </ul>
+                    <p>→ Đọc là biết ngay commit đó làm gì.</p>
+                </div>
+            </div>
+
+            <h3>3.5. Cách 2: Dùng nút bấm trong VS Code (không cần gõ lệnh)</h3>
+            <p>VS Code có sẵn công cụ <b>Source Control</b> (biểu tượng 3 chấm nối nhau ở thanh bên trái, hoặc <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd>):</p>
+            <table>
+                <tr><th>Gõ lệnh</th><th>Bấm nút trong Source Control</th></tr>
+                <tr><td><code>git init</code></td><td>Nút <b>Initialize Repository</b></td></tr>
+                <tr><td><code>git add .</code></td><td>Rê chuột vào dòng <b>Changes</b> → bấm dấu <b>+</b></td></tr>
+                <tr><td><code>git commit -m "..."</code></td><td>Gõ lời nhắn vào ô <b>Message</b> → bấm <b>✓ Commit</b></td></tr>
+                <tr><td><code>git push</code></td><td>Bấm <b>Sync Changes</b> (hoặc <b>Publish Branch</b> ở lần đầu)</td></tr>
+            </table>
+            <p class="ghi-chu">💡 Nên học <b>gõ lệnh</b> trước để hiểu bản chất, sau đó dùng nút bấm cho nhanh. Hai cách cho kết quả <b>giống hệt nhau</b>.
+               Chữ cái cạnh tên file trong VS Code: <b>U</b> = Untracked (file mới), <b>M</b> = Modified (đã sửa), <b>A</b> = Added (đã add).</p>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 4: ĐẨY CODE LÊN GITHUB                         -->
+        <!-- ================================================= -->
+        <div class="phan" id="day-len-github">
+            <h2>4. Đẩy code lên GitHub</h2>
+
+            <h3>4.1. Tạo repository (repo) trống trên GitHub</h3>
+            <p>
+                Ở phần 3, em đã có <b>kho Git trên máy</b> (local repo). Bây giờ em cần tạo thêm một <b>kho trên mạng</b> (remote repo) trên GitHub
+                để chứa code đó. Repo trên GitHub phải được tạo <b>trước</b>, rồi mới nối máy với nó được.
+            </p>
+            <p>🧠 <b>Dễ hiểu:</b> Muốn gửi bưu phẩm thì người nhận phải có <b>địa chỉ nhà</b> trước. Tạo repo trên GitHub chính là "xây nhà" và lấy <b>địa chỉ</b> (đường link repo) để lát nữa gửi code tới.</p>
+
+            <h4>Bước A – Mở trang tạo repo mới</h4>
+            <div class="buoc"><span class="so">1</span> Vào <a href="https://github.com" target="_blank">github.com</a> và <b>đăng nhập</b> (Sign in) bằng tài khoản đã tạo ở mục 2.1.</div>
+            <div class="buoc"><span class="so">2</span> Chọn <b>một trong 3 cách</b> (kết quả như nhau):
+                <ul>
+                    <li>Bấm dấu <b>+</b> ở <b>góc trên bên phải</b> (cạnh ảnh đại diện) → chọn <b>New repository</b>.</li>
+                    <li>Hoặc ở trang chủ (Dashboard), cột bên trái, bấm nút xanh lá <b>New</b> (cạnh chữ <i>Top repositories</i>).</li>
+                    <li>Hoặc gõ thẳng địa chỉ <a href="https://github.com/new" target="_blank">github.com/new</a> – nhanh nhất!</li>
+                </ul>
+            </div>
+            <!-- HÌNH 1: thanh trên cùng của GitHub + menu dấu cộng -->
+            <figure class="hinh">
+                <div class="mo-phong">
+                    <div class="mp-thanh-tren">
+                        <span class="mp-logo">🐙</span>
+                        <span class="mp-tim-kiem">🔍 Type / to search</span>
+                        <span class="mp-nut mp-noi-bat">＋ ▾<span class="mp-so">1</span></span>
+                        <span class="mp-nut">◎</span>
+                        <span class="mp-avatar"></span>
+                    </div>
+                    <div class="mp-vung-menu">
+                        <div class="mp-menu">
+                            <div class="mp-muc dang-chon mp-noi-bat">📘 New repository<span class="mp-so">2</span></div>
+                            <div class="mp-muc">⬆ Import repository</div>
+                            <div class="mp-muc">💻 New codespace</div>
+                            <div class="mp-muc">📝 New gist</div>
+                            <div class="mp-muc">🏢 New organization</div>
+                        </div>
+                    </div>
+                </div>
+                <figcaption>Hình 1: Bấm dấu <b>+</b> <span class="so-nho">1</span> ở góc trên bên phải → chọn <b>New repository</b> <span class="so-nho">2</span>.</figcaption>
+            </figure>
+
+            <div class="buoc"><span class="so">3</span> Trang <b>"Create a new repository"</b> hiện ra như <b>Hình 2</b>. Các số đỏ <span class="so-nho">1</span> → <span class="so-nho">5</span> là những chỗ em cần điền, giải thích ở Bước B.</div>
+
+            <!-- HÌNH 2: form tạo repo -->
+            <figure class="hinh">
+                <div class="mo-phong">
+                    <div class="mp-thanh-tren">
+                        <span class="mp-logo">🐙</span>
+                        <span class="mp-tim-kiem">🔍 Type / to search</span>
+                        <span class="mp-avatar"></span>
+                    </div>
+                    <div class="mp-noi-dung">
+                        <div class="mp-tieu-de">Create a new repository</div>
+                        <p class="mp-mo">Repositories contain a project's files and version history.</p>
+
+                        <div class="mp-muc-lon">① General</div>
+                        <div class="mp-hang">
+                            <div>
+                                <div class="mp-nhan">Owner *</div>
+                                <span class="mp-o-nhap">🟠 username ▾</span>
+                            </div>
+                            <div class="mp-gach">/</div>
+                            <div class="mp-gian">
+                                <div class="mp-nhan">Repository name *</div>
+                                <span class="mp-o-nhap mp-o-rong mp-noi-bat">tiem-banh-may<span class="mp-so">1</span></span>
+                            </div>
+                        </div>
+                        <p class="mp-xanh">✔ tiem-banh-may is available.</p>
+
+                        <div class="mp-nhan">Description</div>
+                        <span class="mp-o-nhap mp-o-rong mp-noi-bat">Website tiem banh - du an cuoi khoa MindX<span class="mp-so">2</span></span>
+
+                        <div class="mp-muc-lon">② Configuration</div>
+                        <div class="mp-khung-cai-dat">
+                            <div class="mp-dong-cai-dat">
+                                <div><b>Choose visibility *</b><br><small>Choose who can see and commit to this repository</small></div>
+                                <span class="mp-chon mp-noi-bat">🌐 Public ▾<span class="mp-so">3</span></span>
+                            </div>
+                            <div class="mp-dong-cai-dat">
+                                <div><b>Add README</b><br><small>READMEs can be used as longer descriptions.</small></div>
+                                <span class="mp-gat mp-noi-bat">⚪ Off<span class="mp-so">4</span></span>
+                            </div>
+                            <div class="mp-dong-cai-dat">
+                                <div><b>Add .gitignore</b></div>
+                                <span class="mp-chon">No .gitignore ▾</span>
+                            </div>
+                            <div class="mp-dong-cai-dat">
+                                <div><b>Add license</b></div>
+                                <span class="mp-chon">No license ▾</span>
+                            </div>
+                        </div>
+
+                        <div class="mp-cuoi-form">
+                            <span class="mp-nut-xanh mp-noi-bat">Create repository<span class="mp-so">5</span></span>
+                        </div>
+                    </div>
+                </div>
+                <figcaption>Hình 2: Form tạo repo. <span class="so-nho">1</span> tên repo · <span class="so-nho">2</span> mô tả · <span class="so-nho">3</span> Public · <span class="so-nho">4</span> README để Off · <span class="so-nho">5</span> bấm Create repository.</figcaption>
+            </figure>
+            <p class="ghi-chu">💡 GitHub thỉnh thoảng đổi giao diện. Ở giao diện cũ, <b>Public / Private</b> là 2 nút tròn ◉ ○ và README là ô tích ☐ <b>"Add a README file"</b>.
+               Vị trí các ô có thể khác một chút, em chỉ cần tìm đúng <b>tên</b> các mục.</p>
+
+            <h4>Bước B – Điền thông tin từng ô</h4>
+            <div class="buoc"><span class="so">4</span> <b>(1) Owner</b>: để nguyên là <b>username của em</b>.
+                <b>Repository name</b>: gõ tên repo – tên này sẽ nằm trong link website, nên đặt <b>viết thường, không dấu, không khoảng trắng</b>, nối bằng gạch ngang.
+            </div>
+            <table>
+                <tr><th>✅ Tên tốt</th><th>❌ Tên nên tránh</th><th>Vì sao tránh?</th></tr>
+                <tr><td><code>tiem-banh-may</code></td><td><code>Tiệm Bánh Mây</code></td><td>Có dấu, khoảng trắng → GitHub tự đổi thành <code>Ti-m-B-nh-M-y</code> rất xấu</td></tr>
+                <tr><td><code>du-an-cuoi-khoa</code></td><td><code>DuAnCuoiKhoa_FINAL2</code></td><td>Lẫn chữ hoa, khó nhớ, dễ gõ sai link</td></tr>
+                <tr><td><code>shop-teen</code></td><td><code>abc</code>, <code>test</code></td><td>Đọc tên không biết dự án làm gì</td></tr>
+            </table>
+            <p>
+                Gõ xong, GitHub kiểm tra ngay: thấy dòng <b style="color:#2B8A3E">✅ ... is available</b> là dùng được.
+                Nếu báo <b style="color:#C92A2A">The repository ... already exists on this account</b> nghĩa là em đã có repo trùng tên → đặt tên khác.
+            </p>
+
+            <div class="buoc"><span class="so">5</span> <b>(2) Description</b> (không bắt buộc): một câu ngắn mô tả dự án, ví dụ <i>"Website tiệm bánh – dự án cuối khóa MindX"</i>. Có thể bỏ trống.</div>
+
+            <div class="buoc"><span class="so">6</span> <b>(3) Visibility</b>: chọn <b>Public</b>.
+                <ul>
+                    <li><b>Public</b> = công khai, ai cũng xem được code. <b>Bắt buộc</b> để dùng GitHub Pages miễn phí.</li>
+                    <li><b>Private</b> = riêng tư, chỉ em xem được → tài khoản miễn phí <b>không</b> bật được GitHub Pages.</li>
+                </ul>
+            </div>
+
+            <div class="buoc"><span class="so">7</span> <b>(4) Add README / .gitignore / license</b>: để <b>trống hết</b> (README = <b>Off</b>, .gitignore = <b>No .gitignore</b>, license = <b>No license</b>).</div>
+            <div class="luu-y">
+                ⚠ <b>Vì sao KHÔNG tạo README?</b> Code của em <b>đã có sẵn trên máy</b> và đã commit. Nếu tạo thêm README trên GitHub,
+                repo trên mạng sẽ có 1 commit mà máy em <b>không có</b> → lúc push sẽ bị lỗi <code>! [rejected] ... (fetch first)</code> (xem phần 7).
+                Repo phải <b>trống hoàn toàn</b> thì mới push lần đầu dễ dàng.
+            </div>
+
+            <div class="buoc"><span class="so">8</span> <b>(5)</b> Kiểm tra lại một lượt rồi bấm nút xanh lá <b>Create repository</b>.</div>
+
+            <h4>Bước C – Đọc trang "Quick setup" và lấy link repo</h4>
+            <div class="buoc"><span class="so">9</span> Tạo xong, GitHub chuyển sang trang của repo (đang trống) với khung <b>Quick setup</b> như <b>Hình 3</b>. Trang có nhiều khối, em chỉ cần quan tâm mấy chỗ được đánh dấu:</div>
+
+            <!-- HÌNH 3: trang Quick setup của repo trống -->
+            <figure class="hinh">
+                <div class="mo-phong">
+                    <div class="mp-thanh-tren">
+                        <span class="mp-logo">🐙</span>
+                        <span class="mp-tim-kiem">🔍 Type / to search</span>
+                        <span class="mp-avatar"></span>
+                    </div>
+                    <div class="mp-dau-repo">📘 username / <b>tiem-banh-may</b> <span class="mp-nhan-public">Public</span></div>
+                    <div class="mp-tab">
+                        <span class="dang-chon">&lt;&gt; Code</span><span>Issues</span><span>Pull requests</span><span>Actions</span><span>⚙ Settings</span>
+                    </div>
+                    <div class="mp-noi-dung">
+                        <div class="mp-quick">
+                            <div><b>Quick setup</b> — if you've done this kind of thing before</div>
+                            <div class="mp-hang-link">
+                                <span class="mp-cap-nut">
+                                    <span class="dang-chon mp-noi-bat">HTTPS<span class="mp-so">A</span></span><span>SSH</span>
+                                </span>
+                                <span class="mp-o-link">https://github.com/username/tiem-banh-may.git</span>
+                                <span class="mp-nut mp-noi-bat">📋<span class="mp-so">B</span></span>
+                            </div>
+                        </div>
+
+                        <div class="mp-khoi mp-khoi-bo-qua">
+                            <span class="mp-nhan-khoi">❌ Bỏ qua khối này</span>
+                            <b>…or create a new repository on the command line</b>
+<pre>echo "# tiem-banh-may" &gt;&gt; README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/username/tiem-banh-may.git
+git push -u origin main</pre>
+                        </div>
+
+                        <div class="mp-khoi mp-khoi-dung">
+                            <span class="mp-nhan-khoi">✅ Dùng khối này</span>
+                            <b>…or push an existing repository from the command line</b>
+<pre>git remote add origin https://github.com/username/tiem-banh-may.git
+git branch -M main
+git push -u origin main</pre>
+                        </div>
+                    </div>
+                </div>
+                <figcaption>Hình 3: Trang Quick setup. <span class="so-nho">A</span> chọn HTTPS · <span class="so-nho">B</span> bấm copy link · dùng khối <b>✅ push an existing repository</b>.</figcaption>
+            </figure>
+            <ul>
+                <li><span class="so-nho">A</span> <b>HTTPS</b>: đảm bảo đang chọn HTTPS (không chọn SSH). Link luôn có dạng
+                    <code>https://github.com/<b>username</b>/<b>ten-repo</b>.git</code>.</li>
+                <li><span class="so-nho">B</span> Bấm biểu tượng <b>📋</b> để <b>copy link</b>, lát nữa dán vào lệnh <code>git remote add origin</code>.</li>
+                <li><b>✅ "…or push an existing repository from the command line"</b>: đúng tình huống của em – <b>đã có code và commit trên máy</b>.
+                    3 lệnh trong khối này chính là 3 lệnh ở mục 4.2 bên dưới.</li>
+                <li><b>❌ "…or create a new repository on the command line"</b>: dành cho người <b>chưa</b> có code → <b>bỏ qua</b>, vì em đã <code>git init</code> và commit ở phần 3 rồi.</li>
+            </ul>
+            <div class="ghi-chu">
+                💡 <b>Đừng đóng tab này!</b> Giữ trang Quick setup mở để copy lệnh. Lỡ đóng rồi? Vào <code>github.com/username/ten-repo</code> – khi repo còn trống, trang Quick setup sẽ hiện lại.
+            </div>
+
+            <div class="buoc"><span class="so">10</span> <b>Kiểm tra nhanh</b> trước khi sang 4.2:
+                <ul class="checklist">
+                    <li>Repo tên đúng, viết thường, không dấu</li>
+                    <li>Có nhãn <b>Public</b> cạnh tên repo</li>
+                    <li>Repo trống (đang hiện trang Quick setup, chưa có file README)</li>
+                    <li>Đã copy link <b>HTTPS</b> kết thúc bằng <code>.git</code></li>
+                </ul>
+            </div>
+
+            <!-- ⭐ NGOÀI BÀI HỌC -->
+            <p class="ghi-chu">⭐ <b>NGOÀI BÀI HỌC – Lỡ chọn sai?</b> Vào tab <b>⚙ Settings</b> của repo:
+               đổi tên ở ô <b>Repository name</b> → <b>Rename</b>; đổi Private ↔ Public ở cuối trang, mục <b>Danger Zone</b> → <b>Change visibility</b>.
+               Nếu lỡ tạo README, cách dễ nhất là <b>xóa repo</b> (cũng ở Danger Zone → <b>Delete this repository</b>) rồi tạo lại repo trống.</p>
+
+            <h3>4.2. Nối máy với GitHub và push</h3>
+            <p>Quay lại Terminal trong VS Code (đang đứng ở thư mục dự án), gõ 3 lệnh – thay link bằng <b>link repo đã copy ở bước 9</b>.
+               Thứ tự 2 lệnh đầu có thể khác trang Quick setup một chút, kết quả vẫn giống nhau:</p>
+<pre>
+git branch -M main
+<span class="ghi-chu-lenh"># Đổi tên nhánh chính thành "main" (tên chuẩn hiện nay trên GitHub)</span>
+
+git remote add origin https://github.com/username/tiem-banh-may.git
+<span class="ghi-chu-lenh"># "origin" là biệt danh của repo trên GitHub, để lần sau khỏi gõ cả link dài</span>
+
+git push -u origin main
+<span class="ghi-chu-lenh"># Đẩy nhánh main lên origin. "-u" để những lần sau chỉ cần gõ: git push</span>
+</pre>
+            <div class="ghi-chu">
+                💡 <b>Lần push đầu tiên</b>, Windows sẽ hiện cửa sổ <b>"Sign in to GitHub"</b> → bấm <b>Sign in with your browser</b> →
+                trình duyệt mở ra → bấm <b>Authorize</b>. Máy sẽ nhớ tài khoản, các lần sau không phải đăng nhập lại.
+            </div>
+            <p>Push xong, em tải lại trang repo trên GitHub (<kbd>F5</kbd>): trang Quick setup biến mất, thay bằng danh sách file như <b>Hình 4</b>. 🎉</p>
+
+            <!-- HÌNH 4: repo sau khi push thành công -->
+            <figure class="hinh">
+                <div class="mo-phong">
+                    <div class="mp-thanh-tren">
+                        <span class="mp-logo">🐙</span>
+                        <span class="mp-tim-kiem">🔍 Type / to search</span>
+                        <span class="mp-avatar"></span>
+                    </div>
+                    <div class="mp-dau-repo">📘 username / <b>tiem-banh-may</b> <span class="mp-nhan-public">Public</span></div>
+                    <div class="mp-tab">
+                        <span class="dang-chon">&lt;&gt; Code</span><span>Issues</span><span>Pull requests</span><span>Actions</span><span>⚙ Settings</span>
+                    </div>
+                    <div class="mp-noi-dung">
+                        <div class="mp-hang-nut">
+                            <span class="mp-chon mp-noi-bat">🔀 main ▾<span class="mp-so">1</span></span>
+                            <span class="mp-nut-xanh">&lt;&gt; Code ▾</span>
+                        </div>
+                        <div class="mp-danh-sach-file">
+                            <div class="mp-dong-dau mp-noi-bat">
+                                <span><span class="mp-avatar mp-avatar-nho"></span> <b>username</b> Phien ban dau tien</span>
+                                <span class="mp-mo">a1b2c3d · 1 minute ago</span>
+                                <span class="mp-so">2</span>
+                            </div>
+                            <div class="mp-dong-file"><span>📁 images</span><span class="mp-mo">Phien ban dau tien</span></div>
+                            <div class="mp-dong-file"><span>📄 index.html</span><span class="mp-mo">Phien ban dau tien</span></div>
+                            <div class="mp-dong-file"><span>📄 products.html</span><span class="mp-mo">Phien ban dau tien</span></div>
+                            <div class="mp-dong-file"><span>📄 style.css</span><span class="mp-mo">Phien ban dau tien</span></div>
+                        </div>
+                    </div>
+                </div>
+                <figcaption>Hình 4: Push thành công. <span class="so-nho">1</span> nhánh <b>main</b> · <span class="so-nho">2</span> lời nhắn commit của em · bên dưới là các file từ máy em.</figcaption>
+            </figure>
+            <p class="ghi-chu">💡 So sánh với thư mục trên máy: các file phải <b>giống hệt</b>, và <code>index.html</code> phải nằm <b>ngay ngoài cùng</b> danh sách (không nằm trong thư mục con) – đây là điều kiện để deploy ở phần 5.</p>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 5: DEPLOY BẰNG GITHUB PAGES                    -->
+        <!-- ================================================= -->
+        <div class="phan" id="deploy">
+            <h2>5. Deploy website bằng GitHub Pages</h2>
+
+            <h3>5.1. Bật GitHub Pages</h3>
+            <div class="buoc"><span class="so">1</span> Trong trang repo, bấm tab <b>⚙ Settings</b> (thanh ngang phía trên).</div>
+            <div class="buoc"><span class="so">2</span> Cột bên trái, mục <b>Code and automation</b> → bấm <b>Pages</b>.</div>
+            <div class="buoc"><span class="so">3</span> Phần <b>Build and deployment</b> → <b>Source</b>: chọn <b>Deploy from a branch</b>.</div>
+            <div class="buoc"><span class="so">4</span> Phần <b>Branch</b>: chọn <b>main</b>, thư mục <b>/ (root)</b> → bấm <b>Save</b>.</div>
+            <div class="buoc"><span class="so">5</span> Chờ khoảng <b>1–2 phút</b>, tải lại trang Settings → Pages. Dòng chữ <b>"Your site is live at ..."</b> hiện ra kèm đường link. Bấm <b>Visit site</b>! 🚀</div>
+
+            <div class="man-hinh">Your site is live at https://<b>username</b>.github.io/<b>tiem-banh-may</b>/
+                             ↑ tên tài khoản    ↑ tên repo</div>
+
+            <p class="ghi-chu">💡 Muốn xem quá trình deploy đang chạy tới đâu? Vào tab <b>Actions</b> của repo:
+               🟡 vàng = đang deploy, ✅ xanh = xong, ❌ đỏ = lỗi.</p>
+
+            <h3>5.2. Quy tắc để website chạy đúng trên GitHub Pages</h3>
+            <table>
+                <tr><th>Quy tắc</th><th>Vì sao?</th></tr>
+                <tr>
+                    <td>Trang chủ phải tên là <code>index.html</code> và nằm <b>ngay ngoài cùng</b> repo (không nằm trong thư mục con)</td>
+                    <td>GitHub Pages tự tìm <code>index.html</code> ở thư mục gốc. Không có → lỗi <b>404</b>.</td>
+                </tr>
+                <tr>
+                    <td>Dùng <b>đường dẫn tương đối</b>: <code>images/logo.png</code>, <code>style.css</code></td>
+                    <td>Đường dẫn kiểu <code>C:\Users\An\Desktop\logo.png</code> chỉ có trên máy em, lên mạng sẽ <b>mất ảnh</b>.</td>
+                </tr>
+                <tr>
+                    <td>Viết <b>đúng chữ hoa / chữ thường</b> của tên file</td>
+                    <td>Windows coi <code>Logo.PNG</code> và <code>logo.png</code> là một, nhưng máy chủ GitHub coi là <b>2 file khác nhau</b>.</td>
+                </tr>
+                <tr>
+                    <td>Tên file, thư mục <b>không dấu, không khoảng trắng</b>: <code>banh-kem.png</code> thay vì <code>Bánh Kem.png</code></td>
+                    <td>Dấu và khoảng trắng trong link dễ gây lỗi không tìm thấy file.</td>
+                </tr>
+            </table>
+            <p>Cấu trúc thư mục <b>đúng</b>:</p>
+            <div class="man-hinh">📁 tiem-banh-may          ← thư mục được git init, cũng là repo
+   📄 index.html         ← trang chủ, nằm ngoài cùng ✅
+   📄 products.html
+   📄 style.css
+   📁 images
+      🖼 hero.svg</div>
+            <div class="luu-y">
+                ⚠ <b>Không đưa lên GitHub</b> mật khẩu, số điện thoại, địa chỉ nhà hay thông tin riêng tư. Repo Public thì <b>ai cũng xem được</b> toàn bộ code của em.
+            </div>
+
+            <h3>5.3. ⭐ NGOÀI BÀI HỌC: Cách nhanh không cần cài Git</h3>
+            <p>Nếu máy ở phòng học chưa cài được Git, em vẫn có thể deploy bằng cách <b>kéo thả</b>:</p>
+            <div class="buoc"><span class="so">1</span> Tạo repo mới như mục 4.1 → ở trang repo trống, bấm link <b>uploading an existing file</b>.</div>
+            <div class="buoc"><span class="so">2</span> Mở thư mục dự án trên máy, chọn <b>tất cả file và thư mục bên trong</b> (<kbd>Ctrl</kbd> + <kbd>A</kbd>), kéo thả vào trang GitHub.</div>
+            <div class="buoc"><span class="so">3</span> Bấm <b>Commit changes</b>, sau đó bật GitHub Pages như mục 5.1.</div>
+            <p class="ghi-chu">💡 Kéo <b>các file bên trong</b>, không kéo cả thư mục ngoài cùng – nếu không <code>index.html</code> sẽ nằm trong thư mục con và web báo 404.
+               Cách này tiện nhưng mỗi lần sửa lại phải upload thủ công, không có lịch sử rõ ràng như dùng Git.</p>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 6: SỬA WEB VÀ CẬP NHẬT                         -->
+        <!-- ================================================= -->
+        <div class="phan" id="cap-nhat">
+            <h2>6. Sửa website và cập nhật lên mạng</h2>
+            <p>Từ giờ, mỗi lần sửa code em chỉ cần lặp lại <b>vòng 3 lệnh</b>:</p>
+<pre>
+git add .
+git commit -m "Them mau hong cho nut dat banh"
+git push
+</pre>
+            <p>Đợi khoảng 1 phút rồi tải lại website (nhấn <kbd>Ctrl</kbd> + <kbd>F5</kbd> để trình duyệt bỏ bản cũ đã lưu) – thay đổi đã lên mạng!</p>
+
+            <div class="ghi-chu">
+                🔁 <b>Thói quen tốt:</b> Làm xong một phần nhỏ (một section, một trang, sửa một lỗi) là <b>commit ngay</b>.
+                Cuối buổi học thì <b>push</b>. Như vậy về nhà em vẫn tiếp tục được, và nếu lỡ làm hỏng thì vẫn quay lại được bản trước.
+            </div>
+
+            <h3>6.1. ⭐ NGOÀI BÀI HỌC: Tiếp tục làm ở máy khác</h3>
+            <p>Ở nhà muốn lấy code từ GitHub về máy (lần đầu):</p>
+<pre>
+git clone https://github.com/username/tiem-banh-may.git
+<span class="ghi-chu-lenh"># Tải toàn bộ repo về thành thư mục tiem-banh-may</span>
+</pre>
+            <p>Những lần sau, trước khi bắt đầu code, lấy bản mới nhất về:</p>
+<pre>
+git pull
+</pre>
+
+            <div class="bai-tap">
+                <h3>✍ Thực hành: Deploy dự án cuối khóa</h3>
+                <ol>
+                    <li>Mở thư mục dự án cuối khóa của em bằng VS Code.</li>
+                    <li><code>git init</code> → <code>git add .</code> → <code>git commit -m "Phien ban dau tien"</code>.</li>
+                    <li>Tạo repo <b>Public, trống</b> (không README) trên GitHub theo mục 4.1, copy link HTTPS.</li>
+                    <li><code>git branch -M main</code> → <code>git remote add origin ...</code> → <code>git push -u origin main</code>.</li>
+                    <li>Bật GitHub Pages, mở link website <b>trên điện thoại</b> để kiểm tra responsive.</li>
+                    <li>Sửa một chi tiết nhỏ (ví dụ đổi màu tiêu đề), commit và push lại, kiểm tra website đã đổi chưa.</li>
+                    <li>Gửi link <code>https://...github.io/...</code> cho thầy cô và dán link vào slide thuyết trình.</li>
+                </ol>
+            </div>
+
+            <h3>6.2. Checklist trước khi nộp link</h3>
+            <ul class="checklist">
+                <li>Mở link trên trình duyệt ẩn danh (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd>) – trang chủ hiện đúng</li>
+                <li>Tất cả ảnh đều hiện (không có ô ảnh vỡ)</li>
+                <li>Bấm hết các link trên menu – không trang nào báo 404</li>
+                <li>Mở trên điện thoại – giao diện không bị vỡ</li>
+                <li>Tiêu đề tab (<code>&lt;title&gt;</code>) đã đổi thành tên dự án</li>
+                <li>Không có thông tin cá nhân nhạy cảm trong code</li>
+            </ul>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 7: LỖI HAY GẶP                                 -->
+        <!-- ================================================= -->
+        <div class="phan" id="loi">
+            <h2>7. Lỗi hay gặp và cách sửa</h2>
+            <table>
+                <tr><th>Thông báo / hiện tượng</th><th>Nguyên nhân</th><th>Cách sửa</th></tr>
+                <tr>
+                    <td><code>'git' is not recognized...</code></td>
+                    <td>Chưa cài Git, hoặc cài rồi nhưng chưa mở lại VS Code</td>
+                    <td>Cài Git (mục 2.2), <b>tắt hẳn</b> VS Code rồi mở lại</td>
+                </tr>
+                <tr>
+                    <td><code>fatal: not a git repository</code></td>
+                    <td>Terminal đang đứng ở thư mục chưa <code>git init</code></td>
+                    <td>Mở đúng thư mục dự án (File → Open Folder), hoặc chạy <code>git init</code></td>
+                </tr>
+                <tr>
+                    <td><code>Please tell me who you are</code></td>
+                    <td>Chưa khai báo tên, email</td>
+                    <td>Chạy 2 lệnh <code>git config</code> ở mục 2.3</td>
+                </tr>
+                <tr>
+                    <td><code>nothing to commit, working tree clean</code></td>
+                    <td>Không có gì thay đổi kể từ commit trước (hoặc quên lưu file <kbd>Ctrl</kbd> + <kbd>S</kbd>)</td>
+                    <td>Đây không phải lỗi! Lưu file rồi thử lại</td>
+                </tr>
+                <tr>
+                    <td><code>The repository ... already exists on this account</code> (lúc tạo repo)</td>
+                    <td>Em đã có repo trùng tên</td>
+                    <td>Đặt tên khác, hoặc dùng luôn repo cũ nếu nó còn trống</td>
+                </tr>
+                <tr>
+                    <td><code>remote: Repository not found</code></td>
+                    <td>Link repo gõ sai (sai username, sai tên repo) hoặc chưa tạo repo trên GitHub</td>
+                    <td>Copy lại link ở trang repo, chạy <code>git remote set-url origin &lt;link-dung&gt;</code> rồi push lại</td>
+                </tr>
+                <tr>
+                    <td><code>error: remote origin already exists</code></td>
+                    <td>Đã chạy <code>git remote add</code> trước đó rồi</td>
+                    <td>Đổi link: <code>git remote set-url origin &lt;link-moi&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>error: src refspec main does not match any</code></td>
+                    <td>Chưa có commit nào, hoặc quên <code>git branch -M main</code></td>
+                    <td>Commit trước, chạy <code>git branch -M main</code> rồi push lại</td>
+                </tr>
+                <tr>
+                    <td><code>! [rejected] ... (fetch first)</code></td>
+                    <td>Trên GitHub có thay đổi mà máy chưa có (ví dụ lỡ tạo README trên web)</td>
+                    <td>Chạy <code>git pull origin main</code> rồi <code>git push</code></td>
+                </tr>
+                <tr>
+                    <td>Website báo <b>404 – There isn't a GitHub Pages site here</b></td>
+                    <td>Chưa bật Pages, deploy chưa xong, hoặc <code>index.html</code> nằm trong thư mục con</td>
+                    <td>Kiểm tra mục 5.1, xem tab Actions, đưa <code>index.html</code> ra ngoài cùng</td>
+                </tr>
+                <tr>
+                    <td>Web hiện nhưng <b>mất CSS / mất ảnh</b></td>
+                    <td>Sai đường dẫn hoặc sai chữ hoa/thường của tên file</td>
+                    <td>Nhấn <kbd>F12</kbd> → tab <b>Console</b> xem file nào báo 404, sửa lại tên cho khớp</td>
+                </tr>
+                <tr>
+                    <td>Đã push nhưng web vẫn hiện bản cũ</td>
+                    <td>Deploy chưa xong, hoặc trình duyệt dùng bản cũ đã lưu</td>
+                    <td>Đợi 1–2 phút, nhấn <kbd>Ctrl</kbd> + <kbd>F5</kbd></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ================================================= -->
+        <!-- PHẦN 8: ÔN TẬP                                      -->
+        <!-- ================================================= -->
+        <div class="phan" id="on-tap">
+            <h2>8. Ôn tập</h2>
+            <p>Bấm vào từng câu để xem đáp án.</p>
+
+            <details class="cau-hoi">
+                <summary>1. Git và GitHub khác nhau thế nào?</summary>
+                <p>Git là phần mềm cài trên máy để lưu lịch sử thay đổi code. GitHub là trang web lưu trữ repo Git trên mạng và chia sẻ cho người khác.</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>2. Sắp xếp đúng thứ tự: git push, git add ., git commit -m "..."</summary>
+                <p><code>git add .</code> → <code>git commit -m "..."</code> → <code>git push</code></p>
+            </details>
+            <details class="cau-hoi">
+                <summary>3. Lệnh nào chỉ cần chạy 1 lần cho mỗi dự án?</summary>
+                <p><code>git init</code>, <code>git remote add origin ...</code> (và <code>git config</code> chỉ 1 lần cho mỗi máy tính).</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>4. Lệnh nào dùng để xem file nào đã thay đổi?</summary>
+                <p><code>git status</code></p>
+            </details>
+            <details class="cau-hoi">
+                <summary>5. Username là "minhanh", repo tên "shop-teen". Link GitHub Pages là gì?</summary>
+                <p><code>https://minhanh.github.io/shop-teen/</code></p>
+            </details>
+            <details class="cau-hoi">
+                <summary>6. Trên máy web hiện ảnh đầy đủ, lên GitHub Pages thì mất ảnh <code>Banner.PNG</code>, trong code viết <code>&lt;img src="images/banner.png"&gt;</code>. Vì sao?</summary>
+                <p>Máy chủ GitHub phân biệt chữ hoa/thường: <code>Banner.PNG</code> khác <code>banner.png</code>. Cần đổi tên file hoặc sửa <code>src</code> cho khớp.</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>7. Vì sao repo phải để Public khi dùng GitHub Pages miễn phí?</summary>
+                <p>Tài khoản GitHub miễn phí chỉ bật được GitHub Pages cho repo Public. Vì thế cũng không được để thông tin riêng tư trong code.</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>8. Khi tạo repo trên GitHub để đẩy code có sẵn trên máy, vì sao không nên tích "Add README"?</summary>
+                <p>Vì README tạo ra một commit trên GitHub mà máy chưa có, lần push đầu sẽ bị từ chối (<code>rejected ... fetch first</code>). Repo cần trống hoàn toàn.</p>
+            </details>
+            <details class="cau-hoi">
+                <summary>9. Sửa code xong, cần làm gì để website trên mạng cập nhật?</summary>
+                <p>Lưu file → <code>git add .</code> → <code>git commit -m "..."</code> → <code>git push</code> → đợi 1–2 phút rồi tải lại trang.</p>
+            </details>
+        </div>
+
+        <p class="cuoi-trang">🎉 Chúc mừng! Website của em đã có mặt trên Internet. Hãy gửi link khoe với bạn bè nhé!</p>
+        <p><a href="../index.html">⬅ Về trang chủ khóa học</a></p>
+    </div>
+</body>
+</html>

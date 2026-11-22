@@ -33,6 +33,8 @@ khoa-hoc-web/
 │   ├── index.html + style.css         Thẻ form (action, method GET/POST), các kiểu input, label, select, textarea, validation, fieldset, ôn tập
 │   ├── du-an-dang-nhap/               Thực hành 1: form đăng nhập (index.html) + đăng ký (dang-ky.html), dùng chung style.css
 │   └── du-an-thanh-toan/              Thực hành 2: trang thanh toán ShopTeen (1 cột, đơn giản)
+├── bai-09-git-github-pages/
+│   └── index.html + style.css         Git & GitHub, các lệnh cơ bản, push, deploy GitHub Pages, lỗi hay gặp, ôn tập
 ├── website-gioi-thieu-ca-nhan/        Website tổng hợp Bài 2 → 5
 └── du-an-dog-social/                  Dự án Bootstrap (Bài 6): index.html = hướng dẫn 6 bước (CSS: huong-dan.css);
                                        buoc-1..6 = từng khối; hoan-chinh.html = bản đầy đủ; style.css = CSS của Dog Social
@@ -45,4 +47,5 @@ khoa-hoc-web/
 - Bài 5: nhấn F12 → Ctrl + Shift + M để học sinh xem trang trên giao diện điện thoại.
 - Bài 7 dùng Google Fonts (cần Internet) cho các ví dụ phông chữ; mục 4 có thẻ "Trước khi sửa" cố ý thiết kế sai để học sinh tìm lỗi.
 - Bài 8: các form demo trong bài giảng dùng `method="get"` để học sinh bấm Gửi rồi xem dữ liệu trên thanh địa chỉ. Hai dự án dùng `method="post"` (đúng cho mật khẩu/thanh toán); vì chưa có server, Live Server sẽ báo "Cannot POST" khi gửi thành công – đây là điều bình thường, có thể dùng để giải thích vai trò của server.
+- Bài 9: trước buổi học nên cài sẵn Git cho máy phòng học và nhắc học sinh tạo tài khoản GitHub (cần xác nhận email). Lần `git push` đầu tiên sẽ bật cửa sổ đăng nhập GitHub qua trình duyệt; trên máy dùng chung, sau buổi học vào **Credential Manager** của Windows xóa mục `git:https://github.com` để học sinh sau không push nhầm tài khoản. Nếu máy không cài được Git, dùng cách kéo thả file lên GitHub (mục 5.3).
 - Website tổng hợp dùng Google Fonts nên cần Internet để hiện đúng phông (không có mạng vẫn chạy bằng phông dự phòng).

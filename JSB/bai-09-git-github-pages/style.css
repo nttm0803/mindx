@@ -1,0 +1,514 @@
+/* =========================================================
+   BÀI 9 – GIT, GITHUB VÀ DEPLOY BẰNG GITHUB PAGES
+   ========================================================= */
+
+/* ---------- KHUNG TRANG ---------- */
+body {
+    background-color: #FFF4E6;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #212529;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.trang {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2 { color: #D9480F; }      /* cam đậm – gần màu logo Git */
+h3     { color: #1864AB; }
+h4 {                            /* tiêu đề nhỏ "Bước A, B, C" trong mục 4.1 */
+    color: #495057;
+    border-bottom: 2px dotted #FFD8A8;
+    padding-bottom: 4px;
+    margin-top: 25px;
+}
+
+.muc-luc {
+    background-color: white;
+    padding: 12px;
+    border: 2px dashed #D9480F;
+}
+
+.phan {
+    background-color: white;
+    border: 2px solid #FFD8A8;
+    padding: 10px 25px 25px 25px;
+    margin-top: 30px;
+}
+
+/* Khối lệnh: nền tối giống cửa sổ Terminal */
+pre {
+    background-color: #1E1E2E;
+    color: #A6E3A1;
+    font-family: Consolas, monospace;
+    padding: 15px;
+    font-size: 14px;
+    overflow-x: auto;
+}
+.ghi-chu-lenh { color: #7F849C; }   /* phần chú thích trong khối lệnh (sau dấu #) */
+
+code {
+    background-color: #F1F3F5;
+    font-family: Consolas, monospace;
+    padding: 2px 6px;
+    color: #C92A2A;
+}
+
+kbd {
+    background-color: #F8F9FA;
+    border: 1px solid #ADB5BD;
+    border-bottom-width: 3px;
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-family: Consolas, monospace;
+    font-size: 14px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+}
+th, td {
+    border: 1px solid #ADB5BD;
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+}
+th { background-color: #FFE8CC; }
+
+.ghi-chu {
+    background-color: #FFF8E1;
+    border-left: 6px solid #FFC107;
+    padding: 10px 15px;
+    margin: 15px 0;
+}
+
+.luu-y {
+    background-color: #FFE3E3;
+    border-left: 6px solid #E03131;
+    padding: 10px 15px;
+    margin: 15px 0;
+}
+
+.bai-tap {
+    background-color: #F3F0FF;
+    border: 2px solid #9775FA;
+    padding: 10px 20px;
+    margin-top: 15px;
+}
+
+.cuoi-trang {
+    text-align: center;
+    font-size: 20px;
+}
+
+/* ---------- KHỐI SO SÁNH 2 CỘT (Flexbox – Bài 5) ---------- */
+.hang-so-sanh {
+    display: flex;
+    gap: 16px;
+    margin: 10px 0;
+}
+.o-so-sanh {
+    flex: 1;
+    border: 2px dashed #ADB5BD;
+    padding: 10px 15px;
+}
+.nhan { font-weight: 700; color: #1864AB; margin: 4px 0; }
+
+/* =========================================================
+   SƠ ĐỒ 4 "NGĂN" CỦA GIT (mục 1.3)
+   Các ô xếp ngang bằng Flexbox, mũi tên nằm giữa các ô
+   ========================================================= */
+.so-do-git {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 15px 0;
+}
+.ngan {
+    flex: 1;
+    text-align: center;
+    border: 3px solid #1864AB;
+    border-radius: 10px;
+    padding: 10px 6px;
+    background-color: #E7F5FF;
+}
+.ngan b { display: block; font-size: 17px; }
+.ngan small { color: #495057; }
+.ngan-github {
+    border-color: #212529;
+    background-color: #212529;
+    color: white;
+}
+.ngan-github small { color: #CED4DA; }
+.mui-ten {
+    text-align: center;
+    font-weight: 700;
+    color: #D9480F;
+    font-size: 14px;
+}
+.mui-ten span { display: block; font-size: 24px; }
+
+/* ---------- CÁC BƯỚC LÀM (danh sách đánh số to, rõ) ---------- */
+.buoc {
+    border-left: 6px solid #D9480F;
+    background-color: #FFF9F2;
+    padding: 8px 15px;
+    margin: 12px 0;
+}
+.buoc .so {
+    display: inline-block;
+    background-color: #D9480F;
+    color: white;
+    font-weight: 700;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+/* ---------- MÔ PHỎNG MÀN HÌNH (cây thư mục, trang GitHub) ---------- */
+.man-hinh {
+    background-color: #F8F9FA;
+    border: 2px solid #CED4DA;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin: 10px 0;
+    font-family: Consolas, monospace;
+    font-size: 14px;
+    white-space: pre;
+    overflow-x: auto;
+}
+
+/* =========================================================
+   HÌNH MÔ PHỎNG GIAO DIỆN GITHUB (mục 4)
+   Vẽ bằng HTML/CSS thay cho ảnh chụp màn hình → chạy được khi không có mạng.
+   .mp-noi-bat = viền đỏ đánh dấu chỗ cần bấm/điền
+   .mp-so      = số tròn màu đỏ, khớp với số thứ tự trong các bước
+   ========================================================= */
+.hinh { margin: 18px 0; }
+.hinh figcaption {
+    text-align: center;
+    font-size: 14px;
+    color: #495057;
+    font-style: italic;
+    margin-top: 8px;
+}
+
+.mo-phong {
+    border: 1px solid #D0D7DE;
+    border-radius: 8px;
+    background-color: white;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    color: #1F2328;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* Thanh trên cùng của GitHub */
+.mp-thanh-tren {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background-color: #F6F8FA;
+    border-bottom: 1px solid #D0D7DE;
+    border-radius: 8px 8px 0 0;
+}
+.mp-logo { font-size: 22px; }
+.mp-tim-kiem {
+    flex: 1;
+    border: 1px solid #D0D7DE;
+    border-radius: 6px;
+    padding: 4px 10px;
+    background-color: white;
+    color: #656D76;
+}
+.mp-nut {
+    border: 1px solid #D0D7DE;
+    border-radius: 6px;
+    padding: 3px 9px;
+    background-color: white;
+}
+.mp-avatar {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #FFA94D;
+    vertical-align: middle;
+}
+.mp-avatar-nho { width: 20px; height: 20px; }
+
+/* Menu thả xuống khi bấm dấu + */
+.mp-vung-menu {
+    display: flex;
+    justify-content: flex-end;
+    padding: 4px 60px 16px 14px;
+}
+.mp-menu {
+    width: 220px;
+    border: 1px solid #D0D7DE;
+    border-radius: 8px;
+    padding: 6px 0;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+.mp-muc { padding: 6px 14px; }
+.mp-muc.dang-chon { background-color: #0969DA; color: white; }
+
+/* Nội dung chung bên trong trang */
+.mp-noi-dung { padding: 16px 20px 20px 20px; }
+.mp-tieu-de {
+    font-size: 22px;
+    font-weight: 600;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #D0D7DE;
+}
+.mp-mo { color: #656D76; font-size: 13px; }
+.mp-xanh { color: #1A7F37; font-weight: 600; margin: 6px 0 12px 0; }
+.mp-muc-lon { font-weight: 600; font-size: 16px; margin: 18px 0 8px 0; }
+.mp-nhan { font-weight: 600; margin: 8px 0 4px 0; }
+.mp-hang {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.mp-gian { flex: 1; min-width: 180px; }
+.mp-gach { font-size: 20px; padding-bottom: 4px; }
+.mp-o-nhap {
+    display: inline-block;
+    border: 1px solid #D0D7DE;
+    border-radius: 6px;
+    padding: 5px 10px;
+    background-color: white;
+}
+.mp-o-rong { display: block; }
+
+.mp-khung-cai-dat { border: 1px solid #D0D7DE; border-radius: 6px; }
+.mp-dong-cai-dat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-top: 1px solid #D0D7DE;
+}
+.mp-dong-cai-dat:first-child { border-top: none; }
+.mp-dong-cai-dat small { color: #656D76; }
+.mp-chon {
+    border: 1px solid #D0D7DE;
+    border-radius: 6px;
+    padding: 4px 10px;
+    background-color: #F6F8FA;
+    white-space: nowrap;
+}
+.mp-gat {
+    border: 1px solid #D0D7DE;
+    border-radius: 20px;
+    padding: 2px 10px;
+    background-color: #EAEEF2;
+    white-space: nowrap;
+}
+.mp-cuoi-form { text-align: right; margin-top: 16px; }
+.mp-nut-xanh {
+    display: inline-block;
+    background-color: #1F883D;
+    color: white;
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 6px 16px;
+}
+
+/* Đầu trang repo: tên repo + các tab */
+.mp-dau-repo { padding: 12px 20px 6px 20px; font-size: 18px; }
+.mp-nhan-public {
+    font-size: 12px;
+    border: 1px solid #D0D7DE;
+    border-radius: 20px;
+    padding: 1px 8px;
+    color: #656D76;
+    vertical-align: middle;
+}
+.mp-tab {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 18px;
+    padding: 0 20px;
+    border-bottom: 1px solid #D0D7DE;
+}
+.mp-tab span { padding: 8px 2px; }
+.mp-tab .dang-chon { border-bottom: 2px solid #FD8C73; font-weight: 600; }
+
+/* Khung Quick setup */
+.mp-quick {
+    background-color: #DDF4FF;
+    border: 1px solid #54AEFF;
+    border-radius: 6px;
+    padding: 12px 14px;
+}
+.mp-hang-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+.mp-cap-nut { display: inline-flex; }
+.mp-cap-nut > span {
+    border: 1px solid #D0D7DE;
+    padding: 3px 10px;
+    background-color: white;
+}
+.mp-cap-nut > .dang-chon { background-color: #0969DA; color: white; border-radius: 6px 0 0 6px; }
+.mp-o-link {
+    flex: 1;
+    min-width: 200px;
+    border: 1px solid #D0D7DE;
+    border-radius: 6px;
+    padding: 4px 10px;
+    background-color: white;
+    font-family: Consolas, monospace;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+/* Các khối lệnh trong trang Quick setup */
+.mp-khoi {
+    position: relative;
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-top: 16px;
+}
+.mp-khoi pre {                      /* khối lệnh của GitHub có nền sáng */
+    background-color: #F6F8FA;
+    color: #1F2328;
+    font-size: 13px;
+    margin: 8px 0 0 0;
+}
+.mp-khoi-bo-qua {
+    border: 2px dashed #ADB5BD;
+    opacity: 0.55;                  /* làm mờ: không dùng khối này */
+}
+.mp-khoi-dung {
+    border: 3px solid #2B8A3E;
+    background-color: #EBFBEE;
+}
+.mp-nhan-khoi {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-bottom: 6px;
+    color: white;
+    background-color: #868E96;
+}
+.mp-khoi-dung .mp-nhan-khoi { background-color: #2B8A3E; }
+
+/* Danh sách file sau khi push */
+.mp-hang-nut {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+.mp-danh-sach-file { border: 1px solid #D0D7DE; border-radius: 6px; }
+.mp-dong-dau,
+.mp-dong-file {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 8px 14px;
+    border-top: 1px solid #D0D7DE;
+}
+.mp-dong-dau { background-color: #F6F8FA; border-top: none; border-radius: 6px 6px 0 0; }
+
+/* Đánh dấu chỗ cần bấm */
+.mp-noi-bat {
+    position: relative;             /* Bài 4: làm mốc cho số tròn .mp-so */
+    outline: 3px solid #E03131;
+    outline-offset: 2px;
+}
+.mp-so {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #E03131;
+    color: white;
+    font-weight: 700;
+    font-size: 13px;
+    font-style: normal;
+    font-family: Arial, sans-serif;
+}
+/* Số tròn nhỏ dùng trong chữ giải thích, cùng màu với số trên hình */
+.so-nho {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #E03131;
+    color: white;
+    font-weight: 700;
+    font-size: 12px;
+    font-style: normal;
+}
+
+/* ---------- CHECKLIST TRƯỚC KHI DEPLOY ---------- */
+.checklist {
+    list-style: none;
+    padding-left: 0;
+}
+.checklist li {
+    padding: 6px 0 6px 34px;
+    position: relative;                 /* Bài 4: làm mốc cho ô vuông */
+    border-bottom: 1px dashed #DEE2E6;
+}
+.checklist li::before {                 /* ⭐ NGOÀI BÀI HỌC: ::before – vẽ ô vuông bằng CSS */
+    content: "☐";
+    position: absolute;
+    left: 6px;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #D9480F;
+}
+
+/* =========================================================
+   PHẦN ÔN TẬP
+   ========================================================= */
+.cau-hoi {
+    border: 2px solid #FFE8CC;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+}
+.cau-hoi summary { font-weight: 700; cursor: pointer; }
+.cau-hoi p { margin: 8px 0 0 0; color: #2B8A3E; }
+
+/* =========================================================
+   RESPONSIVE (Bài 5): điện thoại xếp các khối thành cột
+   ========================================================= */
+@media (max-width: 768px) {
+    .hang-so-sanh,
+    .so-do-git {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .mui-ten span { transform: rotate(90deg); }   /* mũi tên → quay thành ↓ */
+    .phan { padding: 10px 15px 20px 15px; }
+    table { font-size: 14px; display: block; overflow-x: auto; }
+}
