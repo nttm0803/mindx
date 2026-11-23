@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên hệ - Minh Anh</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Minh Anh<span>.</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#about">Giới thiệu</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#skills">Kỹ năng</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Dự án</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="index.html#projects">Tất cả dự án</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="project.html">Tiệm Bánh Mây</a></li>
+                                <li><a class="dropdown-item" href="project.html">Dog Social</a></li>
+                                <li><a class="dropdown-item" href="project.html">The Flag</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link active" href="contact.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== BODY ===== -->
+    <main class="screen">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-12 col-lg-5">
+                    <span class="label">Liên hệ</span>
+                    <h1 class="section-heading mb-3">Gửi lời nhắn cho mình</h1>
+                    <p class="text-muted-ink">Bạn có góp ý cho các dự án, hoặc muốn rủ mình làm web cùng? Điền form bên cạnh, mình sẽ trả lời trong vòng 2 ngày.</p>
+
+                    <dl class="facts mt-4">
+                        <div><dt><i class="bi bi-envelope"></i> Email</dt><dd>minhanh.web@gmail.com</dd></div>
+                        <div><dt><i class="bi bi-geo-alt"></i> Nơi ở</dt><dd>Hà Nội</dd></div>
+                    </dl>
+
+                    <div class="social mt-4">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-7">
+                    <form class="form-box" action="" method="post">
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label for="full-name" class="form-label">Họ tên</label>
+                                <input type="text" id="full-name" name="full_name" class="form-control" placeholder="Nguyễn Văn An" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="ban@gmail.com" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="topic" class="form-label">Chủ đề</label>
+                                <select id="topic" name="topic" class="form-select" required>
+                                    <option value="">-- Chọn chủ đề --</option>
+                                    <option value="feedback">Góp ý dự án</option>
+                                    <option value="team-up">Rủ làm dự án chung</option>
+                                    <option value="other">Khác</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label for="message" class="form-label">Lời nhắn</label>
+                                <textarea id="message" name="message" class="form-control" rows="5" placeholder="Viết lời nhắn của bạn..." required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-main w-100">Gửi lời nhắn <i class="bi bi-send"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container d-flex flex-wrap justify-content-between gap-2">
+            <p class="mb-0">© 2026 Nguyễn Minh Anh</p>
+            <p class="mb-0"><a href="#">Về đầu trang <i class="bi bi-arrow-up"></i></a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
